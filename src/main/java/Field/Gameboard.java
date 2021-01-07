@@ -52,4 +52,34 @@ public class Gameboard {
     public Fields[] getArray() {
         return boardArray;
     }
+    //tæller hvor mange færger man owner
+    public int ShipOwnerCounter(Player player) {
+        int counter = 0;
+        for (int i = 0; i < boardArray.length; i++) {
+            if (i == 5 || i == 15 || i == 25 || i == 35) {
+                if (player == ((FieldShips) boardArray[i]).getOwner()) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+
+    //tæller hvor mange Bryggerier man ejere
+    public int breweryOwnerCounter(Player player) {
+        int counter = 0;
+        for (int i = 0; i < boardArray.length; i++) {
+            if (i == 12 || i == 28) {
+                if (player == ((FieldBrewery) boardArray[i]).getOwner()) {
+                    counter++;
+
+                }
+            }
+        }
+        return counter;
+    }
+
+
 }
+
+

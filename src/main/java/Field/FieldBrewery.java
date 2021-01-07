@@ -8,7 +8,7 @@ public class FieldBrewery extends Fields {
     Player owner;
     Boolean owned;
 
-    FieldBrewery(String name,int price, Boolean owned, Player owner) {
+    FieldBrewery(String name,int price, Boolean owned, Player owner,char type) {
         this.name = name;
         this.price = price;
         this.owner = owner;

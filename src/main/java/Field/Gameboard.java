@@ -1,6 +1,6 @@
 package Field;
 
-import Game.VisitJail;
+
 
 public class Gameboard {
     private Fields[] boardArray = new Fields[40];
@@ -16,9 +16,9 @@ public class Gameboard {
         boardArray[7] = boardArray[2];
         boardArray[8] = new FieldStreet("Valby Langgade", "2000", 'b', false, 2000, 100, 600, 1800, 5400, 8000, 11000, 1000, null , 3);
         boardArray[9] = new FieldStreet("Allégade", "2400", 'b', false, 2400, 150, 800, 2000, 6000, 9000, 12000, 1000, null , 3);
-        boardArray[10] = new VisitJail("Fængsel");
+        boardArray[10] = new FieldVisitJail("Fængsel");
         boardArray[11] = new FieldStreet("Frederiksberg Allé", "2800", 'c', false, 2800, 200, 1000, 3000, 9000, 12500, 15000, 2000, null , 3);
-        boardArray[12] = new FieldBrewery("Tuborg", 3000, false,null);
+        boardArray[12] = new FieldBrewery("Tuborg", 3000, false,null,'j');
         boardArray[13] = new FieldStreet("Bülowsvej", "2800", 'c', false, 2800, 200, 1000, 3000, 9000, 12500, 15000, 2000, null , 3);
         boardArray[14] = new FieldStreet("Gl. Kongevej", "3200", 'c', false, 3200, 250, 1250, 3750, 10000, 14000, 18000, 2000, null , 3);
         boardArray[15] = new FieldShips("Mols-Linien", 4000,false,null,'i');
@@ -34,7 +34,7 @@ public class Gameboard {
         boardArray[25] = new FieldShips("Gedser-Rostock", 4000,false,null,'i');
         boardArray[26] = new FieldStreet("Bredgade", "5200", 'f', false, 5200, 450, 2200, 6600, 16000, 19500, 23000, 3000, null , 3);
         boardArray[27] = new FieldStreet("Kgs. Nytorv", "5200", 'f', false, 5200, 450, 2200, 6600, 16000, 19500, 23000, 3000, null , 3);
-        boardArray[28] = new FieldBrewery("Carlsberg", 3000, false,null);
+        boardArray[28] = new FieldBrewery("Carlsberg", 3000, false,null,'j');
         boardArray[29] = new FieldStreet("Østergade", "5600", 'f', false, 5600, 500, 2400, 7200, 17000, 20500, 24000, 3000, null , 3);
         boardArray[30] = new FieldJail("Ryk i fængsel");
         boardArray[31] = new FieldStreet("Amagertorv", "6000", 'g', false, 6800, 550, 2600, 7800, 18000, 22000, 25000, 4000, null , 3);
@@ -45,7 +45,7 @@ public class Gameboard {
         boardArray[36] = boardArray[2];
         boardArray[37] = new FieldStreet("Frederiksberg", "7000", 'h', false, 7000, 700, 3500, 10000, 22000, 26000, 30000, 4000, null , 2);
         boardArray[38] = new FieldPayTax("Statsskat",2000);
-        boardArray[39] = new FieldStreet("Rådhuspladsen", "8000", 'h', false, 8000, 1000, 40000, 12000, 28000, 34000, 40000, 4000 , null,5);
+        boardArray[39] = new FieldStreet("Rådhuspladsen", "8000", 'h', false, 8000, 1000, 40000, 12000, 28000, 34000, 40000, 4000 , null,2);
 
     }
 

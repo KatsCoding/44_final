@@ -1,4 +1,5 @@
 package Field;
+import Game.Player;
 
 import Game.Player;
 

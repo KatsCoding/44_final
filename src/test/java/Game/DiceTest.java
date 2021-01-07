@@ -57,7 +57,7 @@ class DiceTest {
     @Test
     void getEyeValue() {
         Dice dice = new Dice();
-        var rollValue = dice.roll();
+        int rollValue = dice.roll();
 
         assertEquals(rollValue, dice.getEyeValue());
         System.out.println("roll value is the same as dice.getEyeValue");

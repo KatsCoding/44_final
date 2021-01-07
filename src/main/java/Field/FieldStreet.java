@@ -1,4 +1,5 @@
 package Field;
+import Game.Player;
 
 public class FieldStreet extends Fields{
     String displayPrice;

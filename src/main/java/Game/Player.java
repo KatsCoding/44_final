@@ -2,23 +2,17 @@ package Game;
 
 public class Player {
     String name;
-    String Color;
     int cash;
     int getOutOfJailFreeCards = 0;
     boolean passedGoThisTurn = false;
     int playerPosition = 0;
     boolean isBankrupt;
     boolean isJailed = false;
+    int Houses;
+    int Hotel;
 
-    public Player(String name, String color) {
+    public Player(String name, int number){
         this.name = name;
-        Color = color;
-        this.cash = 30000;
-        this.getOutOfJailFreeCards=0;
-        this.passedGoThisTurn=false;
-        this.playerPosition = 0;
-        this.isBankrupt = false;
-        this.isJailed = false;
     }
 
     public String getName() {
@@ -27,14 +21,6 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getColor() {
-        return Color;
-    }
-
-    public void setColor(String color) {
-        Color = color;
     }
 
     public int getCash() {
@@ -83,6 +69,22 @@ public class Player {
 
     public void setJailed(boolean jailed) {
         isJailed = jailed;
+    }
+
+    public int getHouses() {
+        return Houses;
+    }
+
+    public void setHouses(int houses) {
+        Houses = houses;
+    }
+
+    public int getHotel() {
+        return Hotel;
+    }
+
+    public void setHotel(int hotel) {
+        Hotel = hotel;
     }
 }
 

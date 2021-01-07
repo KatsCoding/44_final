@@ -10,7 +10,7 @@ public class Gameboard {
         boardArray[1] = new FieldStreet("Rødovrevej", "1200", 'a', false, 1200, 50, 250, 750, 2250, 4000, 6000, 1000, null , 2);
         boardArray[2] = new FieldChanceCard("Prøv lykken");
         boardArray[3] = new FieldStreet("Hvidovrevej", "1200", 'a', false, 1200, 50, 250, 750, 2250, 4000, 6000, 1000, null , 2);
-        boardArray[4] = new FieldIncomeTax("Indkomstskat");
+        boardArray[4] = new FieldIncomeTax("Indkomstskat",4000);
         boardArray[5] = new FieldShips("Helsingør-Helsingborg", 4000,false,null,'i');
         boardArray[6] = new FieldStreet("Roskildevej", "2000", 'b', false, 2000, 100, 600, 1800, 5400, 8000, 11000, 1000, null , 3);
         boardArray[7] = boardArray[2];

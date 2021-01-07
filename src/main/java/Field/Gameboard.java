@@ -1,6 +1,6 @@
 package Field;
 
-
+import Game.Player;
 
 public class Gameboard {
     private Fields[] boardArray = new Fields[40];

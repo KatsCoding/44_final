@@ -1,4 +1,4 @@
 package Field;
 
-public class Fields {
+abstract public class Fields {
 }

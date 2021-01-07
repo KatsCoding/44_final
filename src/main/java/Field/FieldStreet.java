@@ -11,10 +11,10 @@ public class FieldStreet extends Fields{
     int streetPrice;
     boolean Checked = false;
     int maxOwned;
-    int HousePrize;
+    int HousePrice;
 
 
-    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrize, Player owner, int maxOwned){
+    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrice, Player owner, int maxOwned){
         // The field base lines for what street fields consist of.
         this.displayPrice = displayPrice;
         this.propertyName = propertyName;
@@ -30,7 +30,7 @@ public class FieldStreet extends Fields{
         this.streetPrice = streetPrice;
         this.Checked = Checked;
         this.maxOwned = maxOwned;
-        this.HousePrize = HousePrize;
+        this.HousePrice = HousePrice;
     }
 
       public String getPropertyName() {
@@ -65,11 +65,11 @@ public class FieldStreet extends Fields{
         this.type = type;
     }
 
-    public int getRentPrice() {
+    public int[] getRentPrice() {
         return rentPrice;
     }
 
-    public void setRentPrice(int rentPrice) {
+    public void setRentPrice(int[] rentPrice) {
         this.rentPrice = rentPrice;
     }
 
@@ -95,5 +95,13 @@ public class FieldStreet extends Fields{
 
     public void setMaxOwned(int maxOwned) {
         this.maxOwned = maxOwned;
+    }
+
+    public int getHousePrice() {
+        return HousePrice;
+    }
+
+    public void setHousePrice(int housePrice) {
+        HousePrice = housePrice;
     }
 }

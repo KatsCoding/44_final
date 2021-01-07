@@ -1,7 +1,5 @@
 package Field;
 
-public class FieldStart extends Fields{
-    String propertyName;
+public class FieldStart {
 
-    public FieldStart(String name) { propertyName = name; }
 }

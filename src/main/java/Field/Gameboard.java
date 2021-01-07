@@ -8,7 +8,7 @@ public class Gameboard {
         boardArray[1] = new FieldStreet("Rødovrevej", 1200, 1, 50, 250, 750, 2250, 4000, 6000, 1000);
         boardArray[2] = new Chance("Prøv lykken");
         boardArray[3] = new FieldStreet("Hvidovrevej", 1200, 1, 50, 250, 750, 2250, 4000, 6000, 1000);
-        boardArray[4] = new Morgatege("Indkomstskat", 0);
+        boardArray[4] = new Mortgage("Indkomstskat", 0);
         boardArray[5] = new Ships("Helsingør-Helsingborg", 4000);
         boardArray[6] = new FieldStreet("Roskildevej", 2000, 2, 100, 600, 1800, 5400, 8000, 11000, 1000);
         boardArray[7] = boardArray[2];

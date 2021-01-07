@@ -14,4 +14,9 @@ public class FieldBrewery extends Fields {
         this.owner = owner;
         this.owned = owned;
     }
+
+    @Override
+    public Player getOwner() {
+        return null;
+    }
 }

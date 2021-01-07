@@ -16,4 +16,7 @@ public class FieldShips extends Fields {
         this.owner = owner;
         this.type = type;
     }
+    public Player getOwner() {
+        return owner;
+    }
 }

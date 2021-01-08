@@ -1,8 +1,6 @@
 package Field;
 import Game.Player;
 
-import Game.Player;
-
 public class FieldStreet extends Fields{
     String displayPrice;
     String propertyName;
@@ -95,12 +93,15 @@ public class FieldStreet extends Fields{
         return type;
     }
 
+
+
+
     //made two methods that will allow us to change the rentprice between each position by changing the number of houses
     public int [] getRentPrice (){
             return rentPrice;
         }
     public int[] setRentPrice(){
-        this.rentPrice()
+        this.rentPrice();
     }
 
     public void setCurrentRent(int Houses) {
@@ -110,6 +111,9 @@ public class FieldStreet extends Fields{
     public int getCurrentRent(){
         return currentRent;
     }
+
+
+
 
     public int getStreetPrice() {
         return streetPrice;

@@ -5,11 +5,11 @@ import Game.Player;
 public class FieldShips extends Fields {
     int price;
     String propertynavn;
-    Boolean owned;
+    boolean owned;
     Player owner;
     char type;
 
-    public FieldShips( String propertyName,int price, Boolean owned, Player owner, char type) {
+    public FieldShips( String propertyName,int price, boolean owned, Player owner, char type) {
         this.price = price;
         this.propertynavn = propertyName;
         this.owned = owned;

@@ -1,7 +1,6 @@
 package Field;
 import Game.Player;
 
-import Game.Player;
 
 public class FieldStreet extends Fields{
     String displayPrice;
@@ -15,6 +14,7 @@ public class FieldStreet extends Fields{
     boolean Checked = false;
     int maxOwned;
     int HousePrice;
+    int houses;
 
 
     public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrice, Player owner, int maxOwned){
@@ -34,6 +34,35 @@ public class FieldStreet extends Fields{
         this.Checked = Checked;
         this.maxOwned = maxOwned;
         this.HousePrice = HousePrice;
+    }
+
+    /**
+     *
+     * @return The amount of houses.
+     */
+    public int getHouses() {
+        return houses;
+    }
+
+    /**
+     * set Houses
+     * @param field - The field number for which we want to buy houses for.
+     * @param houses - Sets the amount of houses for the field.
+     */
+    public void setHouses(int field, int houses) {
+        this.houses = houses;
+
+        setHouses(field, houses);
+    }
+
+    /**
+     * set Hotel
+     * @param field - The field number for which we want to buy hotel for
+     */
+    public void setHotel(int field,boolean b) {
+        this.houses = 5;
+
+        setHotel(field,true);
     }
 
       public String getPropertyName() {

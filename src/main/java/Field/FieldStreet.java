@@ -67,6 +67,9 @@ public class FieldStreet extends Fields{
     public int [] getRentPrice (){
             return rentPrice;
         }
+    public int[] setRentPrice(){
+        this.rentPrice()
+    }
 
     public void setCurrentRent(int Houses) {
         this.currentRent = this.rentPrice[Houses] * rentPriceMultiplier;

@@ -78,6 +78,4 @@ public class Gameboard {
         }
         return counter;
     }
-
-
 }

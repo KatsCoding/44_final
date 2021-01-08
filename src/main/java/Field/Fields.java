@@ -2,6 +2,9 @@ package Field;
 
 import Game.Player;
 
-abstract public class Fields {
+public class FieldParking extends Fields{
+    FieldParking(String name){
+
+    }
     public abstract Player getOwner();
 }

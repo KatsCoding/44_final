@@ -2,7 +2,7 @@ package Field;
 
 import Game.Player;
 
-public class FieldIncomeTax extends Fields{
+public class FieldIncomeTax extends Field{
     FieldIncomeTax (String name, int price){
 
     }

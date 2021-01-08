@@ -1,11 +1,11 @@
 package GUI;
-import Game.Gameboard;
+import Field.Gameboard;
 import gui_fields.*;
 
 
 import java.awt.*;
 
-public class GUI {
+public class GUI_game {
     private int house;
     static GUI_Field[] gui_fields = new GUI_Field[40];
     GUI_Street street = new GUI_Street();
@@ -13,7 +13,7 @@ public class GUI {
     public static  GUI_Field[] makeGUIFields(){
         Gameboard gameboard = null;
         int i = 0;
-        gui_fields[0] = new GUI_Start(gameboard.getFields()[0].getTitle(), "Hver gang du passere START modtag kr. 4000" ,"" ,new Color(255, 31 , 31) , Color.WHITE);
+        gui_fields[0] = new GUI_Start(gameboard.getArray()[0].getTitle(), "Hver gang du passere START modtag kr. 4000" ,"" ,new Color(255, 31 , 31) , Color.WHITE);
         gui_fields[1] = new GUI_Street(gameboard.getFields()[1].getTitle(), "SUBTEXT", "DESCRIPTION", "kr. 1.200", Color.BLACK, Color.blue);
         gui_fields[2] = new GUI_Chance();
         gui_fields[3] = new GUI_Street();

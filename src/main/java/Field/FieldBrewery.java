@@ -6,9 +6,9 @@ public class FieldBrewery extends Fields {
     String name;
     int price;
     Player owner;
-    Boolean owned;
+    boolean owned;
 
-    FieldBrewery(String name,int price, Boolean owned, Player owner,char type) {
+    FieldBrewery(String name,int price, boolean owned, Player owner,char type) {
         this.name = name;
         this.price = price;
         this.owner = owner;

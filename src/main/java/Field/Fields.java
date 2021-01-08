@@ -21,6 +21,7 @@ abstract public class Fields {
 
     public abstract void setRentPriceMultiplier(int b);
 
+    public abstract void setRentPrice(int currentRent);
 }
 
 

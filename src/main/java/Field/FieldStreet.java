@@ -13,11 +13,11 @@ public class FieldStreet extends Fields{
     int streetPrice;
     boolean Checked = false;
     int maxOwned;
-    int HousePrice;
+    int housePrice;
     int houses;
 
 
-    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrice, Player owner, int maxOwned){
+    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int housePrice, Player owner, int maxOwned){
         // The field base lines for what street fields consist of.
         this.displayPrice = displayPrice;
         this.propertyName = propertyName;
@@ -33,7 +33,7 @@ public class FieldStreet extends Fields{
         this.streetPrice = streetPrice;
         this.Checked = Checked;
         this.maxOwned = maxOwned;
-        this.HousePrice = HousePrice;
+        this.housePrice = housePrice;
     }
 
     /**
@@ -63,6 +63,15 @@ public class FieldStreet extends Fields{
         this.houses = 5;
 
         setHotel(field,true);
+    }
+
+    /**
+     *
+     * @return The amount of rent for the field, based on how many houses the field has.
+     */
+    public int getRent() {
+
+            return rentPrice[this.getHouses()];
     }
 
       public String getPropertyName() {

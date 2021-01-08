@@ -1,8 +1,6 @@
 package Field;
 import Game.Player;
 
-import Game.Player;
-
 public class FieldStreet extends Fields{
     String displayPrice;
     String propertyName;
@@ -10,11 +8,12 @@ public class FieldStreet extends Fields{
     Player owner;
     char type;
     int[] rentPrice = new int[6];
-    //int rentPriceMultiplier = 1;
+    int rentPriceMultiplier = 1;
     int streetPrice;
     boolean Checked = false;
     int maxOwned;
     int HousePrice;
+    int currentRent;
 
 
     public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrice, Player owner, int maxOwned){
@@ -44,7 +43,7 @@ public class FieldStreet extends Fields{
         this.propertyName = propertyName;
     }
 
-    public boolean isOwned() {
+    public boolean getOwned() {
         return owned;
     }
 
@@ -64,17 +63,19 @@ public class FieldStreet extends Fields{
         return type;
     }
 
-    public void setType(char type) {
-        this.type = type;
+    //made two methods that will allow us to change the rentprice between each position by changing the number of houses
+    public int [] getRentPrice (){
+            return rentPrice;
+        }
+
+    public void setCurrentRent(int Houses) {
+        this.currentRent = this.rentPrice[Houses] * rentPriceMultiplier;
     }
 
-    public int[] getRentPrice() {
-        return rentPrice;
+    public int getCurrentRent(){
+        return currentRent;
     }
 
-    public void setRentPrice(int[] rentPrice) {
-        this.rentPrice = rentPrice;
-    }
 
     public int getStreetPrice() {
         return streetPrice;
@@ -106,5 +107,13 @@ public class FieldStreet extends Fields{
 
     public void setHousePrice(int housePrice) {
         HousePrice = housePrice;
+    }
+
+    public int getRentPriceMultiplier() {
+        return rentPriceMultiplier;
+    }
+
+    public void setRentPriceMultiplier(int rentPriceMultiplier) {
+        this.rentPriceMultiplier = rentPriceMultiplier;
     }
 }

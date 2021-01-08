@@ -55,7 +55,7 @@ public class FieldAction {
             }
         }
     }
-
+//has to make it so its only as long as there non houses build on the group.
     private void checkColorGroupOwned(int propertyID) {
         char type = gameboard[propertyID].getType(); //sets type equal to purchased property's type
         for (int i = 0; i < gameboard.length; i++) {

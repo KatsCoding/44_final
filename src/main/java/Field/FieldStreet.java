@@ -34,6 +34,7 @@ public class FieldStreet extends Fields{
         this.Checked = Checked;
         this.maxOwned = maxOwned;
         this.HousePrice = HousePrice;
+        this.houses=0;
     }
 
     /**
@@ -97,15 +98,15 @@ public class FieldStreet extends Fields{
 
 
     //made two methods that will allow us to change the rentprice between each position by changing the number of houses
-    public int [] getRentPrice (){
+    public int[] getRentPrice (){
             return rentPrice;
         }
-    public int[] setRentPrice(){
-        this.rentPrice();
+    public int[] setRentPrice(int houses){
+        this.rentPrice = this.rentPrice[houses];
     }
 
-    public void setCurrentRent(int Houses) {
-        this.currentRent = this.rentPrice[Houses] * rentPriceMultiplier;
+    public void setCurrentRent(int RentPrice) {
+        this.currentRent = this.rentPrice[0] * rentPriceMultiplier;
     }
 
     public int getCurrentRent(){

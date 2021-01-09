@@ -1,9 +1,14 @@
-
 package Game;
+
+//import stuff
+import gui_main.GUI;
 
 public class Game {
 
-    public static void main(String[] args) {
-        System.out.println("This will be where our game will run ;)");
-    }
+    Dice die = new Dice();
+    GUI gui;
+    private int numberOfPlayers;
+    private int currentPosition;
+
+
 }

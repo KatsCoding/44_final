@@ -38,7 +38,7 @@ public class FieldAction {
                 gameboard[currentPlacement].setOwned(true);
                 gameboard[currentPlacement].setOwner(currentPlayer);
                 gui.getFields()[currentPlacement].setSubText(currentPlayer.getName()); //gui property owner name updated here
-                currentPlayer.addCoins(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
+                currentPlayer.addCash(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
                 checkColorGroupOwned(currentPlacement);
             }
 
@@ -49,8 +49,8 @@ public class FieldAction {
                     gui.showMessage("Desværre du Har ikke råd til at købe feltet");
                     gui.("Vil du sælge nogle huse eller egendom for at få råd?");
                 else {
-                    currentPlayer.addCoins(-(gameboard[currentPlacement].getCurrentRent()));
-                    gameboard[currentPlacement].getOwner().addCoins(gameboard[currentPlacement].getCurrentRent());
+                    currentPlayer.addCash(-(gameboard[currentPlacement].getCurrentRent()));
+                    gameboard[currentPlacement].getOwner().addCash(gameboard[currentPlacement].getCurrentRent());
                     //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);
                 }
             }

@@ -31,6 +31,8 @@ public class Player {
         this.cash = cash;
     }
 
+    public void addCash(int cash) { this.cash = this.cash + cash; }
+
     public int getGetOutOfJailFreeCards() {
         return getOutOfJailFreeCards;
     }

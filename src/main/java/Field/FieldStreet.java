@@ -1,8 +1,6 @@
 package Field;
 import Game.Player;
 
-import Game.Player;
-
 public class FieldStreet extends Fields{
     String displayPrice;
     String propertyName;
@@ -10,11 +8,13 @@ public class FieldStreet extends Fields{
     Player owner;
     char type;
     int[] rentPrice = new int[6];
-    //int rentPriceMultiplier = 1;
+    int rentPriceMultiplier = 1;
     int streetPrice;
     boolean Checked = false;
     int maxOwned;
     int HousePrice;
+    int houses;
+    int currentRent;
 
 
     public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrice, Player owner, int maxOwned){
@@ -34,6 +34,36 @@ public class FieldStreet extends Fields{
         this.Checked = Checked;
         this.maxOwned = maxOwned;
         this.HousePrice = HousePrice;
+        this.houses=0;
+    }
+
+    /**
+     *
+     * @return The amount of houses.
+     */
+    public int getHouses() {
+        return houses;
+    }
+
+    /**
+     * set Houses
+     * @param field - The field number for which we want to buy houses for.
+     * @param houses - Sets the amount of houses for the field.
+     */
+    public void setHouses(int field, int houses) {
+        this.houses = houses;
+
+        setHouses(field, houses);
+    }
+
+    /**
+     * set Hotel
+     * @param field - The field number for which we want to buy hotel for
+     */
+    public void setHotel(int field,boolean b) {
+        this.houses = 5;
+
+        setHotel(field,true);
     }
 
       public String getPropertyName() {
@@ -44,7 +74,7 @@ public class FieldStreet extends Fields{
         this.propertyName = propertyName;
     }
 
-    public boolean isOwned() {
+    public boolean getOwned() {
         return owned;
     }
 
@@ -64,17 +94,27 @@ public class FieldStreet extends Fields{
         return type;
     }
 
-    public void setType(char type) {
-        this.type = type;
+
+
+
+    //made two methods that will allow us to change the rentprice between each position by changing the number of houses
+    public int[] getRentPrice (){
+            return rentPrice;
+        }
+    public void setRentPrice(int houses){
+        this.currentRent = this.rentPrice[houses];
     }
 
-    public int[] getRentPrice() {
-        return rentPrice;
+    public void setCurrentRent(int RentPrice) {
+        this.currentRent = this.rentPrice[0] * rentPriceMultiplier;
     }
 
-    public void setRentPrice(int[] rentPrice) {
-        this.rentPrice = rentPrice;
+    public int getCurrentRent(){
+        return currentRent;
     }
+
+
+
 
     public int getStreetPrice() {
         return streetPrice;
@@ -106,5 +146,13 @@ public class FieldStreet extends Fields{
 
     public void setHousePrice(int housePrice) {
         HousePrice = housePrice;
+    }
+
+    public int getRentPriceMultiplier() {
+        return rentPriceMultiplier;
+    }
+
+    public void setRentPriceMultiplier(int rentPriceMultiplier) {
+        this.rentPriceMultiplier = rentPriceMultiplier;
     }
 }

@@ -23,11 +23,11 @@ abstract public class Fields {
 
     public abstract void setRentPrice(int currentRent);
 
-    public abstract String getPropertyName();
+    public abstract String getPropertyName();// property mane from fieldstreet class
 
-    public abstract String FieldStart();
+    public abstract String FieldStart();// name from Fieldstart class
 
-    public abstract String getDisplayPrice();
+    public abstract String getDisplayPrice();//display price from fieldstreet class
 
     public abstract void setDisplayPrice(String displayPrice);
 

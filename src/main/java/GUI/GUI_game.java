@@ -11,7 +11,7 @@ public class GUI_game {
     static GUI_Field[] gui_fields = new GUI_Field[40];
     GUI_Street street = new GUI_Street();
 
-    public static  GUI_Field[] makeGUIFields(){//Laver GUI boardet ud fra data'en i 'Gameboard
+    public static  GUI_Field[] makeGUIFields(){//make GUI board with the data from Gameboard
         Gameboard gameboard = new Gameboard();
         int i = 0;
 
@@ -59,13 +59,13 @@ public class GUI_game {
         return gui_fields;
     }
 
-    public int getGui_house(){
+    public int getGui_house(){//method for GUI house
 
         street.setHouses(2);
         return house;
     }
 
-    public boolean setHotel(){
+    public boolean setHotel(){//method for GUI hotel
 
         street.setHotel(false);
         return hotel;

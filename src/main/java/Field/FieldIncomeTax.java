@@ -43,6 +43,31 @@ public class FieldIncomeTax extends Fields{
 
     }
 
+    @Override
+    public void setRentPrice(int currentRent) {
+
+    }
+
+    @Override
+    public String getPropertyName() {
+        return null;
+    }
+
+    @Override
+    public String FieldStart() {
+        return null;
+    }
+
+    @Override
+    public String getDisplayPrice() {
+        return null;
+    }
+
+    @Override
+    public void setDisplayPrice(String displayPrice) {
+
+    }
+
     FieldIncomeTax (String name, int price){
 
     }

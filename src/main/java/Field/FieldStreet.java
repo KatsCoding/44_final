@@ -70,6 +70,11 @@ public class FieldStreet extends Fields{
         return propertyName;
     }
 
+    @Override
+    public String FieldStart() {
+        return null;
+    }
+
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }

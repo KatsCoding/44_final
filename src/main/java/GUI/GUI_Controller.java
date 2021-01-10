@@ -14,5 +14,7 @@ public class GUI_Controller {
         GUI_Field[] fields = GUI_game.makeGUIFields();
 
         GUI gui = new GUI(fields, Color.WHITE);
+
+
     }
 }

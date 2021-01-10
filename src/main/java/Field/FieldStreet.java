@@ -66,9 +66,7 @@ public class FieldStreet extends Fields{
         setHotel(field,true);
     }
 
-      public String getPropertyName() {
-        return propertyName;
-    }
+      public String getPropertyName() { return propertyName; }
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;

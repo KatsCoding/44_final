@@ -145,12 +145,12 @@ public class FieldStreet extends Fields{
         this.maxOwned = maxOwned;
     }
 
-    public int getHousePrice() {
-        return HousePrice;
+    public int gethousePrice() {
+        return housePrice;
     }
 
-    public void setHousePrice(int housePrice) {
-        HousePrice = housePrice;
+    public void sethousePrice(int housePrice) {
+        housePrice = housePrice;
     }
 
     public int getRentPriceMultiplier() {

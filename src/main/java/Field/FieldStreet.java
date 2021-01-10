@@ -66,7 +66,9 @@ public class FieldStreet extends Fields{
         setHotel(field,true);
     }
 
-      public String getPropertyName() { return propertyName; }
+    public String getPropertyName() {
+        return propertyName;
+    }
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
@@ -153,4 +155,10 @@ public class FieldStreet extends Fields{
     public void setRentPriceMultiplier(int rentPriceMultiplier) {
         this.rentPriceMultiplier = rentPriceMultiplier;
     }
+
+    public String getDisplayPrice() {
+        return displayPrice;
+    }
+
+    public void setDisplayPrice(String displayPrice){this.displayPrice = displayPrice;}
 }

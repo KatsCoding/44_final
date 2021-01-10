@@ -1,4 +1,5 @@
 package Field;
+
 import Game.Player;
 
 abstract public class Fields {
@@ -27,6 +28,9 @@ abstract public class Fields {
     public abstract String FieldStart();
 
     public abstract String getDisplayPrice();
+
+    public abstract void setDisplayPrice(String displayPrice);
+
 }
 
 

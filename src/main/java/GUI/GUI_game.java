@@ -13,7 +13,6 @@ public class GUI_game {
 
     public static  GUI_Field[] makeGUIFields(){//make GUI board with the data from Gameboard
         Gameboard gameboard = new Gameboard();
-        int i = 0;
 
         gui_fields[0] = new GUI_Start(gameboard.getArray()[0].FieldStart(), "" ,"Hver gang du passere START modtag kr. 4000" ,new Color(255, 31 , 31) , Color.WHITE);
         gui_fields[1] = new GUI_Street(gameboard.getArray()[1].getPropertyName(), "", "", gameboard.getArray()[1].getDisplayPrice(), new Color(44,14, 235), Color.blue);

@@ -7,6 +7,12 @@ public class PayTaxes {
     private final int stateTax = 2000;
     private final int price = 4000;
 
+
+    public int incomeTax(){
+    if (){
+    }else{
+        }
+    }
     public double Taxes(int i){
         tax = i*0.1;
 

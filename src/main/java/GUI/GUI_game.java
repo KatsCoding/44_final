@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class GUI_game {
     private int house;
+    private boolean hotel;
     static GUI_Field[] gui_fields = new GUI_Field[40];
     GUI_Street street = new GUI_Street();
 
@@ -62,5 +63,11 @@ public class GUI_game {
 
         street.setHouses(2);
         return house;
+    }
+
+    public boolean setHotel(){
+
+        street.setHotel(false);
+        return hotel;
     }
 }

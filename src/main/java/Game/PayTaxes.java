@@ -1,33 +1,18 @@
 package Game;
 
 public class PayTaxes {
-    private double tax;
-    private int moneyLeft;
-    private int stateTaxPaid;
-    private final int stateTax = 2000;
+
+    private double moneyLeft;
     private final int price = 4000;
 
 
-    public int incomeTax(){
-    if (){
+    public double incomeTax(double i){
+    if (i == 0 ){
+        moneyLeft =i*0.1;
     }else{
-        }
-    }
-    public double Taxes(int i){
-        tax = i*0.1;
-
-        return tax;
-    }
-
-    public int MoneyLeft(int i){
         moneyLeft = i-price;
-
-        return moneyLeft;
+        }
+    return moneyLeft;
     }
 
-    public int StateTaxPaid(int i){
-        stateTaxPaid = i-stateTax;
-
-        return stateTaxPaid;
-    }
 }

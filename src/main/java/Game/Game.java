@@ -12,4 +12,7 @@ public class Game {
     boolean gameOver = false;
 
 
+    public void endGame(Player currentPlayer){
+        gameOver = true;
+    }
 }

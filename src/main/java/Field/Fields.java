@@ -25,6 +25,8 @@ abstract public class Fields {
     public abstract String getProbertyName();
 
     public abstract String FieldStart();
+
+    public abstract String getStreetPrice();
 }
 
 

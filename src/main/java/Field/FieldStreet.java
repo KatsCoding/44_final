@@ -70,6 +70,11 @@ public class FieldStreet extends Fields{
         return propertyName;
     }
 
+    @Override
+    public String FieldStart() {
+        return null;
+    }
+
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }
@@ -105,7 +110,7 @@ public class FieldStreet extends Fields{
         this.currentRent = this.rentPrice[houses];
     }
 
-    public void setCurrentRent() {
+    public void setCurrentRent(int RentPrice) {
         this.currentRent = this.rentPrice[0] * rentPriceMultiplier;
     }
 

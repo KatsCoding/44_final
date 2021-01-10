@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class FieldAction {
 
     private int currentPlacement = 0;
-    //boolean[] usedChanceCards = new boolean[18];
+    boolean[] usedChanceCards = new boolean[18];
     PlayerList players;
     GUI_Player[] guiPlayers;
     Player currentPlayer;
@@ -38,19 +38,18 @@ public class FieldAction {
                 gameboard[currentPlacement].setOwned(true);
                 gameboard[currentPlacement].setOwner(currentPlayer);
                 gui.getFields()[currentPlacement].setSubText(currentPlayer.getName()); //gui property owner name updated here
-                currentPlayer.addCash(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
+                currentPlayer.addCoins(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
                 checkColorGroupOwned(currentPlacement);
             }
 
 
         } else { //if the property is already owned
             if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
-                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent())//checks if you're poor
-                    gui.showMessage("Desværre du Har ikke råd til at købe feltet");
-                    gui.("Vil du sælge nogle huse eller egendom for at få råd?");
-                else {
-                    currentPlayer.addCash(-(gameboard[currentPlacement].getCurrentRent()));
-                    gameboard[currentPlacement].getOwner().addCash(gameboard[currentPlacement].getCurrentRent());
+                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()) { //checks if you're poor
+                    endGame(currentPlayer);
+                } else {
+                    currentPlayer.addCoins(-(gameboard[currentPlacement].getCurrentRent()));
+                    gameboard[currentPlacement].getOwner().addCoins(gameboard[currentPlacement].getCurrentRent());
                     //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);
                 }
             }
@@ -70,7 +69,7 @@ public class FieldAction {
                 }
                 gameboard[i].setRentPrice(gameboard[i].getCurrentRent()); //updates rent price with the new multiplier
                 gameboard[propertyID].setRentPrice(gameboard[propertyID].getCurrentRent());
-                gameboard[i].setCurrentRent();
+                gameboard[2].setCurrentRent();
             }
 
 

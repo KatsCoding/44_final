@@ -41,7 +41,7 @@ public class Player {
         this.getOutOfJailFreeCards = getOutOfJailFreeCards;
     }
 
-    public boolean isPassedGoThisTurn() {
+    public boolean getPassedGoThisTurn() {
         return passedGoThisTurn;
     }
 
@@ -49,12 +49,27 @@ public class Player {
         this.passedGoThisTurn = passedGoThisTurn;
     }
 
+
     public int getPlayerPosition() {
         return playerPosition;
     }
 
-    public void setPlayerPosition(int playerPosition) {
-        this.playerPosition = playerPosition;
+    public void setPlayerPosition(int position) {
+        if (position < 0) {
+            playerPosition = 0;
+        } else if (position > 39) {
+            playerPosition = 0;
+        }
+        else
+            playerPosition = position;
+    }
+
+    public void movePlayer(int amount){
+        int prevPosition = playerPosition;
+        playerPosition = ((playerPosition + amount) % 40);
+        if (prevPosition >= playerPosition) {
+            passedGoThisTurn = true;
+        }
     }
 
     public boolean isBankrupt() {

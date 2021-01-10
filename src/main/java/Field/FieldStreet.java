@@ -66,7 +66,7 @@ public class FieldStreet extends Fields{
         setHotel(field,true);
     }
 
-      public String getPropertyName() {
+    public String getPropertyName() {
         return propertyName;
     }
 
@@ -105,7 +105,7 @@ public class FieldStreet extends Fields{
         this.currentRent = this.rentPrice[houses];
     }
 
-    public void setCurrentRent(int RentPrice) {
+    public void setCurrentRent() {
         this.currentRent = this.rentPrice[0] * rentPriceMultiplier;
     }
 
@@ -155,4 +155,10 @@ public class FieldStreet extends Fields{
     public void setRentPriceMultiplier(int rentPriceMultiplier) {
         this.rentPriceMultiplier = rentPriceMultiplier;
     }
+
+    public String getDisplayPrice() {
+        return displayPrice;
+    }
+
+    public void setDisplayPrice(String displayPrice){this.displayPrice = displayPrice;}
 }

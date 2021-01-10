@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class FieldAction {
 
     private int currentPlacement = 0;
-    boolean[] usedChanceCards = new boolean[18];
+    //boolean[] usedChanceCards = new boolean[18];
     PlayerList players;
     GUI_Player[] guiPlayers;
     Player currentPlayer;
@@ -45,9 +45,10 @@ public class FieldAction {
 
         } else { //if the property is already owned
             if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
-                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()) { //checks if you're poor
-                    endGame(currentPlayer);
-                } else {
+                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent())//checks if you're poor
+                    gui.showMessage("Desværre du Har ikke råd til at købe feltet");
+                    gui.("Vil du sælge nogle huse eller egendom for at få råd?");
+                else {
                     currentPlayer.addCoins(-(gameboard[currentPlacement].getCurrentRent()));
                     gameboard[currentPlacement].getOwner().addCoins(gameboard[currentPlacement].getCurrentRent());
                     //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);
@@ -69,7 +70,7 @@ public class FieldAction {
                 }
                 gameboard[i].setRentPrice(gameboard[i].getCurrentRent()); //updates rent price with the new multiplier
                 gameboard[propertyID].setRentPrice(gameboard[propertyID].getCurrentRent());
-                gameboard[2].setCurrentRent();
+                gameboard[i].setCurrentRent();
             }
 
 

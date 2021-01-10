@@ -22,11 +22,11 @@ abstract public class Fields {
 
     public abstract void setRentPrice(int currentRent);
 
-    public abstract String getProbertyName();
+    public abstract String getPropertyName();
 
     public abstract String FieldStart();
 
-    public abstract String getStreetPrice();
+    public abstract String getDisplayPrice();
 }
 
 

@@ -12,7 +12,7 @@ public class FieldStreet extends Fields{
     int streetPrice;
     boolean Checked = false;
     int maxOwned;
-    int HousePrice;
+    int housePrice;
     int houses;
     int currentRent;
 
@@ -33,7 +33,7 @@ public class FieldStreet extends Fields{
         this.streetPrice = streetPrice;
         this.Checked = Checked;
         this.maxOwned = maxOwned;
-        this.HousePrice = HousePrice;
+        this.housePrice = HousePrice;
         this.houses=0;
     }
 
@@ -145,12 +145,12 @@ public class FieldStreet extends Fields{
         this.maxOwned = maxOwned;
     }
 
-    public int gethousePrice() {
+    public int getHousePrice() {
         return housePrice;
     }
 
-    public void sethousePrice(int housePrice) {
-        housePrice = housePrice;
+    public void setHousePrice(int housePrice) {
+        this.housePrice = housePrice;
     }
 
     public int getRentPriceMultiplier() {

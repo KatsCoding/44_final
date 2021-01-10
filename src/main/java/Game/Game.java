@@ -9,6 +9,7 @@ public class Game {
     GUI gui;
     private int numberOfPlayers;
     private int currentPosition;
+    boolean gameOver = false;
 
 
 }

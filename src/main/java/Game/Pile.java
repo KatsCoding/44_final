@@ -1,11 +1,8 @@
 package Game;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.*;
-import org.json.simple.parser.JSONParser;
+import ChanceCard.*;
 
 public class Pile {
     protected Queue<ChanceCard> cards = new LinkedList<ChanceCard>();
@@ -34,40 +31,12 @@ public class Pile {
         currentPile = new LinkedList<ChanceCard>(tmp);
     }
 
-    public static void loadFromFile(String confFile)
-    {
-        //JSON parser object to parse read file
-        JSONParser jsonParser = new JSONParser();
-
-        try (FileReader reader = new FileReader(confFile))
-        {
-            //Read JSON file
-            Object obj = jsonParser.parse(reader);
-
-            JSONArray cardList = (JSONArray) obj;
-
-            //Iterate over employee array
-            cardList.forEach( emp -> addCardObject( (JSONObject) emp ) );
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void loadPile() {
+        addCard(new SimpleMoveChanceCard("Ryk fem felter frem", 5));
+        addCard(new SimpleMoveChanceCard("Ryk syv felter frem", 7));
+        addCard( new SimpleMoveToSpecificField("Ryk frem til Frederiksberg Alle", "Frederiksberg Alle", true));
+        addCard( new SimpleMoveToSpecificField("Ryk frem til Strandvejen", "Strandvejen", true));
     }
 
-    private static void addCardObject(JSONObject newCard)
-    {
-        //Get employee object within list
-        String text = (String) newCard.get("text");
-        int cash = (int) newCard.get("cash");,
-        int moveUser = (int) newCard.get("moveUser");
-        boolean gotoJail = (boolean) newCard.get("gotoJail");
-        int gotoSpecificField = (int) newCard.get("gotoSpecificField");
 
-        cards.add(new ChanceCard(text, cash, moveUser, gotoJail, gotoSpecificField));
-
-    }
 }

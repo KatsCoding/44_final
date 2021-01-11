@@ -2,7 +2,16 @@ package Field;
 
 import Game.Player;
 
-public class FieldIncomeTax extends Fields{
+public class FieldBlank extends Fields {
+    FieldBlank(String name) {
+
+    }
+
+    @Override
+    public Player getOwner() {
+        return null;
+    }
+
     @Override
     public void setOwner(Player owner) {
 
@@ -66,14 +75,5 @@ public class FieldIncomeTax extends Fields{
     @Override
     public void setDisplayPrice(String displayPrice) {
 
-    }
-
-    FieldIncomeTax (String name, int price){
-
-    }
-
-    @Override
-    public Player getOwner() {
-        return null;
     }
 }

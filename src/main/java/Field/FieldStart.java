@@ -61,12 +61,12 @@ public class FieldStart extends Fields{
 
     @Override
     public String getPropertyName() {
-        return null;
+        return propertyName;
     }
 
     @Override
     public String FieldStart() {
-        return null;
+        return propertyName;
     }
 
     @Override
@@ -78,4 +78,5 @@ public class FieldStart extends Fields{
     public void setDisplayPrice(String displayPrice) {
 
     }
+
 }

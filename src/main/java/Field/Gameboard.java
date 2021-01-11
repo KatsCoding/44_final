@@ -38,14 +38,14 @@ public class Gameboard {
         boardArray[29] = new FieldStreet("Østergade", "5600", 'f', false, 5600, 500, 2400, 7200, 17000, 20500, 24000, 3000, null , 3);
         boardArray[30] = new FieldJail("Ryk i fængsel");
         boardArray[31] = new FieldStreet("Amagertorv", "6000", 'g', false, 6800, 550, 2600, 7800, 18000, 22000, 25000, 4000, null , 3);
-        boardArray[32] = new FieldStreet("Vimmelskaftet", "6000", 'g', false, 6000,550, 2600, 7800, 18000, 22000, 25000,4000, null , 3);
+        boardArray[32] = new FieldStreet("Vimmelskaf-\n"+"tet", "6000", 'g', false, 6000,550, 2600, 7800, 18000, 22000, 25000,4000, null , 3);
         boardArray[33] = boardArray[2];
         boardArray[34] = new FieldStreet("Nygade", "6400", 'g', false, 6400, 600, 3000, 9000, 20000, 24000, 28000, 4000, null , 3);
         boardArray[35] = new FieldShips("Rødby-Puttgarden", "4000",4000,false,null,'i');
         boardArray[36] = boardArray[2];
         boardArray[37] = new FieldStreet("Frederiksberg", "7000", 'h', false, 7000, 700, 3500, 10000, 22000, 26000, 30000, 4000, null , 2);
         boardArray[38] = new FieldPayTax("Statsskat",2000);
-        boardArray[39] = new FieldStreet("Rådhuspladsen", "8000", 'h', false, 8000, 1000, 40000, 12000, 28000, 34000, 40000, 4000 , null,2);
+        boardArray[39] = new FieldStreet("Rådhusplad-\n"+"en", "8000", 'h', false, 8000, 1000, 40000, 12000, 28000, 34000, 40000, 4000 , null,2);
 
     }
 

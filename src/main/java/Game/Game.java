@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class Game {
 
-    Dice dice1 = new Dice();
-    Dice dice2 = new Dice();
+    //Dice dice1 = new Dice();
+    //Dice dice2 = new Dice();
     private int numberOfPlayers;
     private int currentPosition;
     boolean gameOver = false;

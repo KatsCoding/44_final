@@ -104,7 +104,7 @@ public class FieldAction {
     }
 
     public void landOnChance() {
-        game.landOnChance();
+        game.landOnChance(); // landOnChance implemented in game class (which makes the player draw a card)
     }
 
 }

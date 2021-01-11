@@ -80,11 +80,12 @@ public class Gameboard {
         }
         return counter;
     }
-
+    //
     public int getPositionNamedField(String fieldName){
-        int position = -1;
+        int position = -1; //
         for (int i = 0; i < boardArray.length; i++) {
             if (boardArray[i].getPropertyName() == fieldName) {
+                // if the getPropertyName is equal to fieldname the position is set to i (which is the index in the boardArray
                 position = i;
                 break;
             }

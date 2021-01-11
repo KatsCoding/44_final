@@ -9,6 +9,7 @@ public class Game {
     public void moveCurrentPlayer(int move, boolean grantCrossStartBonus) {}
     public void moveCurrentPlayerToNameField(String fieldName, boolean grantCrossStartBonus) {}
     public void addCashToCurrentPlayer(int amount){}
+    public void withdrawCashFromCurrentPlayer(int amount){}
 
     public void getPositionOfNameField(String field) {}
 

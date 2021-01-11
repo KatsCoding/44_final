@@ -3,12 +3,14 @@ package ChanceCard;
 import Game.Game;
 import gui_main.GUI;
 
-public class SimpleMoveChanceCard extends ChanceCard {
+public class SimpleMove extends ChanceCard {
     protected int move;
+    boolean grantCrossStartBonus;
 
-    public SimpleMoveChanceCard(String text, int move) {
+    public SimpleMove(String text, int move, boolean grantCrossStartBonus) {
         this.text = text;
         this.move = move;
+        this.grantCrossStartBonus = grantCrossStartBonus;
     }
 
     public void  execute(Game game, GUI gui) {

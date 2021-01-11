@@ -1,6 +1,6 @@
 package ChanceCard;
 
-import
+
 import Game.Game;
 import gui_main.GUI;
 

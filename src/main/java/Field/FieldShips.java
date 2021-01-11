@@ -2,16 +2,24 @@ package Field;
 
 import Game.Player;
 
-//TODO Katrine synes denne klasse burde omdefineres da man kan lave dens funktion via 2 linjer i game, som vi også brugte i del_3.
-
-public class FieldStart extends Fields{
+public class FieldShips extends Fields {
+    int price;
     String propertyName;
+    String displayPrice;
+    boolean owned;
+    Player owner;
+    char type;
 
-    public FieldStart(String name) { propertyName = name; }
-
-    @Override
+    public FieldShips( String propertyName,String displayPrice,int price, boolean owned, Player owner, char type) {
+        this.price = price;
+        this.propertyName = propertyName;
+        this.displayPrice = displayPrice;
+        this.owned = owned;
+        this.owner = owner;
+        this.type = type;
+    }
     public Player getOwner() {
-        return null;
+        return owner;
     }
 
     @Override
@@ -71,12 +79,11 @@ public class FieldStart extends Fields{
 
     @Override
     public String getDisplayPrice() {
-        return null;
+        return displayPrice;
     }
 
     @Override
     public void setDisplayPrice(String displayPrice) {
 
     }
-
 }

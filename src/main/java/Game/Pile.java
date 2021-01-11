@@ -55,15 +55,17 @@ public class Pile {
         addCard( new SimpleReceiveCash("Deres præmieobligation er udtrykket. Du modtager 1000 kr", 1000));
         addCard( new SimpleReceiveCash("Du har solgt nogle gamle møbler på auktion. Du modtager 1000", 1000));
         addCard( new SimpleReceiveCash("Værdien af egen avl fra nyttehaven udgør 200 som du får af banken", 200));
-        addCard( new SimplePayCash("Du har kørt frem for 'fuldt stop', betal 1000 kr i bøde", -1000 ));
-        addCard( new SimplePayCash("Betal 300 kr for vognvask og smøring", -300 ));
-        addCard( new SimplePayCash("Betal 3000 kr for reperation af din vogn", -3000 ));
-        addCard( new SimplePayCash("Betal 3000 kr for reperation af din vogn", -3000 ));
-        addCard( new SimplePayCash("Du har købt 4 nye dæk til din vogn. Du skal betale 1000 kr", -1000 ));
-        addCard( new SimplePayCash("Du har fået en parkeringsbøde, betal 200 kr i bøde", -200 ));
-        addCard( new SimplePayCash("Betal 1000 kr for din bilforsikring", -1000 ));
-        addCard( new SimplePayCash("Du har været udenlands og købt for mange smøger. Betal 200 kr i told", -200 ));
-        addCard( new SimplePayCash("Du skal betale 2000 kr for din tandlægeregning", -2000 ));
+        addCard( new SimplePayCash("Du har kørt frem for 'fuldt stop', betal 1000 kr i bøde", 1000 ));
+        addCard( new SimplePayCash("Betal 300 kr for vognvask og smøring", 300 ));
+        addCard( new SimplePayCash("Betal 3000 kr for reperation af din vogn", 3000 ));
+        addCard( new SimplePayCash("Betal 3000 kr for reperation af din vogn", 3000 ));
+        addCard( new SimplePayCash("Du har købt 4 nye dæk til din vogn. Du skal betale 1000 kr", 1000 ));
+        addCard( new SimplePayCash("Du har fået en parkeringsbøde, betal 200 kr i bøde", 200 ));
+        addCard( new SimplePayCash("Betal 1000 kr for din bilforsikring", 1000 ));
+        addCard( new SimplePayCash("Du har været udenlands og købt for mange smøger. Betal 200 kr i told", 200 ));
+        addCard( new SimplePayCash("Du skal betale 2000 kr for din tandlægeregning", 2000 ));
+        addCard( new GetOutOfJailCard("I anledning af kongens fødselsdag benådes de for fængsel. Dette kort kan opbevares indtil du får brug for det"));
+        addCard( new GetOutOfJailCard("I anledning af kongens fødselsdag benådes de for fængsel. Dette kort kan opbevares indtil du får brug for det"));
 
 
     }

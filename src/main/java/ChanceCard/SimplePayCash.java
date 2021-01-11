@@ -22,7 +22,7 @@ public class SimplePayCash extends ChanceCard {
                 break;
             case INSUFFICIENT_CASH: {
                 int missing = this.amount - game.getCurrentUserFunds();
-                gui.showMessage(String.format("Du har ikke penge nok. Der mangler %d \n Sælg ejendomme for at få penge nok", missing);
+                gui.showMessage(String.format("Du har ikke penge nok. Der mangler %d \n Sælg ejendomme for at få penge nok", missing));
                 // allow the user to sell properties
                 game.promptCurrentUserPropertySale();
                 // Then check whether the user now has enough cash otherwise end game for user

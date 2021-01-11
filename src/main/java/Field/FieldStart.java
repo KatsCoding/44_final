@@ -76,4 +76,5 @@ public class FieldStart extends Fields{
     public void setDisplayPrice(String displayPrice) {
 
     }
+
 }

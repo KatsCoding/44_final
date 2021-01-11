@@ -1,28 +1,117 @@
 package Game;
 
-//import stuff
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 import Field.*;
 import GUI.*;
 
+import java.awt.*;
+
 public class Game {
 
-    Dice die = new Dice();
-    GUI gui;
+    Dice dice1 = new Dice();
+    Dice dice2 = new Dice();
     private int numberOfPlayers;
     private int currentPosition;
     boolean gameOver = false;
-    PlayerList Players;
+    PlayerList players;
     GUI_Player[] guiPlayers;
     Player currentPlayer;
     GUI_Player currentGUIPlayer;
-    Fields[] gameboard;
+    Gameboard gameboard = new Gameboard();
     GUI_Field currentField;
+    GUI_Field[] fields = GUI_game.makeGUIFields();
+    GUI gui = new GUI(fields, Color.WHITE);
+    FieldAction fieldAction = new FieldAction();
 
+    public void startGame(){
+        // velkomst besked
+        gui.showMessage("Velkommen til matador!");
+
+        // valg af antal spillere
+        numberOfPlayers = Integer.parseInt(gui.getUserSelection("Vælg antal spillere:", "2", "3", "4", "5", "6"));
+        String[] playerNames = new String[numberOfPlayers];
+        // indtastning af navne på spillere
+        for (int i = 0; i < numberOfPlayers; i++) {
+            playerNames[i] = gui.getUserString("Indtast navn på den " + (i + 1) + ". Spiller");
+        }
+
+        //Liste over spillere og deres navne
+        players = new PlayerList(numberOfPlayers, playerNames);
+
+        //TODO Lave spillebrikker til spillere, mangler GUI biler
+        //GUI_Car[] cars = GUI_Car.makeCars(numberOfPlayers);
+
+        // laver et array af start indhold for spillere
+        guiPlayers = new GUI_Player[numberOfPlayers];
+        for (int i = 0; i < numberOfPlayers; i++) {
+            int defaultBalance = 20;
+            guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), defaultBalance/*, cars[i]*/);
+        }
+
+        //TODO chancekortne skal blandes her
+
+        //Sætter startfeltet
+        currentField = gui.getFields()[0];
+
+        //Indsætter viuel rep. af spillere + deres biler + penge
+        for (int i = 0; i < numberOfPlayers; i++) {
+            gui.addPlayer(guiPlayers[i]);
+            currentField.setCar(guiPlayers[i], true);
+        }
+
+        //Opdaterer visuel rep af penge på gui'en
+        updateGUICash();
+
+        //TODO add actual gå-i-gang-besked
+        gui.showMessage("gå-i-gang-med-spillet-besked");
+
+        //holder spillet i gang indtil gameOver
+        while (gameOver = false) {
+        round();
+        }
+    }
+
+
+    public void round(){
+        //for-loop hver spiller og kalder turn()
+        for (int i = 0; i < numberOfPlayers; i++) {
+            turn(i);
+        }
+    }
+
+    public void turn(int playerID){
+
+    }
+
+    //We used our move method from cdio 3, with changes as needed.
+    public void move(int dist) {
+        currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.
+        currentPlayer.movePlayer(dist); //changes player's position number
+        currentPosition = currentPlayer.getPlayerPosition(); //set current placement
+
+        currentField.setCar(currentGUIPlayer, false); //removes old position on gui
+        currentField = gui.getFields()[currentPosition]; //sets new position on gui
+        currentField.setCar(currentGUIPlayer, true); //sets gui player's position on currentField
+
+        if (currentPlayer.getPassedGoThisTurn()) { //adds money if player passes go when moving.
+            currentPlayer.addCash(4000);
+        }
+        currentPlayer.resetHasPassedGo(); //sets boolean back to false.
+        fieldAction.landOnField(currentPosition);
+    }
 
     public void endGame(Player currentPlayer){
         gameOver = true;
+        gui.showMessage(currentPlayer + " har vundet spillet! Stort tillykke.");
+        gui.showMessage("Tryk ok for at afslutte");
+        gui.close();
+    }
+
+    private void updateGUICash(){
+        for (int i = 0; i < players.getPlayers().length; i++) {
+            guiPlayers[i].setBalance(players.getPlayers()[i].getCash());
+        }
     }
 }

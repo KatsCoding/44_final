@@ -49,6 +49,9 @@ public class Player {
         this.passedGoThisTurn = passedGoThisTurn;
     }
 
+    public void resetHasPassedGo() {
+        passedGoThisTurn = false;
+    }
 
     public int getPlayerPosition() {
         return playerPosition;

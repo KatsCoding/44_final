@@ -82,9 +82,23 @@ public class Game {
     }
 
     public void turn(int playerID){
-
+        /* Opbygning:
+        * besked om hvilken player's tur
+        * get player for data og for gui
+        * hvis spiller ikke isJailed: valgmuligheder: slå terning, køb/sælg/pantsætte osv.
+        * hvad der sker i alle instances af valgmulighederne
+        * hvis 2 ens terninger, så kald metode
+        * hvis spiller isJailed så kald metoder
+        * når spiller har kastet terninger og evt udført handling (køb field, auction osv) valgmulighed igen, er der andet de vil
+        *hvis ja udfør, hvis nej næste spillers tur
+        *
+        * */
+        //TODO lave så man slår med 2 terninger
+        //TODO what happens when houses & hotels become part of it
+        //TODO turn
+        //TODO evt metode for sig self vedrørende isJailed osv (linje 114 - 126 cdio3 + det nye fra final)
     }
-
+    //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
     //We used our move method from cdio 3, with changes as needed.
     public void move(int dist) {
         currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.

@@ -17,7 +17,26 @@ public class SimplePayCash extends ChanceCard {
 
     public void execute(Game game, GUI gui){
         gui.displayChanceCard(this.text);
-        game.withdrawCashFromCurrentPlayer(this.amount);
+        switch (game.withdrawCashFromCurrentPlayer(this.amount)) {
+            case OK:
+                break;
+            case INSUFFICIENT_CASH: {
+                int missing = this.amount - game.getCurrentUserFunds();
+                gui.showMessage(String.format("Du har ikke penge nok. Der mangler %d \n Sælg ejendomme for at få penge nok", missing);
+                // allow the user to sell properties
+                game.promptCurrentUserPropertySale();
+                // Then check whether the user now has enough cash otherwise end game for user
+                switch (game.withdrawCashFromCurrentPlayer(this.amount)) {
+                    case OK:
+                        break;
+                    case INSUFFICIENT_CASH:
+                        game.endGameCurrentUser();
+                        break;
+                }
+                break;
+            }
+
+        }
 
     }
 }

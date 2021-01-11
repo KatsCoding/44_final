@@ -24,7 +24,7 @@ public class FieldAction {
     Game game;
 
 
-   /* public void landOnField(int i) {
+   public void landOnField(int i) {
 
         if (gameboard[currentPlacement] instanceof FieldStreet) {
             landOnStreet();
@@ -35,31 +35,33 @@ public class FieldAction {
        //     landOnChance();
         }
     }
-    public void landOnStreet() {
-        if (!gameboard[currentPlacement].getOwned()) { //checks if NOT owned
-            if (currentPlayer.getCash() < gameboard[currentPlacement].getStreetPrice());
-        } else { //buys property and assigns player's name to the gui.
-                gameboard[currentPlacement].setOwned(true);
-                gameboard[currentPlacement].setOwner(currentPlayer);
-                gui.getFields()[currentPlacement].setSubText(currentPlayer.getName()); //gui property owner name updated here
-                currentPlayer.addCash(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
-                checkColorGroupOwned(currentPlacement);
-            }
+   public void landOnStreet() {
+       if (!gameboard[currentPlacement].getOwned()) { //checks if NOT owned
+           if (currentPlayer.getCash() < gameboard[currentPlacement].getStreetPrice()){
+
+           }
+           else{ //buys property and assigns player's name to the gui.
+               gameboard[currentPlacement].setOwned(true);
+               gameboard[currentPlacement].setOwner(currentPlayer);
+               gui.getFields()[currentPlacement].setSubText(currentPlayer.getName()); //gui property owner name updated here
+               currentPlayer.addCash(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
+               checkColorGroupOwned(currentPlacement);
+           }
 
 
-        } else { //if the property is already owned
-            if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
-                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent())//checks if you're poor
-                    gui.showMessage("Desværre du Har ikke råd til at købe feltet");
-                    gui.("Vil du sælge nogle huse eller egendom for at få råd?");
-                else {
-                    currentPlayer.addCoins(-(gameboard[currentPlacement].getCurrentRent()));
-                    gameboard[currentPlacement].getOwner().addCoins(gameboard[currentPlacement].getCurrentRent());
-                    //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);
-                }
-            }
-        }
-    }
+       } else { //if the property is already owned
+           if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
+               if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()){//checks if you're poor
+                   gui.showMessage("Desværre du Har ikke råd til at købe feltet");
+                   gui.getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
+               else {
+                   currentPlayer.addCash(-(gameboard[currentPlacement].getCurrentRent()));
+                   gameboard[currentPlacement].getOwner().addCash(gameboard[currentPlacement].getCurrentRent());
+                   //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);
+               }
+           }
+       }
+   }
 
     //has to make it so its only as long as there non houses build on the group.
     private void checkColorGroupOwned(int propertyID) {
@@ -77,7 +79,6 @@ public class FieldAction {
                 gameboard[propertyID].setRentPrice(gameboard[propertyID].getCurrentRent());
                 // TODO fix gameboard setCurrentRent
                 // gameboard[2].setCurrentRent();
-                gameboard[i].setCurrentRent();
             }
 
 
@@ -96,7 +97,7 @@ public class FieldAction {
         currentField = gui.getFields()[currentPlacement]; //sets new position on gui
         currentField.setCar(currentGUIPlayer, true); //sets gui player's position on currentField}
     }
-
+/*
     public int rollChanceCard() {
         return (int) (Math.random() * usedChanceCards.length);
     }
@@ -123,6 +124,6 @@ public class FieldAction {
            //TODO noget med chance og cardID?
            //chance(cardID);
         }
-    }
+    }*/
 
 }

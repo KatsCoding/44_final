@@ -26,7 +26,7 @@ public class GUI_game {
         gui_fields[9] = new GUI_Street(gameboard.getArray()[9].getPropertyName(), gameboard.getArray()[9].getDisplayPrice() ,"" ,gameboard.getArray()[9].getDisplayPrice(),  new Color(238, 45, 18), Color.WHITE);
         gui_fields[10] = new GUI_Jail("default","" ,"" , "",Color.WHITE  ,Color.WHITE);
         gui_fields[11] = new GUI_Street(gameboard.getArray()[11].getPropertyName(),gameboard.getArray()[11].getDisplayPrice() ,"" ,gameboard.getArray()[11].getDisplayPrice(), new Color(168, 114, 8), Color.WHITE);
-        gui_fields[12] = new GUI_Brewery("default","" ,"" , "", "" ,Color.WHITE ,Color.WHITE);
+        gui_fields[12] = new GUI_Brewery("default","" ,gameboard.getArray()[12].getDisplayPrice() , "", "" ,Color.WHITE ,Color.WHITE);
         gui_fields[13] = new GUI_Street(gameboard.getArray()[13].getPropertyName(),gameboard.getArray()[13].getDisplayPrice() ,"" ,gameboard.getArray()[13].getDisplayPrice(),  new Color(168, 114, 8), Color.WHITE);
         gui_fields[14] = new GUI_Street(gameboard.getArray()[14].getPropertyName(),gameboard.getArray()[14].getDisplayPrice() ,"" ,gameboard.getArray()[14].getDisplayPrice(),  new Color(168, 114, 8), Color.WHITE);
         gui_fields[15] = new GUI_Shipping("default",gameboard.getArray()[15].getPropertyName() ,gameboard.getArray()[15].getDisplayPrice() , "", "" , new Color(255, 31 , 31),Color.WHITE);
@@ -42,7 +42,7 @@ public class GUI_game {
         gui_fields[25] = new GUI_Shipping("default",gameboard.getArray()[25].getPropertyName() ,gameboard.getArray()[25].getDisplayPrice() , "", "" , new Color(44,14, 235), Color.WHITE);
         gui_fields[26] = new GUI_Street(gameboard.getArray()[26].getPropertyName(),gameboard.getArray()[26].getDisplayPrice() ,"" , gameboard.getArray()[26].getDisplayPrice(),  new Color(255, 255, 255), Color.BLACK);
         gui_fields[27] = new GUI_Street(gameboard.getArray()[27].getPropertyName(),gameboard.getArray()[27].getDisplayPrice() ,"" , gameboard.getArray()[27].getDisplayPrice(),  new Color(255, 255, 255), Color.BLACK);
-        gui_fields[28] = new GUI_Brewery("default","" ,"" , "", "" , Color.WHITE,Color.WHITE);
+        gui_fields[28] = new GUI_Brewery("default","" ,gameboard.getArray()[28].getDisplayPrice() , "", "" , Color.WHITE,Color.WHITE);
         gui_fields[29] = new GUI_Street(gameboard.getArray()[29].getPropertyName(),gameboard.getArray()[29].getDisplayPrice() ,"" , gameboard.getArray()[29].getDisplayPrice(),  new Color(255, 255, 255), Color.BLACK);
         gui_fields[30] = new GUI_Jail("default","" ,"" ,"" ,Color.WHITE  , Color.WHITE);
         gui_fields[31] = new GUI_Street(gameboard.getArray()[31].getPropertyName(),gameboard.getArray()[31].getDisplayPrice() ,"" , gameboard.getArray()[31].getDisplayPrice(),  new Color(255, 193, 0), Color.WHITE);

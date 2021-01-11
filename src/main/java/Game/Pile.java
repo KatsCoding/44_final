@@ -42,6 +42,7 @@ public class Pile {
         addCard( new SimpleMoveToSpecificField("Ryk frem til Strandvejen", "Strandvejen", true));
         addCard( new SimpleMoveToSpecificField("Tag til rådhuspladsen", "Frederiksberg Allé", true));
         addCard( new SimpleMoveToSpecificField("Tag med Mols-linien, flyt brikken frem", "Mols-linien", true));
+        addCard( new SimpleMoveToSpecificField("Gå i fængsel", "De fængsles", false));
         addCard( new SimpleReceiveCash("Du har vundet i klasselotteriet. Du modtager 500 kr", 500));
         addCard( new SimpleReceiveCash("Du har vundet i klasselotteriet. Du modtager 500 kr", 500));
         addCard( new SimpleReceiveCash("Du modtager dit aktieudbytte. Du modtager 1000 kr", 1000));
@@ -68,6 +69,6 @@ public class Pile {
     }
 
 
-}
+} // mangler 1,2, 28, 32, 35
 
-// KORT DER MANGLES: 1,2,20,28,32
+

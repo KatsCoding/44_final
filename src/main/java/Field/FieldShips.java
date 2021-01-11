@@ -69,17 +69,17 @@ public class FieldShips extends Fields {
 
     @Override
     public String getPropertyName() {
-        return null;
+        return propertynavn;
     }
 
     @Override
     public String FieldStart() {
-        return null;
+        return propertynavn;
     }
 
     @Override
     public String getDisplayPrice() {
-        return null;
+        return displayPrice;
     }
 
     @Override

@@ -52,9 +52,10 @@ public class FieldAction {
 
         } else { //if the property is already owned
             if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
-                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()) { //checks if you're poor
-                    game.endGame(currentPlayer);
-                } else {
+                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()){//checks if you're poor
+                    gui.showMessage("Desværre du Har ikke råd til at købe feltet");
+                    gui.getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
+                else {
                     currentPlayer.addCash(-(gameboard[currentPlacement].getCurrentRent()));
                     gameboard[currentPlacement].getOwner().addCash(gameboard[currentPlacement].getCurrentRent());
                     //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);

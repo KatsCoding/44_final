@@ -5,7 +5,7 @@ import Game.PlayerList;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-import  Game.Game;
+import Game.Game;
 
 import java.util.Arrays;
 

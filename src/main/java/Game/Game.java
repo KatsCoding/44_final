@@ -1,5 +1,6 @@
 package Game;
 
+import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -40,8 +41,8 @@ public class Game {
         //Liste over spillere og deres navne
         players = new PlayerList(numberOfPlayers, playerNames);
 
-        //TODO Lave spillebrikker til spillere, mangler GUI biler
-        //GUI_Car[] cars = GUI_Car.makeCars(numberOfPlayers);
+        // laver spillebrkker til spillere
+        GUI_Car[] cars = GUI_Cars.makeCars(numberOfPlayers);
 
         // laver et array af start indhold for spillere
         guiPlayers = new GUI_Player[numberOfPlayers];
@@ -68,7 +69,7 @@ public class Game {
         gui.showMessage("gå-i-gang-med-spillet-besked");
 
         //holder spillet i gang indtil gameOver
-        while (gameOver = false) {
+        while (!gameOver) {
         round();
         }
     }
@@ -82,6 +83,36 @@ public class Game {
     }
 
     public void turn(int playerID){
+        if (!gameOver) {
+            gui.showMessage("Det er nu" + players.getplayer(playerID).getName() + "'s tur");
+            currentPlayer = players.getplayer(playerID);
+            currentGUIPlayer = guiPlayers[playerID];
+
+            if (currentPlayer.isJailed()) {
+                move(dice1.roll() + dice2.roll()); //move handles landing on fields etc.
+            }
+
+            //handling of jailed players
+            else {
+                //pay 1 money or use get out of jail free card and call turn() again.
+                if (!gameOver) {
+                    currentPlayer.addCash(200);
+                    currentPlayer.setJailed(false);
+                    turn(playerID);
+                } else {
+                    if (currentPlayer.getCash() > 0) {
+                        currentPlayer.addCash(-1);
+                        currentPlayer.setJailed(false);
+                        turn(playerID);
+                    } else {
+                        endGame(currentPlayer);
+                    }
+                }
+            }
+
+            updateGUICash();
+
+        }
         /* Opbygning:
         * besked om hvilken player's tur
         * get player for data og for gui
@@ -99,6 +130,7 @@ public class Game {
         //TODO evt metode for sig self vedrørende isJailed osv (linje 114 - 126 cdio3 + det nye fra final)
     }
     //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
+
     //We used our move method from cdio 3, with changes as needed.
     public void move(int dist) {
         currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.

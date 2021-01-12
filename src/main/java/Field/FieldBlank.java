@@ -2,12 +2,10 @@ package Field;
 
 import Game.Player;
 
-//TODO Katrine synes denne klasse burde omdefineres da man kan lave dens funktion via 2 linjer i game, som vi også brugte i del_3.
-
-public class FieldStart extends Fields{
+public class FieldBlank extends Fields{
     String propertyName;
 
-    public FieldStart(String name) { propertyName = name; }
+    public FieldBlank(String name) { propertyName = name; }
 
     @Override
     public Player getOwner() {

@@ -86,7 +86,9 @@ public class Game {
             if (!currentPlayer.isJailed()) {
                 String choice = gui.getUserSelection("Det er nu " + players.getplayer(playerID).getName() + "'s tur", "Roll", "Buy House", "Buy Hotel", "Sell House", "Skip");
                 if (choice == "Roll") {
-                    move(diceCup.roll()); //move handles landing on fields etc.
+                    diceCup.roll();
+                    gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
+                    move(diceCup.getTotalValue()); //move handles landing on fields etc.
                 } else if (choice == "Buy House") {
                     buyHouse(playerID);
                 } else if (choice == "Buy Hotel"){

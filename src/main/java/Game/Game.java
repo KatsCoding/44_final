@@ -55,6 +55,7 @@ public class Game {
         return currentPlayer.getCash();
     }
 
+
     public void promptCurrentUserPropertySale() {
         // give the user a list of owned properties and let him choose what he wants to sell
         // opdate userfunds after sale
@@ -123,7 +124,7 @@ public class Game {
 
         //Opdaterer visuel rep af penge på gui'en
         updateGUICash();
-
+        makePile();
         //TODO add actual gå-i-gang-besked
         gui.showMessage("gå-i-gang-med-spillet-besked");
 

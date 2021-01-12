@@ -93,27 +93,7 @@ public class FieldAction {
     }
 
     public void landOnChance() {
-        boolean cardsLeft = false;
-        for (int i = 0; i < usedChanceCards.length; i++) { //Checks to see if at least 1 card is left.
-            if (!usedChanceCards[i]) {
-                cardsLeft = true;
-                break;
-            }
-        }
-        if (!cardsLeft) { //Resets the deck
-            Arrays.fill(usedChanceCards, false);
-        }
-
-
-        if (cardsLeft) { //Finds an unused card and calls chance() with it's ID.
-            int cardID = rollChanceCard();
-            while (usedChanceCards[cardID]) {
-                cardID = rollChanceCard();
-            }
-
-           //TODO noget med chance og cardID?
-           //chance(cardID);
-        }
+        game.landOnChance(); // landOnChance implemented in game class (which makes the player draw a card)
     }
 
     public void setGame(Game game) {

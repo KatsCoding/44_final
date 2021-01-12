@@ -69,12 +69,12 @@ public class FieldShips extends Fields {
 
     @Override
     public String getPropertyName() {
-        return propertynavn;
+        return propertyName;
     }
 
     @Override
     public String FieldStart() {
-        return propertynavn;
+        return propertyName;
     }
 
     @Override

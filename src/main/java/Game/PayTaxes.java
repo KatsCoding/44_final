@@ -5,21 +5,22 @@ import Field.Gameboard;
 
 public class PayTaxes {
 
-    private double moneyLeft;
+    private int moneyLeft;
     private final int price = 4000;
 
-    /*Gameboard gameboard = new Gameboard();
-    Player player = new Player(currentPlayer, id);
+    Gameboard gameboard = new Gameboard();
+    Player currentPlayer;
 
-    public double incomeTax(boolean sandtEllerFalsk){
-   int houseValue = gameboard.getArray()[i].getHouse();
-   int hotelValue = gameboard.getArray()[i].getHotel();
-   int cash = player.getCash();
+
+    /*public int incomeTax(boolean i){
+   int houseValue = currentPlayer.getHouses();// get houses from current player
+   int hotelValue = currentPlayer.getHotel();// get hotels from current player
+   int cash = currentPlayer.getCash();// get the balance of the current player
 
         int value = cash+houseValue+hotelValue+mortgage;
 
-    if (boolean sandtEllerFalsk == true){
-        moneyLeft =value*0.1;
+    if (i == true){
+        moneyLeft = (int) (value*0.1);
     }else{
         moneyLeft = value-price;
         }

@@ -54,7 +54,7 @@ public class Game {
 
         //Sætter startfeltet
         currentField = gui.getFields()[0];
-
+        fieldAction.setGameboard(gameboard.getArray());
         //Indsætter viuel rep. af spillere + deres biler + penge
         for (int i = 0; i < numberOfPlayers; i++) {
             gui.addPlayer(guiPlayers[i]);
@@ -144,7 +144,7 @@ public class Game {
             currentPlayer.addCash(4000);
         }
         currentPlayer.resetHasPassedGo(); //sets boolean back to false.
-        //fieldAction.landOnField(currentPosition);
+        fieldAction.landOnField(currentPosition);
     }
 
     public void endGame(Player currentPlayer){

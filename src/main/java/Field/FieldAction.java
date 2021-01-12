@@ -22,8 +22,9 @@ public class FieldAction {
     GUI_Field currentField;
     Fields[] gameboard;
     Game game;
-
-
+    public void setGameboard(Fields[] fields){
+        this.gameboard = fields;
+    }
     public void landOnField(int i) {
 
         if (gameboard[currentPlacement] instanceof FieldStreet) {

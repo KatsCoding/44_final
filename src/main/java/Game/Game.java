@@ -1,5 +1,6 @@
 package Game;
 
+import ChanceCard.ChanceCard;
 import gui_fields.*;
 import gui_main.GUI;
 import Field.*;
@@ -150,7 +151,7 @@ public class Game {
                 if (choice == "Roll") {
                     diceCup.roll();
                     gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
-                    move(diceCup.getTotalValue()); //move handles landing on fields etc.
+                    moveCurrentPlayer(diceCup.getTotalValue(),true); //move handles landing on fields etc.
                 } else if (choice == "Buy House") {
                     buyHouse(playerID);
                 } else if (choice == "Buy Hotel"){

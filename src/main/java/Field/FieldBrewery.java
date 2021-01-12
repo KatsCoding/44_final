@@ -16,9 +16,6 @@ public class FieldBrewery extends Fields {
     }
 
     @Override
-    public String getName() {return name;}
-
-    @Override
     public Player getOwner() {
         return null;
     }
@@ -62,7 +59,7 @@ public class FieldBrewery extends Fields {
 
     @Override
     public String getPropertyName() {
-        return null;
+        return name;
     }
 
   // @Override

@@ -6,13 +6,15 @@ public class PayTaxes {
     private final int price = 4000;
 
 
-    public double incomeTax(double i){
+   /* public double incomeTax(int i){
+        value = cash+houseValue+hotelValue+mortgage;
+
     if (i == 0 ){
-        moneyLeft =i*0.1;
+        moneyLeft =value*0.1;
     }else{
-        moneyLeft = i-price;
+        moneyLeft = value-price;
         }
     return moneyLeft;
-    }
+    }*/
 
 }

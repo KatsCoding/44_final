@@ -8,6 +8,12 @@ import java.awt.*;
 
 public class GUI_Controller {
 
+    public void GUI_Board(){
+        GUI_Field[] fields = GUI_game.makeGUIFields();
+        //((GUI_OwnAble)fields[0]).setBorder(Color.BLACK, Color.BLACK);
+        GUI gui = new GUI(fields, Color.WHITE);
+
+    }
 
     public static void main(String[] args){
 

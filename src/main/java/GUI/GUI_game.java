@@ -16,7 +16,7 @@ public class GUI_game {
 
         gui_fields[0] = new GUI_Start(gameboard.getArray()[0].getPropertyName(), "" ,"Hver gang du passere START modtag kr. 4000" ,new Color(255, 31 , 31) , Color.WHITE);
         gui_fields[1] = new GUI_Street(gameboard.getArray()[1].getPropertyName(), gameboard.getArray()[1].getDisplayPrice(), "", gameboard.getArray()[1].getDisplayPrice(), new Color(44,14, 235), Color.WHITE);
-        gui_fields[2] = new GUI_Chance( "?","Prøv lykken" ,"" , Color.BLACK, Color.WHITE );
+        gui_fields[2] = new GUI_Chance( "?","Prøv lykken" ,"" , Color.BLACK, Color.GREEN );
         gui_fields[3] = new GUI_Street(gameboard.getArray()[3].getPropertyName(),gameboard.getArray()[3].getDisplayPrice() ,"" , gameboard.getArray()[3].getDisplayPrice(), new Color(44,14, 235), Color.WHITE);
         gui_fields[4] = new GUI_Tax("Betal-\n"+"indkomstskat:\n"+"10% eller\n"+"4000 kr."," " ,"" , Color.WHITE,  Color.BLACK);
         gui_fields[5] = new GUI_Shipping("default",gameboard.getArray()[5].getPropertyName() ,gameboard.getArray()[5].getDisplayPrice(), "", "" , new Color(44,14, 235), Color.WHITE);
@@ -50,7 +50,7 @@ public class GUI_game {
         gui_fields[33] = new GUI_Chance( "?","Prøv lykken" ,"" , Color.BLACK, Color.GREEN );
         gui_fields[34] = new GUI_Street(gameboard.getArray()[34].getPropertyName(),gameboard.getArray()[34].getDisplayPrice() ,"" , gameboard.getArray()[34].getDisplayPrice(), new Color(255, 193, 0), Color.WHITE);
         gui_fields[35] = new GUI_Shipping("default",gameboard.getArray()[35].getPropertyName() ,gameboard.getArray()[35].getDisplayPrice() , "", "" ,new Color(44,14, 235) ,Color.WHITE);
-        gui_fields[36] = new GUI_Chance( "?","Prøv lykken" ,"" , Color.BLACK, Color.WHITE);
+        gui_fields[36] = new GUI_Chance( "?","Prøv lykken" ,"" , Color.BLACK, Color.GREEN);
         gui_fields[37] = new GUI_Street(gameboard.getArray()[37].getPropertyName(),gameboard.getArray()[37].getDisplayPrice() ,"" , gameboard.getArray()[37].getDisplayPrice(), new Color(104, 3, 87), Color.WHITE);
         gui_fields[38] = new GUI_Tax("Ekstraordinær-\n"+"statsskat: \n"+"betal 2000 kr.","" ,"" , Color.WHITE, Color.BLACK );
         gui_fields[39] = new GUI_Street(gameboard.getArray()[39].getPropertyName(),gameboard.getArray()[39].getDisplayPrice() ,"" , gameboard.getArray()[39].getDisplayPrice(), new Color(104, 3, 87), Color.WHITE);

@@ -21,7 +21,7 @@ public class StreetFieldTest {
     }
     @Test
     void testBuildMaxFourHouses() {
-        Player player = new Player("Simon",1);
+        Player player = new Player("Simon");
         FieldStreet tester = new FieldStreet("Allégade", "2400", 'b', false, 2400, new int[]{150, 800, 2000, 6000, 9000, 12000}, 1000, null, 3);
         assertEquals(0,tester.getHouses());
         tester.setOwner(player);
@@ -75,8 +75,8 @@ public class StreetFieldTest {
 
     @Test
     void testCanPlayerBuyHouseWithoutOwningAllRelatedFields(){
-        Player player = new Player("Simon",1);
-        Player player = new Player("Nico",2);
+        Player player1 = new Player("Simon");
+        Player player2 = new Player("Nico");
         FieldStreet testStreetBlue1 = new FieldStreet("Allégade", "2400", 'b', false, 2400, new int[]{150, 800, 2000, 6000, 9000, 12000}, 1000, null, 3);
         FieldStreet testStreetBlue2 = new FieldStreet("Allégade", "2400", 'b', false, 2400, new int[]{150, 800, 2000, 6000, 9000, 12000}, 1000, null, 3);
         FieldStreet testStreetBlue3 = new FieldStreet("Allégade", "2400", 'b', false, 2400, new int[]{150, 800, 2000, 6000, 9000, 12000}, 1000, null, 3);

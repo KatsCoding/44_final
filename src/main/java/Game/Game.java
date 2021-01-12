@@ -11,8 +11,7 @@ import java.awt.*;
 
 public class Game {
 
-    Dice dice1 = new Dice();
-    Dice dice2 = new Dice();
+    DiceCup diceCup = new DiceCup(2);
     private int numberOfPlayers;
     private int currentPosition;
     boolean gameOver = false;
@@ -88,7 +87,7 @@ public class Game {
             currentGUIPlayer = guiPlayers[playerID];
 
             if (!currentPlayer.isJailed()) {
-                move(dice1.roll() + dice2.roll()); //move handles landing on fields etc.
+                move(diceCup.roll()); //move handles landing on fields etc.
             }
 
             //handling of jailed players

@@ -22,12 +22,13 @@ public class DiceCup {
 
 
 
-    public void roll(){
+    public int roll(){
         int sum = 0;
         for(int i=0; i<diceAmount; i++){
             sum += dices[i].roll();
         }
         totalValue = sum;
+        return totalValue;
     }
 
 
@@ -38,7 +39,7 @@ public class DiceCup {
      *
      * @return Om alle dices er ens
      */
-    public boolean dobbles() {
+    public boolean isDoubles() {
         int foersteElement = dices[0].getValue();
         for(int i=1; i<diceAmount; i++){
             if(foersteElement != dices[i].getValue()){

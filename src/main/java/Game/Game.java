@@ -45,11 +45,10 @@ public class Game {
         GUI_Car[] cars = GUI_Cars.makeCars(numberOfPlayers);
 
         // laver et array af start indhold for spillere
-        guiPlayers = new GUI_Player[numberOfPlayers];
-        for (int i = 0; i < numberOfPlayers; i++) {
-            Player.defaultCash();
-            guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), Player.defaultCash(), cars[i]);
-        }
+       guiPlayers = new GUI_Player[numberOfPlayers];
+       for (int i = 0; i < numberOfPlayers; i++) {
+           guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), Player.defaultCash(), cars[i]);
+       }
 
         //TODO chancekortne skal blandes her
 
@@ -145,7 +144,7 @@ public class Game {
             currentPlayer.addCash(4000);
         }
         currentPlayer.resetHasPassedGo(); //sets boolean back to false.
-        fieldAction.landOnField(currentPosition);
+        //fieldAction.landOnField(currentPosition);
     }
 
     public void endGame(Player currentPlayer){

@@ -13,8 +13,8 @@ public class Player {
     int Houses;
     int Hotel;
 
-    public Player(String name, int defaultCash){
-        this.cash = defaultCash;
+    public Player(String name){
+        this.cash = defaultCash; //This is the cash that a player is starting with when a new one is made
         this.name = name;
     }
 
@@ -76,11 +76,13 @@ public class Player {
         int prevPosition = playerPosition;
         playerPosition = ((playerPosition + amount) % 40);
         if(playerPosition == 2) {setPlayerPosition(3);}
+        if(playerPosition == 4) {setPlayerPosition(5);}
         if(playerPosition == 7) {setPlayerPosition(8);}
         if(playerPosition == 17) {setPlayerPosition(18);}
         if(playerPosition == 22) {setPlayerPosition(23);}
         if(playerPosition == 33) {setPlayerPosition(34);}
         if(playerPosition == 36) {setPlayerPosition(37);}
+        if(playerPosition == 38) {setPlayerPosition(39);}
         if (prevPosition >= playerPosition) {
             passedGoThisTurn = true;
         }

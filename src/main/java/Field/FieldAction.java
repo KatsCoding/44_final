@@ -29,11 +29,11 @@ public class FieldAction {
         if (gameboard[currentPlacement] instanceof FieldStreet) {
             landOnStreet();
         } else if (gameboard[currentPlacement] instanceof FieldJail) {
-            landOnJail();
+           landOnJail();
        // TODO insert FieldChance here
-       // } else if (gameboard[currentPlacement] instanceof FieldChance) {
-       //     landOnChance();
-        }
+        }// else if (gameboard[currentPlacement] instanceof FieldChance) {
+         //   landOnChance();
+        //}
     }
 
     public void landOnStreet() {

@@ -74,6 +74,7 @@ public class FieldStreet extends Fields{
 
     public boolean buildHouse() {
         if (this.canBuildHouse()) {
+            this.owner.addCash(-this.housePrice);
             this.houses++;
             return true;
         }
@@ -86,6 +87,22 @@ public class FieldStreet extends Fields{
         }
         return this.houses < this.rentPrices.length - 2;
     }
+
+    public boolean canBuildHotel(){
+        if (getHouses() == 4){
+                 return true;
+        }
+        return false;
+    }
+
+    public boolean buildHotel(){
+        if (canBuildHotel() == true){
+            this.owner.addCash(-this.housePrice);
+            this.houses++;
+        }
+        return false;
+    }
+
     public String getPropertyName() {
         return propertyName;
     }

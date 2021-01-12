@@ -55,10 +55,10 @@ public class FieldBlank extends Fields{
         return propertyName;
     }
 
-    @Override
-    public String FieldStart() {
-        return propertyName;
-    }
+
+    //public String FieldStart() {
+        //return propertyName;
+   // }
 
     @Override
     public String getDisplayPrice() {

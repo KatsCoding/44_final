@@ -55,10 +55,10 @@ public class FieldChanceCard extends Fields{
         return null;
     }
 
-    @Override
-    public String FieldStart() {
-        return null;
-    }
+   // @Override
+   // public String FieldStart() {
+   //     return null;
+   // }
 
     @Override
     public String getDisplayPrice() {

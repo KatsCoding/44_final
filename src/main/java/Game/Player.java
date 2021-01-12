@@ -1,6 +1,8 @@
 package Game;
 
 public class Player {
+
+    private static int defaultCash = 30000;
     String name;
     int cash;
     int getOutOfJailFreeCards = 0;
@@ -12,7 +14,8 @@ public class Player {
     int Hotel;
     private boolean hasRolled = false;
 
-    public Player(String name, int number){
+    public Player(String name){
+        this.cash = defaultCash; //This is the cash that a player is starting with when a new one is made
         this.name = name;
     }
 
@@ -27,6 +30,8 @@ public class Player {
     public int getCash() {
         return cash;
     }
+
+    public static int defaultCash(){return defaultCash = 30000;}
 
     public void setCash(int cash) {
         this.cash = cash;
@@ -71,6 +76,14 @@ public class Player {
     public void movePlayer(int amount){
         int prevPosition = playerPosition;
         playerPosition = ((playerPosition + amount) % 40);
+        if(playerPosition == 2) {setPlayerPosition(3);}
+        if(playerPosition == 4) {setPlayerPosition(5);}
+        if(playerPosition == 7) {setPlayerPosition(8);}
+        if(playerPosition == 17) {setPlayerPosition(18);}
+        if(playerPosition == 22) {setPlayerPosition(23);}
+        if(playerPosition == 33) {setPlayerPosition(34);}
+        if(playerPosition == 36) {setPlayerPosition(37);}
+        if(playerPosition == 38) {setPlayerPosition(39);}
         if (prevPosition >= playerPosition) {
             passedGoThisTurn = true;
         }

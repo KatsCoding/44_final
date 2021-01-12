@@ -64,10 +64,10 @@ public class FieldShips extends Fields {
         return propertyName;
     }
 
-    @Override
-    public String FieldStart() {
-        return propertyName;
-    }
+   // @Override
+   // public String FieldStart() {
+   //     return propertyName;
+   // }
 
     @Override
     public String getDisplayPrice() {

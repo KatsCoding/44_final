@@ -52,6 +52,8 @@ public class Gameboard {
     public Fields[] getArray() {
         return boardArray;
     }
+
+
     //tæller hvor mange færger man owner
     public int ShipOwnerCounter(Player player) {
         int counter = 0;

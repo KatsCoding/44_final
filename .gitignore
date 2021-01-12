@@ -50,3 +50,5 @@ out/
  .idea/modules
  *.iml
  *.ipr
+ .idea/misc.xml
+ .idea/vcs.xml

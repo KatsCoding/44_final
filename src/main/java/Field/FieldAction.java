@@ -5,12 +5,14 @@ import Game.PlayerList;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
+import Game.Game;
+
 import java.util.Arrays;
 
 public class FieldAction {
 
     private int currentPlacement = 0;
-    //boolean[] usedChanceCards = new boolean[18];
+    boolean[] usedChanceCards = new boolean[18];
     PlayerList players;
     GUI_Player[] guiPlayers;
     Player currentPlayer;
@@ -19,44 +21,49 @@ public class FieldAction {
     GUI gui;
     GUI_Field currentField;
     Fields[] gameboard;
+    Game game;
 
 
-   /* public void landOnField(int i) {
+    public void landOnField(int i) {
 
         if (gameboard[currentPlacement] instanceof FieldStreet) {
             landOnStreet();
-        } else if (gameboard[currentPlacement] instanceof FieldGoToJail) {
+        } else if (gameboard[currentPlacement] instanceof FieldJail) {
             landOnJail();
-        } else if (gameboard[currentPlacement] instanceof FieldChance) {
-            landOnChance();
+       // TODO insert FieldChance here
+       // } else if (gameboard[currentPlacement] instanceof FieldChance) {
+       //     landOnChance();
         }
     }
-   public void landOnStreet() {
+
+    public void landOnStreet() {
         if (!gameboard[currentPlacement].getOwned()) { //checks if NOT owned
-            if (currentPlayer.getCash() < gameboard[currentPlacement].getStreetPrice());
-        } else { //buys property and assigns player's name to the gui.
+            if (currentPlayer.getCash() < gameboard[currentPlacement].getStreetPrice()){
+
+            }
+                else{ //buys property and assigns player's name to the gui.
                 gameboard[currentPlacement].setOwned(true);
                 gameboard[currentPlacement].setOwner(currentPlayer);
                 gui.getFields()[currentPlacement].setSubText(currentPlayer.getName()); //gui property owner name updated here
-                currentPlayer.addCoins(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
+                currentPlayer.addCash(-(gameboard[currentPlacement].getStreetPrice())); //pays for the property
                 checkColorGroupOwned(currentPlacement);
             }
 
 
         } else { //if the property is already owned
             if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
-                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent())//checks if you're poor
-                    gui.showMessage("Desværre du Har ikke råd til at købe feltet");
-                    gui.("Vil du sælge nogle huse eller egendom for at få råd?");
-                else {
-                    currentPlayer.addCoins(-(gameboard[currentPlacement].getCurrentRent()));
-                    gameboard[currentPlacement].getOwner().addCoins(gameboard[currentPlacement].getCurrentRent());
+                if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()) { //checks if you're poor
+                    game.endGame(currentPlayer);
+                } else {
+                    currentPlayer.addCash(-(gameboard[currentPlacement].getCurrentRent()));
+                    gameboard[currentPlacement].getOwner().addCash(gameboard[currentPlacement].getCurrentRent());
                     //System.out.println(gameboard[currentPlacement].getRentPrice() + l.coinsBeenPaid[o]);
                 }
             }
         }
     }
-//has to make it so its only as long as there non houses build on the group.
+
+    //has to make it so its only as long as there non houses build on the group.
     private void checkColorGroupOwned(int propertyID) {
         char type = gameboard[propertyID].getType(); //sets type equal to purchased property's type
         for (int i = 0; i < gameboard.length; i++) {
@@ -70,7 +77,8 @@ public class FieldAction {
                 }
                 gameboard[i].setRentPrice(gameboard[i].getCurrentRent()); //updates rent price with the new multiplier
                 gameboard[propertyID].setRentPrice(gameboard[propertyID].getCurrentRent());
-                gameboard[i].setCurrentRent();
+                // TODO fix gameboard setCurrentRent
+                // gameboard[2].setCurrentRent();
             }
 
 
@@ -88,31 +96,34 @@ public class FieldAction {
         currentField.setCar(currentGUIPlayer, false); //removes old position on gui
         currentField = gui.getFields()[currentPlacement]; //sets new position on gui
         currentField.setCar(currentGUIPlayer, true); //sets gui player's position on currentField}
+    }
 
-        public int rollChanceCard() {
-            return (int) (Math.random() * usedChanceCards.length);
+    public int rollChanceCard() {
+        return (int) (Math.random() * usedChanceCards.length);
+    }
+
+    public void landOnChance() {
+        boolean cardsLeft = false;
+        for (int i = 0; i < usedChanceCards.length; i++) { //Checks to see if at least 1 card is left.
+            if (!usedChanceCards[i]) {
+                cardsLeft = true;
+                break;
+            }
+        }
+        if (!cardsLeft) { //Resets the deck
+            Arrays.fill(usedChanceCards, false);
         }
 
-        public void landOnChance() {
-            boolean cardsLeft = false;
-            for (int i = 0; i < usedChanceCards.length; i++) { //Checks to see if at least 1 card is left.
-                if (!usedChanceCards[i]) {
-                    cardsLeft = true;
-                    break;
-                }
-            }
-            if (!cardsLeft) { //Resets the deck
-                Arrays.fill(usedChanceCards, false);
+
+        if (cardsLeft) { //Finds an unused card and calls chance() with it's ID.
+            int cardID = rollChanceCard();
+            while (usedChanceCards[cardID]) {
+                cardID = rollChanceCard();
             }
 
-
-            if (cardsLeft) { //Finds an unused card and calls chance() with it's ID.
-                int cardID = rollChanceCard();
-                while (usedChanceCards[cardID]) {
-                    cardID = rollChanceCard();
-                }
-
-                chance(cardID);
-            }
-    }*/
+           //TODO noget med chance og cardID?
+           //chance(cardID);
+        }
     }
+
+}

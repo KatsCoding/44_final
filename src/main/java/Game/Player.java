@@ -10,6 +10,7 @@ public class Player {
     boolean isJailed = false;
     int Houses;
     int Hotel;
+    private boolean hasRolled = false;
 
     public Player(String name, int number){
         this.name = name;

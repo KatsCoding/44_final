@@ -42,18 +42,9 @@ public class FieldJail extends Fields{
         return 0;
     }
 
-    @Override
-    public void setCurrentRent(int Houses) {
-
-    }
 
     @Override
     public void setRentPriceMultiplier(int b) {
-
-    }
-
-    @Override
-    public void setRentPrice(int currentRent) {
 
     }
 

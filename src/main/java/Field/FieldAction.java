@@ -75,8 +75,8 @@ public class FieldAction {
                     gameboard[i].setRentPriceMultiplier(1);
                     gameboard[propertyID].setRentPriceMultiplier(1);
                 }
-                gameboard[i].setRentPrice(gameboard[i].getCurrentRent()); //updates rent price with the new multiplier
-                gameboard[propertyID].setRentPrice(gameboard[propertyID].getCurrentRent());
+//                gameboard[i].setRentPrice(gameboard[i].getCurrentRent()); //updates rent price with the new multiplier
+                //gameboard[propertyID].setRentPrice(gameboard[propertyID].getCurrentRent());
                 // TODO fix gameboard setCurrentRent
                 // gameboard[2].setCurrentRent();
             }

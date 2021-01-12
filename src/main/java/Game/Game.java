@@ -48,12 +48,12 @@ public class Game {
        for (int i = 0; i < numberOfPlayers; i++) {
            guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), Player.defaultCash(), cars[i]);
        }
-
+        fieldAction.setGame(this);
         //TODO chancekortne skal blandes her
 
         //Sætter startfeltet
         currentField = gui.getFields()[0];
-        fieldAction.setGameboard(gameboard.getArray());
+
         //Indsætter viuel rep. af spillere + deres biler + penge
         for (int i = 0; i < numberOfPlayers; i++) {
             gui.addPlayer(guiPlayers[i]);
@@ -93,13 +93,13 @@ public class Game {
             //handling of jailed players
             else {
                 //pay 1 money or use get out of jail free card and call turn() again.
-                if (!gameOver) {
-                    currentPlayer.addCash(200);
+                if (currentPlayer.getGetOutOfJailFreeCards() > 0) {
+                    currentPlayer.setGetOutOfJailFreeCards(currentPlayer.getGetOutOfJailFreeCards() - 1);
                     currentPlayer.setJailed(false);
                     turn(playerID);
                 } else {
-                    if (currentPlayer.getCash() > 0) {
-                        currentPlayer.addCash(-1);
+                    if (currentPlayer.getCash() >= 200) {
+                        currentPlayer.addCash(-200);
                         currentPlayer.setJailed(false);
                         turn(playerID);
                     } else {
@@ -143,6 +143,7 @@ public class Game {
             currentPlayer.addCash(4000);
         }
         currentPlayer.resetHasPassedGo(); //sets boolean back to false.
+
         fieldAction.landOnField(currentPosition);
     }
 
@@ -157,5 +158,34 @@ public class Game {
         for (int i = 0; i < players.getPlayers().length; i++) {
             guiPlayers[i].setBalance(players.getPlayers()[i].getCash());
         }
+    }
+    public Player getCurrentPlayer(){
+        return this.currentPlayer;
+    }
+
+    public GUI_Player getCurrentGUIPlayer() {
+        return currentGUIPlayer;
+    }
+
+    public Gameboard getGameboard(){
+        return this.gameboard;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+    public void setCurrentPosition(int position) {
+        currentField = gui.getFields()[position]; //makes sure the gui will remove the car of the current player's position.
+        currentPosition = position; //set current placement
+    }
+    public GUI_Field getCurrentField(){
+        return currentField;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+    public GUI_Field[] getFields(){
+        return fields;
     }
 }

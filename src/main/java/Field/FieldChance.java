@@ -2,21 +2,10 @@ package Field;
 
 import Game.Player;
 
-public class FieldBrewery extends Fields {
-    String name;
-    int price;
-    Player owner;
-    boolean owned;
+public class FieldChance extends Fields{
+    String propertyName;
 
-    FieldBrewery(String name,int price, boolean owned, Player owner,char type) {
-        this.name = name;
-        this.price = price;
-        this.owner = owner;
-        this.owned = owned;
-    }
-
-    @Override
-    public String getName() {return name;}
+    public FieldChance(String name) { propertyName = name; }
 
     @Override
     public Player getOwner() {
@@ -53,22 +42,30 @@ public class FieldBrewery extends Fields {
         return 0;
     }
 
+    @Override
+    public void setCurrentRent(int Houses) {
+
+    }
 
     @Override
     public void setRentPriceMultiplier(int b) {
 
     }
 
+    @Override
+    public void setRentPrice(int currentRent) {
+
+    }
 
     @Override
     public String getPropertyName() {
         return null;
     }
 
-  // @Override
-  // public String FieldStart() {
-  //     return null;
-  // }
+    @Override
+    public String FieldStart() {
+        return null;
+    }
 
     @Override
     public String getDisplayPrice() {

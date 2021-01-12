@@ -39,6 +39,11 @@ public class Player {
 
     public void addCash(int cash) { this.cash = this.cash + cash; }
 
+    public void addPassStartBonus(int cash) {
+        this.cash = this.cash + cash;
+        this.passedGoThisTurn = false;
+    }
+
     public int getGetOutOfJailFreeCards() {
         return getOutOfJailFreeCards;
     }
@@ -84,6 +89,14 @@ public class Player {
         if(playerPosition == 33) {setPlayerPosition(34);}
         if(playerPosition == 36) {setPlayerPosition(37);}
         if(playerPosition == 38) {setPlayerPosition(39);}
+        if (prevPosition >= playerPosition) {
+            passedGoThisTurn = true;
+        }
+    }
+
+    public void movePlayer(int amount, int numFields){
+        int prevPosition = playerPosition;
+        playerPosition = ((playerPosition + amount) % numFields);
         if (prevPosition >= playerPosition) {
             passedGoThisTurn = true;
         }

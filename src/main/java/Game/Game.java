@@ -22,6 +22,68 @@ public class Game {
     GUI_Field[] fields = GUI_game.makeGUIFields();
     GUI gui = new GUI(fields, Color.WHITE);
     FieldAction fieldAction = new FieldAction();
+    Pile pile; // Added pile to gameclass
+
+
+    public enum WithDrawOutCome {
+        OK,
+        INSUFFICIENT_CASH
+    }
+
+    // Method for the chancecards that gives the player cash
+    public void addCashToCurrentPlayer(int amount){
+        currentPlayer.addCash(amount);
+    }
+    // method for chancecards that gives the player a "get out of jail" card
+    public void addGetOutJailCardCurrentPlayer() {
+        currentPlayer.setGetOutOfJailFreeCards(
+                currentPlayer.getGetOutOfJailFreeCards() + 1
+        );
+    }
+    // method for chancecards that withdraws money from the player
+    // if they dont have enough the game ends for the player
+    public WithDrawOutCome withdrawCashFromCurrentPlayer(int amount){
+        if (currentPlayer.getCash() > amount) {
+            currentPlayer.addCash(-amount);
+            return WithDrawOutCome.OK;
+        }
+        else return WithDrawOutCome.INSUFFICIENT_CASH;
+    }
+
+    public int getCurrentUserFunds() {
+        return currentPlayer.getCash();
+    }
+
+    public void promptCurrentUserPropertySale() {
+        // give the user a list of owned properties and let him choose what he wants to sell
+        // opdate userfunds after sale
+        // work for further work (videreudvikling)
+    }
+
+    public void endGameCurrentUser() {
+        // afslut spillet for current user
+    }
+
+    public void makePile() { // creates a new pile with the cards made in pile and shuffles them
+        this.pile = new Pile();
+        this.pile.loadPile();
+        this.pile.shuffle();
+    }
+
+    public void landOnChance() {
+        ChanceCard card = this.pile.draw();
+        // If there is no more cards in the deck the pile gets shuffled, and a new card is draw
+        // ikke aktuelt da bunken aldrig er tom da kortene bliver lagt i bunken
+        if (card == null) {
+            this.pile.shuffle();
+            card = this.pile.draw();
+        }
+        card.execute(this, this.gui);
+    }
+
+
+
+
 
     public void startGame(){
         // velkomst besked
@@ -207,21 +269,37 @@ public class Game {
         turn(playerID);
     }
     //We used our move method from cdio 3, with changes as needed.
-    public void move(int dist) {
+
+    public void moveCurrentPlayer(int dist, boolean grantCrossStartBonus) { //added boolean that checks if they cross START
         currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.
-        currentPlayer.movePlayer(dist); //changes player's position number
+        currentPlayer.movePlayer(dist,gameboard.getArray().length); //changes player's position number
         currentPosition = currentPlayer.getPlayerPosition(); //set current placement
 
         currentField.setCar(currentGUIPlayer, false); //removes old position on gui
         currentField = gui.getFields()[currentPosition]; //sets new position on gui
         currentField.setCar(currentGUIPlayer, true); //sets gui player's position on currentField
 
-        if (currentPlayer.getPassedGoThisTurn()) { //adds money if player passes go when moving.
-            currentPlayer.addCash(4000);
+        if (currentPlayer.getPassedGoThisTurn()) { //adds money if player passes START when moving.
+            if (grantCrossStartBonus)
+                currentPlayer.addPassStartBonus(4000);
+            else currentPlayer.addPassStartBonus(0); // added so it resets
         }
         currentPlayer.resetHasPassedGo(); //sets boolean back to false.
-
         fieldAction.landOnField(currentPosition);
+    }
+
+    // method for chancecard where player has to go to specific field
+    public void moveCurrentPlayerToNameField(String fieldName, boolean grantCrossStartBonus) {
+        int dist;
+        int position = gameboard.getPositionNamedField(fieldName); // the position of the field the player has to move to
+        int playerPosition = currentPlayer.getPlayerPosition(); // the players current position
+        int numFields = gameboard.getArray().length;
+        if (position > playerPosition) // if the field position is ahead of the player
+            dist = position - playerPosition;
+        else {
+            dist = numFields - playerPosition + position; // if the field position is behind the player
+        }
+        moveCurrentPlayer(dist, grantCrossStartBonus);
     }
 
     public void endGame(Player currentPlayer){

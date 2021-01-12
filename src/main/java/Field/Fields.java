@@ -26,7 +26,6 @@ abstract public class Fields {
 
     public abstract void setDisplayPrice(String displayPrice);
 
-
 }
 
 

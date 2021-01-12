@@ -11,21 +11,25 @@ public class FieldAction {
 
     boolean[] usedChanceCards = new boolean[18];
     Game game;
-    
+
     public void landOnField(int i) {
         if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldStreet) {
             landOnStreet();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldJail) {
            landOnJail();
        // TODO insert FieldChance here
-        }// else if ([game.getCurrentPosition()] instanceof FieldChance) {
-         //   landOnChance();
-        //}game.getGameboard()
+        } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldChanceCard) {
+            landOnChance();
+        }
     }
 
     public void landOnStreet() {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
+            gui.getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice()){
+                gui.showMessage("Desværre du Har ikke råd til at købe feltet");
+                gui.getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
+
 
             }
             else{ //buys property and assigns player's name to the game.getGui().

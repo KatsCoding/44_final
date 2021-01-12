@@ -8,7 +8,7 @@ public class PlayerList{
         stringNames = new String[names.length];
         Playerlist = new Player[number];
         for (int i = 0;i < number;i++)
-            Playerlist[i]= new Player(names[i], number);
+            Playerlist[i]= new Player(names[i], Player.defaultCash()); //might have solve it, the number of players where set to be the cashamount for the last CDIO
     }
 
     public Player[] getPlayers() {

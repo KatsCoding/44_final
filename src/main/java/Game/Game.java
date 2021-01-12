@@ -11,8 +11,8 @@ import java.awt.*;
 
 public class Game {
 
-    //Dice dice1 = new Dice();
-    //Dice dice2 = new Dice();
+    Dice dice1 = new Dice();
+    Dice dice2 = new Dice();
     private int numberOfPlayers;
     private int currentPosition;
     boolean gameOver = false;
@@ -47,8 +47,8 @@ public class Game {
         // laver et array af start indhold for spillere
         guiPlayers = new GUI_Player[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
-            int defaultBalance = 20;
-            guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), defaultBalance/*, cars[i]*/);
+            Player.defaultCash();
+            guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), Player.defaultCash(), cars[i]);
         }
 
         //TODO chancekortne skal blandes her
@@ -88,7 +88,7 @@ public class Game {
             currentPlayer = players.getplayer(playerID);
             currentGUIPlayer = guiPlayers[playerID];
 
-            if (currentPlayer.isJailed()) {
+            if (!currentPlayer.isJailed()) {
                 move(dice1.roll() + dice2.roll()); //move handles landing on fields etc.
             }
 

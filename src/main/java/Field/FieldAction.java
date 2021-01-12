@@ -36,15 +36,12 @@ public class FieldAction {
         }
     }
 
-    public void landOnStreet() {//TODO need to incorporate two things either that auction function or its possible to another to buy it
-
+    public void landOnStreet() {
         if (!gameboard[currentPlacement].getOwned()) { //checks if NOT owned
-            gui.getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
             if (currentPlayer.getCash() < gameboard[currentPlacement].getStreetPrice()){
-                gui.showMessage("Desværre du Har ikke råd til at købe feltet");
-                gui.getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");}
+
             }
-                else{ //buys property and assigns player's name to the gui.
+            else{ //buys property and assigns player's name to the gui.
                 gameboard[currentPlacement].setOwned(true);
                 gameboard[currentPlacement].setOwner(currentPlayer);
                 gui.getFields()[currentPlacement].setSubText(currentPlayer.getName()); //gui property owner name updated here
@@ -52,14 +49,12 @@ public class FieldAction {
                 checkColorGroupOwned(currentPlacement);
             }
 
-        /*TODO has to make the method so it it cheks if all of the same type is owned by the same person and
-       TODO only dobbles the rent if that^ and there are no houses or hotel builds on the ground to met the requirements*/
+
         } else { //if the property is already owned
             if (gameboard[currentPlacement].getOwner() != currentPlayer) { //Only does something if the player doesn't own the property himself
                 if (currentPlayer.getCash() < gameboard[currentPlacement].getCurrentRent()){//checks if you're poor
-                    gui.showMessage("Desværre du Har ikke råd til at betal din leje");
+                    gui.showMessage("Desværre du Har ikke råd til at købe feltet");
                     gui.getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
-
                 else {
                     currentPlayer.addCash(-(gameboard[currentPlacement].getCurrentRent()));
                     gameboard[currentPlacement].getOwner().addCash(gameboard[currentPlacement].getCurrentRent());

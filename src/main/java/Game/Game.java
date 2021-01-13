@@ -40,6 +40,7 @@ public class Game {
     public void addCashToCurrentPlayer(int amount){
         currentPlayer.addCash(amount);
     }
+
     // method for chancecards that gives the player a "get out of jail" card
     public void addGetOutJailCardCurrentPlayer() {
         currentPlayer.setGetOutOfJailFreeCards(

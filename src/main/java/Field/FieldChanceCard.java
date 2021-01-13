@@ -3,9 +3,9 @@ package Field;
 import Game.Player;
 
 public class FieldChanceCard extends Fields{
-    FieldChanceCard(String name){
+    String propertyName;
 
-    }
+    public FieldChanceCard(String name) { propertyName = name; }
 
     @Override
     public Player getOwner() {

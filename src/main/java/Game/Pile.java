@@ -3,7 +3,7 @@ package Game;
 import java.util.*;
 import ChanceCard.*;
 
-public class Pile {
+public class    Pile {
     protected Queue<ChanceCard> cards = new LinkedList<ChanceCard>();
     protected Queue<ChanceCard> currentPile = new LinkedList<ChanceCard>();
 
@@ -34,15 +34,15 @@ public class Pile {
         addCard( new SimpleMove("Ryk tre felter frem", 3, true));
         addCard( new SimpleMove("Ryk tre felter tilbage", -3, false));
         addCard( new SimpleMove("Ryk tre felter tilbage", -3, false));
-        addCard( new SimpleMoveToSpecificField("Ryk frem til START", "START", true));
-        addCard( new SimpleMoveToSpecificField("Ryk frem til START", "START", true));
+        addCard( new SimpleMoveToSpecificField("Ryk frem til START", "Start", true));
+        addCard( new SimpleMoveToSpecificField("Ryk frem til START", "Start", true));
         addCard( new SimpleMoveToSpecificField("Ryk frem til Frederiksberg Allé", "Frederiksberg Allé", true));
         addCard( new SimpleMoveToSpecificField("Ryk frem til Grønningen", "Grønningen", true));
         addCard( new SimpleMoveToSpecificField("Ryk frem til Vimmelskaftet", "Vimmelskaftet", true));
         addCard( new SimpleMoveToSpecificField("Ryk frem til Strandvejen", "Strandvejen", true));
-        addCard( new SimpleMoveToSpecificField("Tag til rådhuspladsen", "Frederiksberg Allé", true));
-        addCard( new SimpleMoveToSpecificField("Tag med Mols-linien, flyt brikken frem", "Mols-linien", true));
-        addCard( new SimpleMoveToSpecificField("Gå i fængsel", "De fængsles", false));
+        addCard( new SimpleMoveToSpecificField("Tag til rådhuspladsen", "Rådhuspladsen", true));
+        addCard( new SimpleMoveToSpecificField("Tag med Mols-linien, flyt brikken frem", "Mols-Linien", true));
+        addCard( new SimpleMoveToSpecificField("Gå i fængsel", "Ryk i fængsel", false));
         addCard( new SimpleReceiveCash("Du har vundet i klasselotteriet. Du modtager 500 kr", 500));
         addCard( new SimpleReceiveCash("Du har vundet i klasselotteriet. Du modtager 500 kr", 500));
         addCard( new SimpleReceiveCash("Du modtager dit aktieudbytte. Du modtager 1000 kr", 1000));

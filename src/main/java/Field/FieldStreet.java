@@ -175,6 +175,11 @@ public class FieldStreet extends Fields{
         return streetPrice;
     }
 
+    @Override
+    public int getPrice() {
+        return 0;
+    }
+
     public void setStreetPrice(int streetPrice) {
         this.streetPrice = streetPrice;
     }

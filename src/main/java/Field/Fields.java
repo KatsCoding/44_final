@@ -13,6 +13,8 @@ abstract public class Fields {
 
     public abstract int getStreetPrice();
 
+    public abstract int getPrice();
+
     public abstract char getType();
 
     public abstract int getCurrentRent();

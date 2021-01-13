@@ -148,7 +148,7 @@ public class Game {
             currentGUIPlayer = guiPlayers[playerID];
 
             if (!currentPlayer.isJailed()) {
-                String choice = gui.getUserSelection("Det er nu " + players.getplayer(playerID).getName() + "'s tur", "Roll", "Buy House", "Buy Hotel", "Sell House", "Skip");
+                String choice = gui.getUserSelection("Det er nu " + players.getplayer(playerID).getName() + "'s tur", "Roll", "Buy House", "Buy Hotel", "Sell House", "Sell Hotel","Skip");
                 if (choice == "Roll") {
                     diceCup.roll();
                     gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
@@ -157,6 +157,10 @@ public class Game {
                     buyHouse(playerID);
                 } else if (choice == "Buy Hotel"){
                     buyHotel(playerID);
+                }else if (choice == "Sell House"){
+                    sellHouse(playerID);
+                }else if (choice == "Sell Hotel"){
+                    sellHotel(playerID);
                 }
 
 
@@ -200,6 +204,13 @@ public class Game {
         //TODO evt metode for sig self vedrørende isJailed osv (linje 114 - 126 cdio3 + det nye fra final)
     }
     //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
+
+    /**
+     *
+     * @buyHouse methode der køber huse, hvis det er muligt, ellers sender den spilleren tilbage
+     * til turn.menu
+     * @param playerID
+     */
     private void buyHouse(int playerID) {
         int totalOwnedFields = 0;
         FieldStreet[] ownedFields = new FieldStreet[40];
@@ -232,9 +243,53 @@ public class Game {
         }
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHouse();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
         gui.showMessage(players.getplayer(playerID).getName() +" har købt et hus på " + streetChoice + ".");
         turn(playerID);
     }
+
+    /**
+     * sælger huse hvis det er muligt
+     * @sellHouse
+     * @param playerID
+     */
+    private void sellHouse(int playerID) {
+        int totalOwnedFields = 0;
+        FieldStreet[] ownedFields = new FieldStreet[40];
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
+                continue;
+            }
+            FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
+            if (field_i.getOwner() == this.currentPlayer && field_i.canSellHouse()) {
+                ownedFields[totalOwnedFields] = field_i;
+                totalOwnedFields++;
+            }
+        }
+        if (totalOwnedFields == 0) {
+            gui.showMessage("Det ser ikke ud til at du kan sælge nogen huse");
+            turn(playerID);
+            return;
+        }
+        String[] streetSelection = new String[totalOwnedFields];
+        for (int i = 0; i < totalOwnedFields; i++) {
+            streetSelection[i] = ownedFields[i].getPropertyName();
+        }
+        String streetChoice = gui.getUserSelection("Hvor vil du sælge et hus?",streetSelection);
+        int streetChoiceInteger = 0;
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (this.gameboard.getArray()[i].getPropertyName() == streetChoice){
+                streetChoiceInteger = i;
+                break;
+            }
+        }
+        ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHouse();
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
+        gui.showMessage(players.getplayer(playerID).getName() +" har solgt et hus på " + streetChoice + ".");
+        turn(playerID);
+    }
+
     private void buyHotel(int playerID) {
         int totalOwnedFields = 0;
         FieldStreet[] ownedFields = new FieldStreet[40];
@@ -267,9 +322,49 @@ public class Game {
         }
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHotel();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(true);
+        updateGUICash();
         gui.showMessage(players.getplayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
         turn(playerID);
     }
+
+    private void sellHotel(int playerID) {
+        int totalOwnedFields = 0;
+        FieldStreet[] ownedFields = new FieldStreet[40];
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
+                continue;
+            }
+            FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
+            if (field_i.getOwner() == this.currentPlayer && field_i.canSellHotel()) {
+                ownedFields[totalOwnedFields] = field_i;
+                totalOwnedFields++;
+            }
+        }
+        if (totalOwnedFields == 0) {
+            gui.showMessage("Det ser ikke ud til at du kan sælge nogen hoteller");
+            turn(playerID);
+            return;
+        }
+        String[] streetSelection = new String[totalOwnedFields];
+        for (int i = 0; i < totalOwnedFields; i++) {
+            streetSelection[i] = ownedFields[i].getPropertyName();
+        }
+        String streetChoice = gui.getUserSelection("Hvor vil du sælge et hotel?",streetSelection);
+        int streetChoiceInteger = 0;
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (this.gameboard.getArray()[i].getPropertyName() == streetChoice){
+                streetChoiceInteger = i;
+                break;
+            }
+        }
+        ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHotel();
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(false);
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
+        gui.showMessage(players.getplayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
+        turn(playerID);
+    }
+
     //We used our move method from cdio 3, with changes as needed.
 
     public void moveCurrentPlayer(int dist, boolean grantCrossStartBonus) { //added boolean that checks if they cross START

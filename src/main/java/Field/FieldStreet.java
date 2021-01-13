@@ -89,7 +89,7 @@ public class FieldStreet extends Fields{
         return false;
     }
 
-    public boolean sellHouse() {
+    public boolean removeHouse() {
         if (this.canSellHouse() == true) {
             this.owner.addCash(this.housePrice);
             this.houses--;
@@ -98,8 +98,8 @@ public class FieldStreet extends Fields{
         return false;
     }
 
-    public boolean sellHotel(){
-        if (canSellBuildHotel() == true){
+    public boolean removeHotel(){
+        if (canSellHotel() == true){
             this.owner.addCash(this.housePrice);
             this.houses--;
         }
@@ -122,12 +122,12 @@ public class FieldStreet extends Fields{
 
     public boolean canSellHouse() {
         if (getHouses() > 0) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
-    public boolean canSellBuildHotel(){
+    public boolean canSellHotel(){
         if (getHouses() == 5){
             return true;
         }

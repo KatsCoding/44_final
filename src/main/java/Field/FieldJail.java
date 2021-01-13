@@ -33,6 +33,11 @@ public class FieldJail extends Fields{
     }
 
     @Override
+    public int getPrice() {
+        return 0;
+    }
+
+    @Override
     public char getType() {
         return 0;
     }

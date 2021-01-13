@@ -243,6 +243,7 @@ public class Game {
         }
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHouse();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
         gui.showMessage(players.getplayer(playerID).getName() +" har købt et hus på " + streetChoice + ".");
         turn(playerID);
     }
@@ -284,6 +285,7 @@ public class Game {
         }
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHouse();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
         gui.showMessage(players.getplayer(playerID).getName() +" har solgt et hus på " + streetChoice + ".");
         turn(playerID);
     }
@@ -320,6 +322,7 @@ public class Game {
         }
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHotel();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(true);
+        updateGUICash();
         gui.showMessage(players.getplayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
         turn(playerID);
     }
@@ -357,6 +360,7 @@ public class Game {
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHotel();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(false);
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
         gui.showMessage(players.getplayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
         turn(playerID);
     }

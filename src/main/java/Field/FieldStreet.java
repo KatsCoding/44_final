@@ -121,7 +121,7 @@ public class FieldStreet extends Fields{
     }
 
     public boolean canSellHouse() {
-        if (getHouses() > 0) {
+        if (getHouses() > 0 && getHouses() < 5) {
             return true;
         }
         return false;

@@ -59,11 +59,11 @@ class DiceTest {
         Dice dice = new Dice();
         int rollValue = dice.roll();
 
-        assertEquals(rollValue, dice.getEyeValue());
+        assertEquals(rollValue, dice.getValue());
         System.out.println("roll value is the same as dice.getEyeValue");
-        assertEquals(rollValue, dice.getEyeValue());
+        assertEquals(rollValue, dice.getValue());
         System.out.println("Checking if roll value is the same as a second call to dice.getEyeValue");
-        assertEquals(dice.getEyeValue(), dice.getEyeValue());
+        assertEquals(dice.getValue(), dice.getValue());
         System.out.println("Checking that dice.getEyeValue is the same as dice.getEyeValue. It is.");
 
         System.out.println("Rolling new die");
@@ -74,13 +74,13 @@ class DiceTest {
         while (rollValuePT2 == rollValue);
         System.out.println("Old roll value is" + rollValue + ". New roll value is" + rollValuePT2 + ".");
 
-        assertNotEquals(rollValue, dice.getEyeValue());
+        assertNotEquals(rollValue, dice.getValue());
         System.out.println("Old roll value is not the same as dice.getEyeValue");
-        assertEquals(rollValuePT2, dice.getEyeValue());
+        assertEquals(rollValuePT2, dice.getValue());
         System.out.println("roll value is the same as dice.getEyeValue");
-        assertEquals(rollValuePT2, dice.getEyeValue());
+        assertEquals(rollValuePT2, dice.getValue());
         System.out.println("Checking if roll value is the same as a second call to dice.getEyeValue");
-        assertEquals(dice.getEyeValue(), dice.getEyeValue());
+        assertEquals(dice.getValue(), dice.getValue());
         System.out.println("Checking that dice.getEyeValue is the same as dice.getEyeValue. It is.");
     }
 }

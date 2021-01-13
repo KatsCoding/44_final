@@ -52,30 +52,22 @@ public class FieldShips extends Fields {
         return 0;
     }
 
-    @Override
-    public void setCurrentRent(int Houses) {
-
-    }
 
     @Override
     public void setRentPriceMultiplier(int b) {
 
     }
 
-    @Override
-    public void setRentPrice(int currentRent) {
-
-    }
 
     @Override
     public String getPropertyName() {
         return propertyName;
     }
 
-    @Override
-    public String FieldStart() {
-        return propertyName;
-    }
+   // @Override
+   // public String FieldStart() {
+   //     return propertyName;
+   // }
 
     @Override
     public String getDisplayPrice() {

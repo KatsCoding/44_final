@@ -2,10 +2,10 @@ package Field;
 
 import Game.Player;
 
-public class FieldChanceCard extends Fields{
-    FieldChanceCard(String name){
+public class FieldChance extends Fields{
+    String propertyName;
 
-    }
+    public FieldChance(String name) { propertyName = name; }
 
     @Override
     public Player getOwner() {
@@ -50,15 +50,13 @@ public class FieldChanceCard extends Fields{
     }
 
 
+
     @Override
     public String getPropertyName() {
         return null;
     }
 
-   // @Override
-   // public String FieldStart() {
-   //     return null;
-   // }
+
 
     @Override
     public String getDisplayPrice() {

@@ -1,5 +1,8 @@
 package Field;
 import Game.Player;
+import gui_fields.GUI_Field;
+
+import java.util.ArrayList;
 
 public class FieldStreet extends Fields{
     String displayPrice;
@@ -7,7 +10,7 @@ public class FieldStreet extends Fields{
     boolean owned;
     Player owner;
     char type;
-    int[] rentPrice = new int[6];
+    int[] rentPrices = new int[6];
     int rentPriceMultiplier = 1;
     int streetPrice;
     boolean Checked = false;
@@ -15,28 +18,41 @@ public class FieldStreet extends Fields{
     int housePrice;
     int houses;
     int currentRent;
+    ArrayList<FieldStreet> relatedFields;
 
 
-    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, int HousePrice, Player owner, int maxOwned){
+    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int[] rentLevels, int HousePrice, Player owner, int maxOwned){
         // The field base lines for what street fields consist of.
         this.displayPrice = displayPrice;
         this.propertyName = propertyName;
         this.owned = owned;
         this.owner = owner;
         this.type = type;
-        this.rentPrice[0] = rent0;
-        this.rentPrice[1] = rent1;
-        this.rentPrice[2] = rent2;
-        this.rentPrice[3] = rent3;
-        this.rentPrice[4] = rent4;
-        this.rentPrice[5] = rent5;
+        this.rentPrices = rentLevels;
         this.streetPrice = streetPrice;
         this.Checked = Checked;
         this.maxOwned = maxOwned;
         this.housePrice = HousePrice;
         this.houses=0;
+        this.relatedFields = new ArrayList<FieldStreet>();
     }
-
+    public void addRelatedField(FieldStreet relatedField){
+        if (!this.relatedFields.contains(relatedField)) {
+            this.relatedFields.add(relatedField);
+        }
+    }
+    public ArrayList<FieldStreet> getRelatedFields(){
+        return this.relatedFields;
+    }
+    public static void linkFields(FieldStreet[] fields){
+        for (int i = 0 ; i <= fields.length - 1; i++) {
+            for (int j = 0 ; j <= fields.length - 1; j++) {
+                if (i != j) {
+                    fields[i].addRelatedField(fields[j]);
+                }
+            }
+        }
+    }
     /**
      *
      * @return The amount of houses.
@@ -56,24 +72,76 @@ public class FieldStreet extends Fields{
         setHouses(field, houses);
     }
 
-    /**
-     * set Hotel
-     * @param field - The field number for which we want to buy hotel for
-     */
-    public void setHotel(int field,boolean b) {
-        this.houses = 5;
+    public boolean buildHouse() {
+        if (this.canBuildHouse()) {
+            this.owner.addCash(-this.housePrice);
+            this.houses++;
+            return true;
+        }
+        return false;
+    }
 
-        setHotel(field,true);
+    public boolean buildHotel(){
+        if (canBuildHotel() == true){
+            this.owner.addCash(-this.housePrice);
+            this.houses++;
+        }
+        return false;
+    }
+
+    public boolean sellHouse() {
+        if (this.canSellHouse() == true) {
+            this.owner.addCash(this.housePrice);
+            this.houses--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean sellHotel(){
+        if (canSellBuildHotel() == true){
+            this.owner.addCash(this.housePrice);
+            this.houses--;
+        }
+        return false;
+    }
+
+    public boolean canBuildHouse() {
+        if (!this.getOwned()) {
+            return false;
+        }
+        return this.houses < this.rentPrices.length - 2;
+    }
+
+    public boolean canBuildHotel(){
+        if (getHouses() == 4){
+                 return true;
+        }
+        return false;
+    }
+
+    public boolean canSellHouse() {
+        if (getHouses() > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean canSellBuildHotel(){
+        if (getHouses() == 5){
+            return true;
+        }
+        return false;
     }
 
     public String getPropertyName() {
         return propertyName;
     }
 
-    @Override
-    public String FieldStart() {
-        return null;
-    }
+//    @Override
+  //  public String FieldStart() {
+   //     return null;
+    //}
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
@@ -99,27 +167,9 @@ public class FieldStreet extends Fields{
         return type;
     }
 
-
-
-
-    //made two methods that will allow us to change the rentprice between each position by changing the number of houses
-    public int[] getRentPrice (){
-            return rentPrice;
-        }
-    public void setRentPrice(int houses){
-        this.currentRent = this.rentPrice[houses];
-    }
-
-    public void setCurrentRent(int RentPrice) {
-        this.currentRent = this.rentPrice[0] * rentPriceMultiplier;
-    }
-
     public int getCurrentRent(){
-        return currentRent;
+        return this.rentPrices[this.houses];
     }
-
-
-
 
     public int getStreetPrice() {
         return streetPrice;
@@ -147,10 +197,6 @@ public class FieldStreet extends Fields{
 
     public int getHousePrice() {
         return housePrice;
-    }
-
-    public void setHousePrice(int housePrice) {
-        this.housePrice = housePrice;
     }
 
     public int getRentPriceMultiplier() {

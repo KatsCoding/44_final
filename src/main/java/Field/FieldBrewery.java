@@ -7,12 +7,14 @@ public class FieldBrewery extends Fields {
     int price;
     Player owner;
     boolean owned;
+    char type;
 
-    FieldBrewery(String name,int price, boolean owned, Player owner,char type) {
+    public FieldBrewery(String name,int price, boolean owned, Player owner,char type) {
         this.name = name;
         this.price = price;
         this.owner = owner;
         this.owned = owned;
+        this.type = type;
     }
 public int getPrice(){
         return price;
@@ -42,12 +44,12 @@ public int getPrice(){
         return 0;
     }
 
-    @Override
+
     public char getType() {
-        return 0;
+        return type;
     }
 
-    @Override
+
     public int getCurrentRent() {
         return 0;
     }

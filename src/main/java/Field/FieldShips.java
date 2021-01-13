@@ -47,9 +47,8 @@ public class FieldShips extends Fields {
         return 0;
     }
 
-    @Override
     public char getType() {
-        return 0;
+        return type;
     }
 
     @Override

@@ -20,6 +20,10 @@ public class FieldAction {
        // TODO insert FieldChance here
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldChanceCard) {
             landOnChance();
+        } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldShips) {
+            landOnShips();
+        } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldBrewery) {
+            landOnBrewery();
         }
     }
 
@@ -37,6 +41,70 @@ public class FieldAction {
                 game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
                 game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
                 game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice())); //pays for the property
+                checkColorGroupOwned(game.getCurrentPosition());
+            }
+
+
+        } else { //if the property is already owned
+            if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
+                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()){//checks if you're poor
+                    game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
+                    game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
+                else {
+                    game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()));
+                    game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent());
+                    //System.out.println(game.getGameboard().getArray()[game.getCurrentPosition()].getRentPrice() + l.coinsBeenPaid[o]);
+                }
+            }
+        }
+    }
+
+    public void landOnShips() {
+        if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
+            game.getGui().getUserSelection("Hey feltet her er Skibet her vil du købe det?", "KØB Skibet her min ven", "Nej tak spare på mine penge");
+            if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()){
+                game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
+                game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
+
+
+            }
+            else{ //buys property and assigns player's name to the game.getGui().
+                game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
+                game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
+                game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
+                game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getPrice())); //pays for the property
+                checkColorGroupOwned(game.getCurrentPosition());
+            }
+
+
+        } else { //if the property is already owned
+            if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
+                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()){//checks if you're poor
+                    game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
+                    game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
+                else {
+                    game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()));
+                    game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent());
+                    //System.out.println(game.getGameboard().getArray()[game.getCurrentPosition()].getRentPrice() + l.coinsBeenPaid[o]);
+                }
+            }
+        }
+    }
+
+    public void landOnBrewery() {
+        if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
+            game.getGui().getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
+            if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()){
+                game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
+                game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
+
+
+            }
+            else{ //buys property and assigns player's name to the game.getGui().
+                game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
+                game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
+                game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
+                game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getPrice())); //pays for the property
                 checkColorGroupOwned(game.getCurrentPosition());
             }
 

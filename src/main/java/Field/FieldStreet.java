@@ -81,6 +81,31 @@ public class FieldStreet extends Fields{
         return false;
     }
 
+    public boolean buildHotel(){
+        if (canBuildHotel() == true){
+            this.owner.addCash(-this.housePrice);
+            this.houses++;
+        }
+        return false;
+    }
+
+    public boolean sellHouse() {
+        if (this.canSellHouse() == true) {
+            this.owner.addCash(this.housePrice);
+            this.houses--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean sellHotel(){
+        if (canSellBuildHotel() == true){
+            this.owner.addCash(this.housePrice);
+            this.houses--;
+        }
+        return false;
+    }
+
     public boolean canBuildHouse() {
         if (!this.getOwned()) {
             return false;
@@ -95,10 +120,16 @@ public class FieldStreet extends Fields{
         return false;
     }
 
-    public boolean buildHotel(){
-        if (canBuildHotel() == true){
-            this.owner.addCash(-this.housePrice);
-            this.houses++;
+    public boolean canSellHouse() {
+        if (getHouses() > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean canSellBuildHotel(){
+        if (getHouses() == 5){
+            return true;
         }
         return false;
     }

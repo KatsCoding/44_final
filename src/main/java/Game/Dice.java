@@ -2,15 +2,20 @@ package Game;
 
 public class Dice {
     private final int MAX = 6;
-    private int eyeValue;
 
-    public int roll(){
-        eyeValue = (int)(Math.random() * MAX) + 1;
-        return eyeValue;
+
+    private int value = 1;
+
+    public int getValue() {
+        return value; }
+
+    public void setValue(int value){
+        this.value = value;
     }
 
-    public int getEyeValue() {
-        return eyeValue;
+    public int roll(){
+        value = (int)(Math.random() * MAX) + 1;
+        return value;
     }
 
 }

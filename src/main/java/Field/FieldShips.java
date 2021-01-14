@@ -18,6 +18,11 @@ public class FieldShips extends Fields {
         this.owner = owner;
         this.type = type;
     }
+
+    public int getPrice(){
+        return price;
+    }
+
     public Player getOwner() {
         return owner;
     }
@@ -42,9 +47,8 @@ public class FieldShips extends Fields {
         return 0;
     }
 
-    @Override
     public char getType() {
-        return 0;
+        return type;
     }
 
     @Override
@@ -52,30 +56,22 @@ public class FieldShips extends Fields {
         return 0;
     }
 
-    @Override
-    public void setCurrentRent(int Houses) {
-
-    }
 
     @Override
     public void setRentPriceMultiplier(int b) {
 
     }
 
-    @Override
-    public void setRentPrice(int currentRent) {
-
-    }
 
     @Override
     public String getPropertyName() {
         return propertyName;
     }
 
-    @Override
-    public String FieldStart() {
-        return propertyName;
-    }
+   // @Override
+   // public String FieldStart() {
+   //     return propertyName;
+   // }
 
     @Override
     public String getDisplayPrice() {

@@ -3,9 +3,9 @@ package Field;
 import Game.Player;
 
 public class FieldChanceCard extends Fields{
-    FieldChanceCard(String name){
+    String propertyName;
 
-    }
+    public FieldChanceCard(String name) { propertyName = name; }
 
     @Override
     public Player getOwner() {
@@ -33,6 +33,11 @@ public class FieldChanceCard extends Fields{
     }
 
     @Override
+    public int getPrice() {
+        return 0;
+    }
+
+    @Override
     public char getType() {
         return 0;
     }
@@ -42,30 +47,23 @@ public class FieldChanceCard extends Fields{
         return 0;
     }
 
-    @Override
-    public void setCurrentRent(int Houses) {
 
-    }
 
     @Override
     public void setRentPriceMultiplier(int b) {
 
     }
 
-    @Override
-    public void setRentPrice(int currentRent) {
-
-    }
 
     @Override
     public String getPropertyName() {
         return null;
     }
 
-    @Override
-    public String FieldStart() {
-        return null;
-    }
+   // @Override
+   // public String FieldStart() {
+   //     return null;
+   // }
 
     @Override
     public String getDisplayPrice() {

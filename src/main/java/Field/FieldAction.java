@@ -91,7 +91,7 @@ public class FieldAction {
         }
     }
 
-    public void landOnBrewery(int dicevalue) {
+    public void landOnBrewery(int value) {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
             game.getGui().getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()){
@@ -111,7 +111,7 @@ public class FieldAction {
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
-                if (game.getCurrentPlayer().getCash() < (dicevalue *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))){//checks if you're poor
+                if (game.getCurrentPlayer().getCash() < (value *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))){//checks if you're poor
                     game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
                     game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
                 else {
@@ -122,7 +122,6 @@ public class FieldAction {
             }
         }
     }
-
     //TODO has to make it so its only as long as there non houses build on the group.
     private void checkColorGroupOwned(int propertyID) {
         char type = game.getGameboard().getArray()[propertyID].getType(); //sets type equal to purchased property's type

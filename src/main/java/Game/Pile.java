@@ -43,6 +43,7 @@ public class    Pile {
         addCard( new SimpleMoveToSpecificField("Tag til rådhuspladsen", "Rådhuspladsen", true));
         addCard( new SimpleMoveToSpecificField("Tag med Mols-linien, flyt brikken frem", "Mols-Linien", true));
         addCard( new SimpleMoveToSpecificField("Gå i fængsel", "Ryk i fængsel", false));
+        addCard( new SimpleMoveToSpecificField("Gå i fængsel", "Ryk i fængsel", false));
         addCard( new SimpleReceiveCash("Du har vundet i klasselotteriet. Du modtager 500 kr", 500));
         addCard( new SimpleReceiveCash("Du har vundet i klasselotteriet. Du modtager 500 kr", 500));
         addCard( new SimpleReceiveCash("Du modtager dit aktieudbytte. Du modtager 1000 kr", 1000));

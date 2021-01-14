@@ -17,6 +17,8 @@ public class FieldStreet extends Fields{
     int maxOwned;
     int housePrice;
     int houses;
+    int hotels;
+    int housecounter;
     int currentRent;
     ArrayList<FieldStreet> relatedFields;
 
@@ -34,6 +36,8 @@ public class FieldStreet extends Fields{
         this.maxOwned = maxOwned;
         this.housePrice = HousePrice;
         this.houses=0;
+        this.hotels=0;
+        this.housecounter=0;
         this.relatedFields = new ArrayList<FieldStreet>();
     }
     public void addRelatedField(FieldStreet relatedField){
@@ -76,6 +80,7 @@ public class FieldStreet extends Fields{
         if (this.canBuildHouse()) {
             this.owner.addCash(-this.housePrice);
             this.houses++;
+            this.housecounter++;
             return true;
         }
         return false;
@@ -85,6 +90,8 @@ public class FieldStreet extends Fields{
         if (canBuildHotel() == true){
             this.owner.addCash(-this.housePrice);
             this.houses++;
+            this.hotels++;
+            this.housecounter = 0;
         }
         return false;
     }
@@ -93,6 +100,8 @@ public class FieldStreet extends Fields{
         if (this.canSellHouse() == true) {
             this.owner.addCash(this.housePrice);
             this.houses--;
+            this.housecounter--;
+            this.housecounter = 4;
             return true;
         }
         return false;
@@ -102,6 +111,7 @@ public class FieldStreet extends Fields{
         if (canSellHotel() == true){
             this.owner.addCash(this.housePrice);
             this.houses--;
+            this.hotels--;
         }
         return false;
     }
@@ -217,4 +227,12 @@ public class FieldStreet extends Fields{
     }
 
     public void setDisplayPrice(String displayPrice){this.displayPrice = displayPrice;}
+
+    public int getHotels() {
+        return hotels;
+    }
+
+    public int getHousecounter() {
+        return housecounter;
+    }
 }

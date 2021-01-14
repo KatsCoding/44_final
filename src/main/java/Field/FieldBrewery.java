@@ -51,7 +51,7 @@ public int getPrice(){
 
 
     public int getCurrentRent() {
-        return 0;
+        return 100;
     }
 
 

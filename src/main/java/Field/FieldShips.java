@@ -53,7 +53,7 @@ public class FieldShips extends Fields {
 
     @Override
     public int getCurrentRent() {
-        return 0;
+        return 500;
     }
 
 

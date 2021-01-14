@@ -12,7 +12,7 @@ public class FieldAction {
     boolean[] usedChanceCards = new boolean[18];
     Game game;
 
-    public void landOnField(int i) {
+    public void landOnField(int i, int dicevalue) {
         if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldStreet) {
             landOnStreet();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldJail) {
@@ -23,7 +23,7 @@ public class FieldAction {
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldShips) {
             landOnShips();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldBrewery) {
-            landOnBrewery();
+            landOnBrewery(dicevalue);
         }
     }
 
@@ -79,7 +79,7 @@ public class FieldAction {
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
-                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()){//checks if you're poor
+                if (game.getCurrentPlayer().getCash() < (game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().ShipOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))){//checks if you're poor
                     game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
                     game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
                 else {
@@ -91,7 +91,7 @@ public class FieldAction {
         }
     }
 
-    public void landOnBrewery() {
+    public void landOnBrewery(int dicevalue) {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
             game.getGui().getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()){
@@ -111,7 +111,7 @@ public class FieldAction {
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
-                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()){//checks if you're poor
+                if (game.getCurrentPlayer().getCash() < (dicevalue *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))){//checks if you're poor
                     game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
                     game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
                 else {

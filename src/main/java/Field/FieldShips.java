@@ -18,6 +18,11 @@ public class FieldShips extends Fields {
         this.owner = owner;
         this.type = type;
     }
+
+    public int getPrice(){
+        return price;
+    }
+
     public Player getOwner() {
         return owner;
     }
@@ -42,9 +47,8 @@ public class FieldShips extends Fields {
         return 0;
     }
 
-    @Override
     public char getType() {
-        return 0;
+        return type;
     }
 
     @Override

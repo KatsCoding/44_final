@@ -1,5 +1,7 @@
 package Game;
 
+import Field.FieldBrewery;
+import Field.FieldShips;
 import Field.FieldStreet;
 import org.junit.jupiter.api.Test;
 
@@ -84,5 +86,21 @@ public class StreetFieldTest {
         FieldStreet.linkFields(new FieldStreet[]{testStreetBlue1, testStreetBlue2, testStreetBlue3});
 
     }
+
+    @Test
+    void testBuyShipAndCola() {
+        FieldShips tester = new FieldShips("mols","4000",4000,false,null,'b');
+        FieldBrewery tester2 = new FieldBrewery("cola",4000,false,null,'a');
+
+
+        assertEquals("mols", tester.getPropertyName());
+        assertEquals(4000,tester.getPrice());
+        assertEquals('b', tester.getType());
+        assertEquals(false, tester.getOwned());
+
+        assertEquals("cola",tester2.getPropertyName());
+
+    }
+
 
 }

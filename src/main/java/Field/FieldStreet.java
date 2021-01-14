@@ -91,6 +91,7 @@ public class FieldStreet extends Fields{
             this.owner.addCash(-this.housePrice);
             this.houses++;
             this.hotels++;
+            this.housecounter = 0;
         }
         return false;
     }
@@ -100,6 +101,7 @@ public class FieldStreet extends Fields{
             this.owner.addCash(this.housePrice);
             this.houses--;
             this.housecounter--;
+            this.housecounter = 4;
             return true;
         }
         return false;

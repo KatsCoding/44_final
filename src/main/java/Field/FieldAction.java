@@ -115,8 +115,8 @@ public class FieldAction {
                     game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
                     game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "");}
                 else {
-                    game.getCurrentPlayer().addCash(-(dicevalue *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner())));
-                    game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(dicevalue *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()));
+                    game.getCurrentPlayer().addCash(-(value *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner())));
+                    game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(value *game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()* game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()));
                     //System.out.println(game.getGameboard().getArray()[game.getCurrentPosition()].getRentPrice() + l.coinsBeenPaid[o]);
                 }
             }

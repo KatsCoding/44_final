@@ -2,11 +2,23 @@ package Field;
 
 import Game.Player;
 
-public class FieldJail extends Fields{
-    String propertyName;
+public class FieldBrewery extends Fields {
+    String name;
+    int price;
+    Player owner;
+    boolean owned;
+    char type;
 
-    public FieldJail(String name) { propertyName = name; }
-
+    public FieldBrewery(String name,int price, boolean owned, Player owner,char type) {
+        this.name = name;
+        this.price = price;
+        this.owner = owner;
+        this.owned = owned;
+        this.type = type;
+    }
+public int getPrice(){
+        return price;
+}
     @Override
     public Player getOwner() {
         return null;
@@ -32,19 +44,14 @@ public class FieldJail extends Fields{
         return 0;
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
 
-    @Override
     public char getType() {
-        return 0;
+        return type;
     }
 
-    @Override
+
     public int getCurrentRent() {
-        return 0;
+        return 100;
     }
 
 
@@ -53,18 +60,16 @@ public class FieldJail extends Fields{
 
     }
 
+
     @Override
     public String getPropertyName() {
-        return null;
+        return name;
     }
 
-   // @Override
-   // public String FieldStart() {
-   //     return null;
-   // }
-
-    @Override
-    public String getSpecialFieldName(){return propertyName;}
+  // @Override
+  // public String FieldStart() {
+  //     return null;
+  // }
 
     @Override
     public String getDisplayPrice() {
@@ -76,4 +81,3 @@ public class FieldJail extends Fields{
 
     }
 }
-

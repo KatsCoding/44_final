@@ -2,10 +2,10 @@ package Field;
 
 import Game.Player;
 
-public class FieldJail extends Fields{
+public class FieldChanceCard extends Fields{
     String propertyName;
 
-    public FieldJail(String name) { propertyName = name; }
+    public FieldChanceCard(String name) { propertyName = name; }
 
     @Override
     public Player getOwner() {
@@ -48,10 +48,12 @@ public class FieldJail extends Fields{
     }
 
 
+
     @Override
     public void setRentPriceMultiplier(int b) {
 
     }
+
 
     @Override
     public String getPropertyName() {
@@ -64,9 +66,6 @@ public class FieldJail extends Fields{
    // }
 
     @Override
-    public String getSpecialFieldName(){return propertyName;}
-
-    @Override
     public String getDisplayPrice() {
         return null;
     }
@@ -76,4 +75,3 @@ public class FieldJail extends Fields{
 
     }
 }
-

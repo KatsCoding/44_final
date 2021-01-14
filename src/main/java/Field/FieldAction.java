@@ -131,6 +131,7 @@ public class FieldAction {
                 if (game.getGameboard().getArray()[i].getOwner() == game.getGameboard().getArray()[propertyID].getOwner()) { //checks if both properties are now owned by the same person or not.
                     game.getGameboard().getArray()[i].setRentPriceMultiplier(2);
                     game.getGameboard().getArray()[propertyID].setRentPriceMultiplier(2);
+                    //kald methode så canBuild er true
                 } else {
                     game.getGameboard().getArray()[i].setRentPriceMultiplier(1);
                     game.getGameboard().getArray()[propertyID].setRentPriceMultiplier(1);

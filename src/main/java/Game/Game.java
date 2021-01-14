@@ -382,7 +382,7 @@ public class Game {
             else currentPlayer.addPassStartBonus(0); // added so it resets
         }
         currentPlayer.resetHasPassedGo(); //sets boolean back to false.
-        fieldAction.landOnField(currentPosition);
+        fieldAction.landOnField(currentPosition,diceCup.getTotalValue());
     }
 
     // method for chancecard where player has to go to specific field

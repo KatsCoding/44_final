@@ -59,6 +59,9 @@ public class FieldJail extends Fields{
    // }
 
     @Override
+    public String getSpecialFieldName(){return propertyName;}
+
+    @Override
     public String getDisplayPrice() {
         return null;
     }

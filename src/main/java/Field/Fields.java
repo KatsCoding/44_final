@@ -21,6 +21,8 @@ abstract public class Fields {
 
     public abstract String getPropertyName();// property mane from fieldstreet class
 
+    public String getSpecialFieldName(){return "";}
+
 
     public abstract String getDisplayPrice();//display price from fieldstreet class
 

@@ -72,6 +72,6 @@ public class    Pile {
     }
 
 
-} // mangler 1,2, 28, 32, 35
+} // mangler 1,2,20,21,22,23,28x2,32
 
 

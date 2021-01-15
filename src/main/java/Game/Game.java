@@ -63,7 +63,8 @@ public class Game {
     }
 
     public void endGameCurrentUser() {
-        // afslut spillet for current user
+        players.removePlayer(currentPlayer);
+        gui.showMessage(currentPlayer + ", du har tabt, og er derfor ude af spillet");
     }
 
     public void makePile() { // creates a new pile with the cards made in pile and shuffles them
@@ -82,8 +83,6 @@ public class Game {
         }
         card.execute(this, this.gui);
     }
-
-
 
 
 
@@ -108,7 +107,7 @@ public class Game {
         // laver et array af start indhold for spillere
        guiPlayers = new GUI_Player[numberOfPlayers];
        for (int i = 0; i < numberOfPlayers; i++) {
-           guiPlayers[i] = new GUI_Player(players.getplayer(i).getName(), Player.defaultCash(), cars[i]);
+           guiPlayers[i] = new GUI_Player(players.getPlayer(i).getName(), Player.defaultCash(), cars[i]);
        }
         fieldAction.setGame(this);
         //TODO chancekortne skal blandes her
@@ -144,11 +143,11 @@ public class Game {
 
     public void turn(int playerID){
         if (!gameOver) {
-            currentPlayer = players.getplayer(playerID);
+            currentPlayer = players.getPlayer(playerID);
             currentGUIPlayer = guiPlayers[playerID];
 
             if (!currentPlayer.isJailed()) {
-                String choice = gui.getUserSelection("Det er nu " + players.getplayer(playerID).getName() + "'s tur", "Roll", "Buy House", "Buy Hotel", "Sell House", "Sell Hotel","Skip");
+                String choice = gui.getUserSelection("Det er nu " + players.getPlayer(playerID).getName() + "'s tur", "Roll", "Buy House", "Buy Hotel", "Sell House", "Sell Hotel","Skip");
                 if (choice == "Roll") {
                     diceCup.roll();
                     gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
@@ -241,10 +240,13 @@ public class Game {
                 break;
             }
         }
+
+        fieldAction.checkColorGroupOwned(streetChoiceInteger);
+
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHouse();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
         updateGUICash();
-        gui.showMessage(players.getplayer(playerID).getName() +" har købt et hus på " + streetChoice + ".");
+        gui.showMessage(players.getPlayer(playerID).getName() +" har købt et hus på " + streetChoice + ".");
         turn(playerID);
     }
 
@@ -286,7 +288,7 @@ public class Game {
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHouse();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
         updateGUICash();
-        gui.showMessage(players.getplayer(playerID).getName() +" har solgt et hus på " + streetChoice + ".");
+        gui.showMessage(players.getPlayer(playerID).getName() +" har solgt et hus på " + streetChoice + ".");
         turn(playerID);
     }
 
@@ -323,7 +325,7 @@ public class Game {
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHotel();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(true);
         updateGUICash();
-        gui.showMessage(players.getplayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
+        gui.showMessage(players.getPlayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
         turn(playerID);
     }
 
@@ -361,7 +363,7 @@ public class Game {
         ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(false);
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
         updateGUICash();
-        gui.showMessage(players.getplayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
+        gui.showMessage(players.getPlayer(playerID).getName() +" har købt et hotel på " + streetChoice + ".");
         turn(playerID);
     }
 

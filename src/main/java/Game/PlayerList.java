@@ -1,25 +1,37 @@
 package Game;
 
+import Field.Fields;
+
 public class PlayerList{
-    private final Player[] Playerlist;
+    private Player[] playerList;
     String[] stringNames;
 
     public PlayerList(int number, String[] names) {
         stringNames = new String[names.length];
-        Playerlist = new Player[number];
+        playerList = new Player[number];
         for (int i = 0;i < number;i++)
-            Playerlist[i]= new Player(names[i]);
+            playerList[i]= new Player(names[i]);
     }
+
+    public void removePlayer(Player player) {
+        Player[] temp = new Player[playerList.length-1];
+
+        int i = 0;
+        for (Player p : playerList) {
+            if (p != player){
+                temp[i++] = p;
+            }
+        }
+        playerList = temp;
+    }
+
 
     public Player[] getPlayers() {
-        return Playerlist;
+        return playerList;
     }
 
-    public Player getplayer(int index){
-        return Playerlist[index];
+    public Player getPlayer(int index){
+        return playerList[index];
     }
 
-    private void test(){
-
-    }
 }

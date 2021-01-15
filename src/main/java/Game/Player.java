@@ -94,6 +94,10 @@ public class Player {
         if (prevPosition >= playerPosition) {
             passedGoThisTurn = true;
         }
+        if (playerPosition < 0) {
+            playerPosition = numFields + playerPosition;
+        }
+
     }
 
     public boolean isBankrupt() {

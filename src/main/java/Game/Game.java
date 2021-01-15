@@ -31,6 +31,8 @@ public class Game {
         INSUFFICIENT_CASH
     }
 
+    public Player[] getPlayers(){return this.players.getPlayers();}
+
     // Method for the chancecards that gives the player cash
     public void addCashToCurrentPlayer(int amount){
         currentPlayer.addCash(amount);
@@ -45,8 +47,12 @@ public class Game {
     // method for chancecards that withdraws money from the player
     // if they dont have enough the game ends for the player
     public WithDrawOutCome withdrawCashFromCurrentPlayer(int amount){
-        if (currentPlayer.getCash() > amount) {
-            currentPlayer.addCash(-amount);
+        return this.withDrawCashFromPlayer(currentPlayer, amount);
+    }
+
+    public WithDrawOutCome withDrawCashFromPlayer(Player player, int amount) {
+        if (player.getCash() >= amount) {
+            player.addCash(-amount);
             return WithDrawOutCome.OK;
         }
         else return WithDrawOutCome.INSUFFICIENT_CASH;
@@ -56,7 +62,6 @@ public class Game {
         return currentPlayer.getCash();
     }
 
-
     public void promptCurrentUserPropertySale() {
         // give the user a list of owned properties and let him choose what he wants to sell
         // opdate userfunds after sale
@@ -64,7 +69,11 @@ public class Game {
     }
 
     public void endGameCurrentUser() {
-        // afslut spillet for current user
+        this.endGameForUser(currentPlayer);
+    }
+
+    public void endGameForUser(Player player) {
+        //
     }
 
     public void makePile() { // creates a new pile with the cards made in pile and shuffles them
@@ -398,6 +407,10 @@ public class Game {
             dist = numFields - playerPosition + position; // if the field position is behind the player
         }
         moveCurrentPlayer(dist, grantCrossStartBonus);
+    }
+
+    public void movePlayerToNearestFieldOfType(Class cls, Player player) {
+
     }
 
     public void endGame(Player currentPlayer){

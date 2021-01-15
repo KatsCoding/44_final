@@ -4,7 +4,7 @@ import Game.Game;
 import gui_main.GUI;
 
 public class SimpleReceiveCash extends ChanceCard {
-    int amount;  // ved ikke om navnet er godt nok
+    int amount;
 
     public SimpleReceiveCash(String text, int amount){
         this.text = text;

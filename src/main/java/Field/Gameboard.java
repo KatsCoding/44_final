@@ -2,6 +2,9 @@ package Field;
 
 import Game.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Gameboard {
     private Fields[] boardArray = new Fields[40];
 
@@ -91,5 +94,20 @@ public class Gameboard {
             }
         }
         return position;
+    }
+
+    public int[] getPositionsOfFieldTypes(Class<? extends Fields> fieldType){
+        List<Integer> positions = new ArrayList<Integer>();
+        for (int i = 0; i < boardArray.length; i++) {
+            if (boardArray[i].getClass() == fieldType) {
+                // if the getPropertyName is equal to fieldname the position is set to i (which is the index in the boardArray
+                positions.add(Integer.valueOf(i));
+            }
+        }
+        int[] retVal = new int[positions.size()];
+        for (int i=0;i<positions.size();i++) {
+            retVal[i] = (int)positions.get(i).intValue();
+        }
+        return retVal;
     }
 }

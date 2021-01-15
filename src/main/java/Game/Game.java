@@ -136,7 +136,7 @@ public class Game {
 
     public void round(){
         //for-loop hver spiller og kalder turn()
-        for (int i = 0; i < numberOfPlayers; i++) {
+        for (int i = 0; i < players.getPlayers().length; i++) {
             turn(i);
         }
     }

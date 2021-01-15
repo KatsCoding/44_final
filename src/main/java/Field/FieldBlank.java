@@ -70,4 +70,24 @@ public class FieldBlank extends Fields{
 
     }
 
+    @Override
+    public int getHouses() {
+        return 0;
+    }
+
+    @Override
+    public int getHousePrice() {
+        return 0;
+    }
+
+    @Override
+    public boolean useMortgage() {
+        return false;
+    }
+
+    @Override
+    public int getMortgage() {
+        return 0;
+    }
+
 }

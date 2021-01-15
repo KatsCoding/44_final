@@ -76,4 +76,27 @@ public class FieldBrewery extends Fields {
     public void setDisplayPrice(String displayPrice) {
 
     }
+
+    @Override
+    public int getHouses() {
+        return 0;
+    }
+
+    @Override
+    public int getHousePrice() {
+        return 0;
+    }
+
+    @Override
+    public boolean useMortgage() {
+        if(!this.getOwned()){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int getMortgage() {
+        return price/2;
+    }
 }

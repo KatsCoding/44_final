@@ -18,6 +18,7 @@ public class FieldStreet extends Fields{
     int housePrice;
     int houses;
     int currentRent;
+    int mortgage;
     ArrayList<FieldStreet> relatedFields;
 
 
@@ -134,6 +135,16 @@ public class FieldStreet extends Fields{
         return false;
     }
 
+    public boolean useMortgage(){
+       if(!this.getOwned()){
+           return false;
+       }
+       return true;
+    }
+
+    public int getMortgage(){
+            return streetPrice/2;
+    }
     public String getPropertyName() {
         return propertyName;
     }
@@ -212,4 +223,6 @@ public class FieldStreet extends Fields{
     }
 
     public void setDisplayPrice(String displayPrice){this.displayPrice = displayPrice;}
+
+
 }

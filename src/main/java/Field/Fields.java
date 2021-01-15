@@ -26,6 +26,14 @@ abstract public class Fields {
 
     public abstract void setDisplayPrice(String displayPrice);
 
+    public abstract int getHouses();
+
+    public abstract int getHousePrice();
+
+    public abstract boolean useMortgage();
+
+    public abstract int getMortgage();
+
 }
 
 

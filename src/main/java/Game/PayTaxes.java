@@ -1,30 +1,43 @@
 package Game;
 
 
+import Field.FieldStreet;
 import Field.Gameboard;
 
 public class PayTaxes {
 
     private int moneyLeft;
     private final int price = 4000;
+    private int mortgage;
+    private int houseValue;
+
+
 
     Gameboard gameboard = new Gameboard();
     Player currentPlayer;
 
 
-    /*public int incomeTax(boolean i){
-   int houseValue = currentPlayer.getHouses();// get houses from current player
-   int hotelValue = currentPlayer.getHotel();// get hotels from current player
-   int cash = currentPlayer.getCash();// get the balance of the current player
+    public int incomeTax(String bottonInput){
+        int cash = currentPlayer.getCash();// get the balance of the current player
 
-        int value = cash+houseValue+hotelValue+mortgage;
+        for (int j = 0; j < 40; j++) {
+            if (gameboard.getArray()[j].getOwner() == currentPlayer) {// check if the current player ownes the field
+                houseValue =+ gameboard.getArray()[j].getHouses() * gameboard.getArray()[j].getHousePrice();//get house and house price on field and multiply it
 
-    if (i == true){
+                if (gameboard.getArray()[j].useMortgage()) {//check if mortgage is used on a field if there is, it get the mortgage price.
+                    mortgage =+ gameboard.getArray()[j].getMortgage();
+                    return mortgage;
+                }
+                return houseValue;
+            }
+        }
+        int value = cash + houseValue + mortgage;
+    if (bottonInput == "10%"){
         moneyLeft = (int) (value*0.1);
     }else{
-        moneyLeft = value-price;
+        moneyLeft = cash-price;
         }
     return moneyLeft;
-    }*/
+    }
 
 }

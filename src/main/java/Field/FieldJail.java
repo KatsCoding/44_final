@@ -75,5 +75,25 @@ public class FieldJail extends Fields{
     public void setDisplayPrice(String displayPrice) {
 
     }
+
+    @Override
+    public int getHouses() {
+        return 0;
+    }
+
+    @Override
+    public int getHousePrice() {
+        return 0;
+    }
+
+    @Override
+    public boolean useMortgage() {
+        return false;
+    }
+
+    @Override
+    public int getMortgage() {
+        return 0;
+    }
 }
 

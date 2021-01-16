@@ -20,6 +20,7 @@ public class FieldStreet extends Fields{
     int hotels;
     int housecounter;
     int currentRent;
+    boolean canBuild;
     ArrayList<FieldStreet> relatedFields;
 
 
@@ -120,7 +121,7 @@ public class FieldStreet extends Fields{
         if (!this.getOwned()) {
             return false;
         }
-        return this.houses < this.rentPrices.length - 2;
+        return canBuild && this.houses < this.rentPrices.length - 2;
     }
 
     public boolean canBuildHotel(){

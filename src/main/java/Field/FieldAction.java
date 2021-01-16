@@ -138,21 +138,22 @@ public class FieldAction {
             }
         }
 
-        //ejer alle felter af farve
-        if (misses == 0) {
-            Fields[] group = new Fields[count];
-            int i = 0;
-            for (Fields f : fields) {
-                if (f.getType() == currentField.getType()) {
-                    if (currentField.getOwner() == f.getOwner()) {
-                        group[i++] = f;
-                    }
+        Fields[] group = new Fields[count];
+        int i = 0;
+        for (Fields f : fields) {
+            if (f.getType() == currentField.getType()) {
+                if (currentField.getOwner() == f.getOwner()) {
+                    group[i++] = f;
                 }
             }
+        }
 
+        //ejer alle felter af farve
+        if (misses == 0) {
             boolean hasBuilding = false;
             if (currentField instanceof FieldStreet) {
                 for (Fields f : group) {
+                    ((FieldStreet) f).canBuild = true;
                     if (((FieldStreet) f).getHouses() > 0) {
                         hasBuilding = true;
                         break;
@@ -166,6 +167,10 @@ public class FieldAction {
 
             if (!hasBuilding) {
                 currentField.setRentPriceMultiplier(2); //todo ret til den rigtige int
+            }
+        } else {
+            for (Fields f : group) {
+                ((FieldStreet) f).canBuild = false;
             }
         }
     }

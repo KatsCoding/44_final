@@ -212,11 +212,14 @@ public class Game {
      */
     private void buyHouse(int playerID) {
         int totalOwnedFields = 0;
-        FieldStreet[] ownedFields = new FieldStreet[40];
+        FieldStreet[] ownedFields = new FieldStreet[40];  // Der er ikke 40 fieldStreets på brættet, men det går nok
         for (int i = 0; i < this.gameboard.getArray().length; i++) {
             if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
                 continue;
             }
+            // Pt tjekker vi alle felter i en gruppe alle de gange hvor feltet er der (men it works!)
+            // (Så hvis en gruppe felter har 5 felter så tjekkes det hele 5 gange i stedet for kun 1 gang)
+            fieldAction.checkColorGroupOwned(i);
             FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
             if (field_i.getOwner() == this.currentPlayer && field_i.canBuildHouse()) {
                 ownedFields[totalOwnedFields] = field_i;
@@ -240,8 +243,6 @@ public class Game {
                 break;
             }
         }
-
-        fieldAction.checkColorGroupOwned(streetChoiceInteger);
 
         ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHouse();
         ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());

@@ -41,14 +41,17 @@ public class FieldStreet extends Fields{
         this.housecounter=0;
         this.relatedFields = new ArrayList<FieldStreet>();
     }
+
     public void addRelatedField(FieldStreet relatedField){
         if (!this.relatedFields.contains(relatedField)) {
             this.relatedFields.add(relatedField);
         }
     }
+
     public ArrayList<FieldStreet> getRelatedFields(){
         return this.relatedFields;
     }
+
     public static void linkFields(FieldStreet[] fields){
         for (int i = 0 ; i <= fields.length - 1; i++) {
             for (int j = 0 ; j <= fields.length - 1; j++) {
@@ -125,10 +128,7 @@ public class FieldStreet extends Fields{
     }
 
     public boolean canBuildHotel(){
-        if (getHouses() == 4){
-                 return true;
-        }
-        return false;
+        return getHouses() == 4;
     }
 
     public boolean canSellHouse() {

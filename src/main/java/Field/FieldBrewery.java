@@ -16,9 +16,11 @@ public class FieldBrewery extends Fields {
         this.owned = owned;
         this.type = type;
     }
-public int getPrice(){
+
+    public int getPrice(){
         return price;
 }
+
     @Override
     public Player getOwner() {
         return owner;

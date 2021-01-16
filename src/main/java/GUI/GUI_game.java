@@ -1,6 +1,5 @@
 package GUI;
 import Field.Gameboard;
-import Game.Dice;
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -59,23 +58,5 @@ public class GUI_game {
         gui_fields[39] = new GUI_Street(gameboard.getArray()[39].getPropertyName(),gameboard.getArray()[39].getDisplayPrice() ,"" , gameboard.getArray()[39].getDisplayPrice(), new Color(104, 3, 87), Color.WHITE);
 
         return gui_fields;
-    }
-
-    public int getGui_house(int i){//method for GUI house
-
-        street.setHouses(i);
-        return house;
-    }
-
-    public boolean setHotel(){//method for GUI hotel
-
-        street.setHotel(false);
-        return hotel;
-    }
-
-    public void GUI_Dice(){// GUI dice but it is not finished and i dont know if others have made it.
-        Dice dice1 = new Dice();
-        Dice dice2 = new Dice();
-        gui.setDice(dice1.roll(), 135, dice2.roll(),135  );
     }
 }

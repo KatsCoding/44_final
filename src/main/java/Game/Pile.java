@@ -2,8 +2,9 @@ package Game;
 
 import java.util.*;
 import ChanceCard.*;
+import Field.FieldShips;
 
-public class    Pile {
+public class Pile {
     protected Queue<ChanceCard> cards = new LinkedList<ChanceCard>();
     protected Queue<ChanceCard> currentPile = new LinkedList<ChanceCard>();
 
@@ -67,11 +68,14 @@ public class    Pile {
         addCard( new SimplePayCash("Du skal betale 2000 kr for din tandlægeregning", 2000 ));
         addCard( new GetOutOfJailCard("I anledning af kongens fødselsdag benådes de for fængsel. Dette kort kan opbevares indtil du får brug for det"));
         addCard( new GetOutOfJailCard("I anledning af kongens fødselsdag benådes de for fængsel. Dette kort kan opbevares indtil du får brug for det"));
-
-
+        addCard( new SimplePayTaxes("Oliepriserne er steget, og du skal betale 500 kr pr hus og 2000 kr pr hotel", 500,2000));
+        addCard( new SimplePayTaxes("Ejemdomsskatten er steget. Ekstraudgifterne er 800 kr pr hus og 2300 kr pr hotel", 800,2300));
+        addCard( new SimpleReceiveCashFromPlayers("Det er deres fødselsdag. Modtag af hver medspiller 200 kr.",200));
+        addCard( new SimpleReceiveCashFromPlayers("Du har lagt penge ud til et sammenskudsgilde. Mærkværdigvis betaler alle straks. Modtag 500 kr fra hver medspiller",500));
+        addCard( new SimpleReceiveCashFromPlayers("Du skal holde familiefest og får et tilskud fra hver medspiller på 500 kr",500));
+        addCard( new GotoNearestFieldOfType("Tag med den nærmeste færge",  FieldShips.class ));
     }
 
-
-} // mangler 1,2,20,21,22,23,28x2,32
+} // Kort ikke lavet: 20 og 28
 
 

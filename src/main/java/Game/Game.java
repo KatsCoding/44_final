@@ -180,8 +180,8 @@ public class Game {
                     currentPlayer.setJailed(false);
                     turn(playerID);
                 } else {
-                    if (currentPlayer.getCash() >= 200) {
-                        currentPlayer.addCash(-200);
+                    if (currentPlayer.getCash() >= 1000) {
+                        currentPlayer.addCash(-1000);
                         currentPlayer.setJailed(false);
                         turn(playerID);
                     } else {

@@ -44,8 +44,8 @@ public class StreetFieldTest {
         assertEquals(4,tester.getHouses());
         assertEquals(tester.getCurrentRent(),9000);
 
-        assertEquals(false,tester.canBuildHouse());
-        assertEquals(false,tester.buildHouse());
+        assertEquals(true,tester.canBuildHouse());
+        assertEquals(true,tester.buildHouse());
         assertEquals(4,tester.getHouses());
     }
 

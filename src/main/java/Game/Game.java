@@ -71,6 +71,7 @@ public class Game {
     public void endGameCurrentUser() {
         players.removePlayer(currentPlayer);
         gui.showMessage(currentPlayer + ", du har tabt, og er derfor ude af spillet");
+        //TODO rigtig player
     }
 
     public void makePile() { // creates a new pile with the cards made in pile and shuffles them
@@ -170,7 +171,7 @@ public class Game {
 
 
             }
-
+            //TODO add option of getting out of jail by rolling 2 dice the same number (slå to ens??)
             //handling of jailed players
             else {
                 //pay 1 money or use get out of jail free card and call turn() again.

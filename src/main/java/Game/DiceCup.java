@@ -40,9 +40,9 @@ public class DiceCup {
      * @return Om alle dices er ens
      */
     public boolean isDoubles() {
-        int foersteElement = dices[0].getValue();
+        int firstElement = dices[0].getValue();
         for(int i=1; i<diceAmount; i++){
-            if(foersteElement != dices[i].getValue()){
+            if(firstElement != dices[i].getValue()){
                 return false;
             }
         }

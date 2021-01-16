@@ -1,5 +1,6 @@
 package Field;
-import Game.Player;
+import Game.*;
+import Field.FieldAction;
 import gui_fields.GUI_Field;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class FieldStreet extends Fields{
     int[] rentPrices = new int[6];
     int rentPriceMultiplier = 1;
     int streetPrice;
-    boolean Checked = false;
+    boolean OwnedAllType = false;
     int maxOwned;
     int housePrice;
     int houses;
@@ -22,6 +23,7 @@ public class FieldStreet extends Fields{
     int currentRent;
     boolean canBuild;
     ArrayList<FieldStreet> relatedFields;
+
 
 
     public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int[] rentLevels, int HousePrice, Player owner, int maxOwned){
@@ -33,7 +35,7 @@ public class FieldStreet extends Fields{
         this.type = type;
         this.rentPrices = rentLevels;
         this.streetPrice = streetPrice;
-        this.Checked = Checked;
+        this.OwnedAllType = OwnedAllType;
         this.maxOwned = maxOwned;
         this.housePrice = HousePrice;
         this.houses=0;
@@ -119,10 +121,10 @@ public class FieldStreet extends Fields{
         }
         return false;
     }
-
+//*
     public boolean canBuildHouse() {
-        if (!this.getOwned()) {
-            return false;
+        if (getOwnedAllType()) {
+            return true;
         }
         return canBuild && this.houses < this.rentPrices.length - 2;
     }
@@ -195,12 +197,12 @@ public class FieldStreet extends Fields{
         this.streetPrice = streetPrice;
     }
 
-    public boolean isChecked() {
-        return Checked;
+    public boolean getOwnedAllType() {
+        return OwnedAllType;
     }
 
-    public void setChecked(boolean checked) {
-        Checked = checked;
+    public void setOwnedAllType(boolean OwnedAllType) {
+        OwnedAllType = OwnedAllType;
     }
 
     public int getMaxOwned() {

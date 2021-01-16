@@ -34,7 +34,7 @@ public class FieldShips extends Fields {
 
     @Override
     public boolean getOwned() {
-        return false;
+        return owned;
     }
 
     @Override

@@ -21,7 +21,7 @@ public int getPrice(){
 }
     @Override
     public Player getOwner() {
-        return null;
+        return owner;
     }
 
     @Override
@@ -31,7 +31,7 @@ public int getPrice(){
 
     @Override
     public boolean getOwned() {
-        return false;
+        return owned;
     }
 
     @Override

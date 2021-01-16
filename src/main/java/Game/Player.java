@@ -78,16 +78,6 @@ public class Player {
             playerPosition = position;
     }
 
-    public void movePlayer(int amount){
-        int prevPosition = playerPosition;
-        playerPosition = ((playerPosition + amount) % 40);
-        if(playerPosition == 4) {setPlayerPosition(5);}
-        if(playerPosition == 38) {setPlayerPosition(39);}
-        if (prevPosition >= playerPosition) {
-            passedGoThisTurn = true;
-        }
-    }
-
     public void movePlayer(int amount, int numFields){
         int prevPosition = playerPosition;
         playerPosition = ((playerPosition + amount) % numFields);

@@ -6,7 +6,6 @@ import gui_main.GUI;
 public class SimplePayCash extends ChanceCard {
     int amount;
 
-
     public SimplePayCash(String text,int amount){
         this.text = text;
         this.amount = amount;
@@ -32,8 +31,6 @@ public class SimplePayCash extends ChanceCard {
                 }
                 break;
             }
-
         }
-
     }
 }

@@ -3,7 +3,6 @@ package ChanceCard;
 import Game.Game;
 import gui_main.GUI;
 
-
 public class GetOutOfJailCard extends ChanceCard {
 
     public GetOutOfJailCard(String text){

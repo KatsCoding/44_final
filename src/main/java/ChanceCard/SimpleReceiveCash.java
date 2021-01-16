@@ -9,13 +9,11 @@ public class SimpleReceiveCash extends ChanceCard {
     public SimpleReceiveCash(String text, int amount){
         this.text = text;
         this.amount = amount;
-
     }
+
     public void execute(Game game, GUI gui){
         gui.displayChanceCard(this.text);
         game.addCashToCurrentPlayer(this.amount);
-
     }
-
 
 }

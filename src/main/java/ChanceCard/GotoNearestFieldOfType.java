@@ -13,7 +13,6 @@ public class GotoNearestFieldOfType extends ChanceCard {
     public GotoNearestFieldOfType(String text, Class<? extends Fields> fieldType){
         this.text = text;
         this.fieldType = fieldType;
-
     }
 
     protected int getFieldPosition(Game game) {
@@ -51,9 +50,6 @@ public class GotoNearestFieldOfType extends ChanceCard {
             dist = (lastPos - currentPos) + nearestPos;
 
         game.moveCurrentPlayer(dist, grantCrossStartBonus);
-
     }
-
-
 }
 

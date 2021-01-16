@@ -10,7 +10,6 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
     public SimpleReceiveCashFromPlayers(String text, int amountPerPlayer){
         this.text = text;
         this.amountPerPlayer = amountPerPlayer;
-
     }
 
     protected int getAmountFromPlayer(Game game, GUI gui, Player player) {
@@ -35,7 +34,6 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
                 }
                 break;
             }
-
         }
         return amountReceived;
     }
@@ -52,6 +50,4 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
         }
         game.addCashToCurrentPlayer(amountReceived);
     }
-
-
 }

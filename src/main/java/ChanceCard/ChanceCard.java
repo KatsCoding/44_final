@@ -1,6 +1,5 @@
 package ChanceCard;
 
-
 import Game.Game;
 import gui_main.GUI;
 
@@ -20,7 +19,6 @@ public class ChanceCard {
     public void execute(Game game, GUI gui) {
         gui.displayChanceCard(this.text);
     }
-
 }
 
 

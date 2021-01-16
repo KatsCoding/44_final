@@ -30,7 +30,7 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
                         amountReceived = this.amountPerPlayer;
                         break;
                     case INSUFFICIENT_CASH:
-                        game.endGameForUser(player);
+                        game.endGameCurrentUser();
                         break;
                 }
                 break;

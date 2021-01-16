@@ -1,17 +1,11 @@
 package GUI;
 import Field.Gameboard;
 import gui_fields.*;
-import gui_main.GUI;
-
 
 import java.awt.*;
 
 public class GUI_game {
-    private int house;
-    private boolean hotel;
-    GUI gui;
-    static GUI_Field[] gui_fields = new GUI_Field[40];
-    GUI_Street street = new GUI_Street();
+        static GUI_Field[] gui_fields = new GUI_Field[40];
 
     public static  GUI_Field[] makeGUIFields(){//make GUI board with the data from Gameboard class
         Gameboard gameboard = new Gameboard();

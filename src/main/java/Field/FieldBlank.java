@@ -13,9 +13,7 @@ public class FieldBlank extends Fields{
     }
 
     @Override
-    public void setOwner(Player owner) {
-
-    }
+    public void setOwner(Player owner) { }
 
     @Override
     public boolean getOwned() {
@@ -24,7 +22,6 @@ public class FieldBlank extends Fields{
 
     @Override
     public void setOwned(boolean b) {
-
     }
 
     @Override

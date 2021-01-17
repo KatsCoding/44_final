@@ -3,7 +3,6 @@ package Game;
 public class Dice {
     private final int MAX = 6;
 
-
     private int value = 1;
 
     public int getValue() {

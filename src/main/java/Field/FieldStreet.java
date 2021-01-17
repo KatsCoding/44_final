@@ -1,33 +1,29 @@
 package Field;
-import Game.*;
-import Field.FieldAction;
-import gui_fields.GUI_Field;
+
+import Game.Player;
 
 import java.util.ArrayList;
 
-public class FieldStreet extends Fields{
-    String displayPrice;
-    String propertyName;
-    boolean owned;
-    Player owner;
-    char type;
-    int[] rentPrices = new int[6];
-    int rentPriceMultiplier = 1;
-    int streetPrice;
-    boolean Checked = false;
-    int maxOwned;
-    int housePrice;
-    int houses;
-    int hotels;
-    int housecounter;
-    int currentRent;
-    boolean canBuild;
-    int mortgage;
-    ArrayList<FieldStreet> relatedFields;
+public class FieldStreet extends Fields {
+    private String displayPrice;
+    private String propertyName;
+    private boolean owned;
+    private Player owner;
+    private char type;
+    private int[] rentPrices;
+    private int rentPriceMultiplier = 1;
+    private int streetPrice;
+    private boolean OwnedAllType = false;
+    private int maxOwned;
+    private int housePrice;
+    private int houses;
+    private int hotels;
+    private int houseCounter;
+    private boolean canBuild;
+    private ArrayList<FieldStreet> relatedFields;
 
 
-
-    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int[] rentLevels, int HousePrice, Player owner, int maxOwned){
+    public FieldStreet(String propertyName, String displayPrice, char type, boolean owned, int streetPrice, int[] rentLevels, int HousePrice, Player owner, int maxOwned) {
         // The field base lines for what street fields consist of.
         this.displayPrice = displayPrice;
         this.propertyName = propertyName;
@@ -36,93 +32,85 @@ public class FieldStreet extends Fields{
         this.type = type;
         this.rentPrices = rentLevels;
         this.streetPrice = streetPrice;
-        this.OwnedAllType = OwnedAllType;
         this.maxOwned = maxOwned;
         this.housePrice = HousePrice;
-        this.houses=0;
-        this.hotels=0;
-        this.housecounter=0;
-        this.relatedFields = new ArrayList<FieldStreet>();
+        this.houses = 0;
+        this.hotels = 0;
+        this.houseCounter = 0;
+        this.relatedFields = new ArrayList<>();
     }
 
-    public void addRelatedField(FieldStreet relatedField){
+    public void addRelatedField(FieldStreet relatedField) {
         if (!this.relatedFields.contains(relatedField)) {
             this.relatedFields.add(relatedField);
         }
     }
 
-    public ArrayList<FieldStreet> getRelatedFields(){
+    public ArrayList<FieldStreet> getRelatedFields() {
         return this.relatedFields;
     }
 
-    public static void linkFields(FieldStreet[] fields){
-        for (int i = 0 ; i <= fields.length - 1; i++) {
-            for (int j = 0 ; j <= fields.length - 1; j++) {
+    public static void linkFields(FieldStreet[] fields) {
+        for (int i = 0; i <= fields.length - 1; i++) {
+            for (int j = 0; j <= fields.length - 1; j++) {
                 if (i != j) {
                     fields[i].addRelatedField(fields[j]);
                 }
             }
         }
     }
+
     /**
-     *
      * @return The amount of houses.
      */
     public int getHouses() {
         return houses;
     }
 
-    /**
-     * set Houses
-     * @param field - The field number for which we want to buy houses for.
-     * @param houses - Sets the amount of houses for the field.
-     */
-    public void setHouses(int field, int houses) {
-        this.houses = houses;
+    public boolean getCanBuild() {
+        return canBuild;
+    }
 
-        setHouses(field, houses);
+    public void setCanBuild(boolean canBuild) {
+        this.canBuild = canBuild;
     }
 
     public boolean buildHouse() {
         if (this.canBuildHouse()) {
             this.owner.addCash(-this.housePrice);
             this.houses++;
-            this.housecounter++;
+            this.houseCounter++;
             return true;
         }
         return false;
     }
 
-    public boolean buildHotel(){
-        if (canBuildHotel() == true){
+    public void buildHotel() {
+        if (canBuildHotel()) {
             this.owner.addCash(-this.housePrice);
             this.houses++;
             this.hotels++;
-            this.housecounter = 0;
+            this.houseCounter = 0;
         }
-        return false;
     }
 
-    public boolean removeHouse() {
-        if (this.canSellHouse() == true) {
+    public void removeHouse() {
+        if (this.canSellHouse()) {
             this.owner.addCash(this.housePrice);
             this.houses--;
-            this.housecounter--;
-            this.housecounter = 4;
-            return true;
+            this.houseCounter--;
+            this.houseCounter = 4;
         }
-        return false;
     }
 
-    public boolean removeHotel(){
-        if (canSellHotel() == true){
+    public void removeHotel() {
+        if (canSellHotel()) {
             this.owner.addCash(this.housePrice);
             this.houses--;
             this.hotels--;
         }
-        return false;
     }
-//*
+
     public boolean canBuildHouse() {
         if (getOwnedAllType()) {
             return true;
@@ -130,45 +118,28 @@ public class FieldStreet extends Fields{
         return canBuild && this.houses < this.rentPrices.length - 2;
     }
 
-    public boolean canBuildHotel(){
+    public boolean canBuildHotel() {
         return getHouses() == 4;
     }
 
     public boolean canSellHouse() {
-        if (getHouses() > 0 && getHouses() < 5) {
-            return true;
-        }
-        return false;
+        return getHouses() > 0 && getHouses() < 5;
     }
 
-    public boolean canSellHotel(){
-        if (getHouses() == 5){
-            return true;
-        }
-        return false;
+    public boolean canSellHotel() {
+        return getHouses() == 5;
     }
 
-    public boolean useMortgage(){
-       if(!this.getOwned()){
-           return false;
-       }
-       return true;
+    public boolean useMortgage() {
+        return this.getOwned();
     }
 
-    public int getMortgage(){
-            return streetPrice/2;
+    public int getMortgage() {
+        return streetPrice / 2;
     }
+
     public String getPropertyName() {
         return propertyName;
-    }
-
-//    @Override
-  //  public String FieldStart() {
-   //     return null;
-    //}
-
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
     }
 
     public boolean getOwned() {
@@ -191,7 +162,7 @@ public class FieldStreet extends Fields{
         return type;
     }
 
-    public int getCurrentRent(){
+    public int getCurrentRent() {
         return this.rentPrices[this.houses];
     }
 
@@ -204,16 +175,12 @@ public class FieldStreet extends Fields{
         return 0;
     }
 
-    public void setStreetPrice(int streetPrice) {
-        this.streetPrice = streetPrice;
-    }
-
     public boolean getOwnedAllType() {
         return OwnedAllType;
     }
 
     public void setOwnedAllType(boolean OwnedAllType) {
-        OwnedAllType = OwnedAllType;
+        this.OwnedAllType = OwnedAllType;
     }
 
     public int getMaxOwned() {
@@ -228,10 +195,6 @@ public class FieldStreet extends Fields{
         return housePrice;
     }
 
-    public int getRentPriceMultiplier() {
-        return rentPriceMultiplier;
-    }
-
     public void setRentPriceMultiplier(int rentPriceMultiplier) {
         this.rentPriceMultiplier = rentPriceMultiplier;
     }
@@ -240,15 +203,15 @@ public class FieldStreet extends Fields{
         return displayPrice;
     }
 
-    public void setDisplayPrice(String displayPrice){this.displayPrice = displayPrice;}
-
-
+    public void setDisplayPrice(String displayPrice) {
+        this.displayPrice = displayPrice;
+    }
 
     public int getHotels() {
         return hotels;
     }
 
-    public int getHousecounter() {
-        return housecounter;
+    public int getHouseCounter() {
+        return houseCounter;
     }
 }

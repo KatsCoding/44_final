@@ -11,7 +11,6 @@ import java.awt.*;
 public class Game {
 
     DiceCup diceCup = new DiceCup(2);
-    private int numberOfPlayers;
     private int currentPosition;
     boolean gameOver = false;
     PlayerList players;
@@ -44,6 +43,7 @@ public class Game {
                 currentPlayer.getGetOutOfJailFreeCards() + 1
         );
     }
+
     // method for chancecards that withdraws money from the player
     // if they dont have enough the game ends for the player
     public WithDrawOutCome withdrawCashFromCurrentPlayer(int amount){
@@ -63,7 +63,7 @@ public class Game {
     }
 
     public void promptCurrentUserPropertySale() {
-        // give the user a list of owned properties and let him choose what he wants to sell
+        // TODO promtsalestuff
         // opdate userfunds after sale
         // work for further work (videreudvikling)
     }
@@ -82,8 +82,6 @@ public class Game {
 
     public void landOnChance() {
         ChanceCard card = this.pile.draw();
-        // If there is no more cards in the deck the pile gets shuffled, and a new card is draw
-        // ikke aktuelt da bunken aldrig er tom da kortene bliver lagt i bunken
         if (card == null) {
             this.pile.shuffle();
             card = this.pile.draw();
@@ -98,7 +96,7 @@ public class Game {
         gui.showMessage("Velkommen til matador!");
 
         // valg af antal spillere
-        numberOfPlayers = Integer.parseInt(gui.getUserSelection("Vælg antal spillere:", "2", "3", "4", "5", "6"));
+        int numberOfPlayers = Integer.parseInt(gui.getUserSelection("Vælg antal spillere:", "2", "3", "4", "5", "6"));
         String[] playerNames = new String[numberOfPlayers];
         // indtastning af navne på spillere
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -117,7 +115,6 @@ public class Game {
            guiPlayers[i] = new GUI_Player(players.getPlayer(i).getName(), Player.defaultCash(), cars[i]);
        }
         fieldAction.setGame(this);
-        //TODO chancekortne skal blandes her
 
         //Sætter startfeltet
         currentField = gui.getFields()[0];
@@ -132,14 +129,13 @@ public class Game {
         updateGUICash();
         makePile();
         //TODO add actual gå-i-gang-besked
-        gui.showMessage("gå-i-gang-med-spillet-besked");
+        gui.showMessage("Nu starter spillet, held og lykke!");
 
         //holder spillet i gang indtil gameOver
         while (!gameOver) {
         round();
         }
     }
-
 
     public void round(){
         //for-loop hver spiller og kalder turn()
@@ -154,7 +150,7 @@ public class Game {
             currentGUIPlayer = guiPlayers[playerID];
 
             if (!currentPlayer.isJailed()) {
-                String choice = gui.getUserSelection("Det er nu " + players.getPlayer(playerID).getName() + "'s tur", "Roll", "Buy House", "Buy Hotel", "Sell House", "Sell Hotel","Skip");
+                String choice = gui.getUserSelection("Det er nu " + players.getPlayer(playerID).getName() + "'s tur", "Rull med terningerne", "Køb et hus", "Køb et hotel", "Sælg et hus", "Sælg et hotel","Skip");
                 if (choice == "Roll") {
                     diceCup.roll();
                     gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
@@ -168,8 +164,6 @@ public class Game {
                 }else if (choice == "Sell Hotel"){
                     sellHotel(playerID);
                 }
-
-
             }
             //TODO add option of getting out of jail by rolling 2 dice the same number (slå to ens??)
             //handling of jailed players
@@ -189,24 +183,9 @@ public class Game {
                     }
                 }
             }
-
             updateGUICash();
-
         }
-        /* Opbygning:
-        * besked om hvilken player's tur
-        * get player for data og for gui
-        * hvis spiller ikke isJailed: valgmuligheder: slå terning, køb/sælg/pantsætte osv.
-        * hvad der sker i alle instances af valgmulighederne
-        * hvis 2 ens terninger, så kald metode
-        * hvis spiller isJailed så kald metoder
-        * når spiller har kastet terninger og evt udført handling (køb field, auction osv) valgmulighed igen, er der andet de vil
-        *hvis ja udfør, hvis nej næste spillers tur
-        *
-        * */
-        //TODO lave så man slår med 2 terninger
-        //TODO what happens when houses & hotels become part of it
-        //TODO turn
+
         //TODO evt metode for sig self vedrørende isJailed osv (linje 114 - 126 cdio3 + det nye fra final)
     }
     //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
@@ -318,11 +297,12 @@ public class Game {
             turn(playerID);
             return;
         }
+
         String[] streetSelection = new String[totalOwnedFields];
         for (int i = 0; i < totalOwnedFields; i++) {
             streetSelection[i] = ownedFields[i].getPropertyName();
         }
-        String streetChoice = gui.getUserSelection("Hvor vil du købe et hotel?",streetSelection);
+        String streetChoice = gui.getUserSelection("Hvor vil du købe et hotel?", streetSelection);
         int streetChoiceInteger = 0;
         for (int i = 0; i < this.gameboard.getArray().length; i++) {
             if (this.gameboard.getArray()[i].getPropertyName() == streetChoice){
@@ -375,9 +355,7 @@ public class Game {
         turn(playerID);
     }
 
-    //We used our move method from cdio 3, with changes as needed.
-
-    public void moveCurrentPlayer(int dist, boolean grantCrossStartBonus) { //added boolean that checks if they cross START
+        public void moveCurrentPlayer(int dist, boolean grantCrossStartBonus) { //added boolean that checks if they cross START
         currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.
         currentPlayer.movePlayer(dist,gameboard.getArray().length); //changes player's position number
         currentPosition = currentPlayer.getPlayerPosition(); //set current placement
@@ -392,7 +370,7 @@ public class Game {
             else currentPlayer.addPassStartBonus(0); // added so it resets
         }
         currentPlayer.resetHasPassedGo(); //sets boolean back to false.
-        fieldAction.landOnField(currentPosition,diceCup.getTotalValue());
+        fieldAction.landOnField(diceCup.getTotalValue());
     }
 
     // method for chancecard where player has to go to specific field
@@ -407,10 +385,6 @@ public class Game {
             dist = numFields - playerPosition + position; // if the field position is behind the player
         }
         moveCurrentPlayer(dist, grantCrossStartBonus);
-    }
-
-    public void movePlayerToNearestFieldOfType(Class cls, Player player) {
-
     }
 
     public void endGame(Player currentPlayer){
@@ -440,10 +414,12 @@ public class Game {
     public int getCurrentPosition() {
         return currentPosition;
     }
+
     public void setCurrentPosition(int position) {
         currentField = gui.getFields()[position]; //makes sure the gui will remove the car of the current player's position.
         currentPosition = position; //set current placement
     }
+
     public GUI_Field getCurrentField(){
         return currentField;
     }
@@ -451,6 +427,7 @@ public class Game {
     public GUI getGui() {
         return gui;
     }
+
     public GUI_Field[] getFields(){
         return fields;
     }

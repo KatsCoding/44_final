@@ -6,7 +6,6 @@ import Game.Game;
 import gui_main.GUI;
 
 public class GotoNearestFieldOfType extends ChanceCard {
-    int amount;
     boolean grantCrossStartBonus;
     Class<? extends Fields> fieldType;
 
@@ -42,7 +41,7 @@ public class GotoNearestFieldOfType extends ChanceCard {
         int nearestPos = this.getFieldPosition(game);
         int lastPos = game.getGameboard().getArray().length ;
         int currentPos = game.getCurrentPosition();
-        int dist = 0;
+        int dist;
 
         if( nearestPos >= currentPos)
             dist = nearestPos - currentPos;

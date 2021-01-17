@@ -8,11 +8,9 @@ public class Player {
     int getOutOfJailFreeCards = 0;
     boolean passedGoThisTurn = false;
     int playerPosition = 0;
-    boolean isBankrupt;
     boolean isJailed = false;
     int Houses;
     int Hotel;
-    private boolean hasRolled = false;
 
     public Player(String name){
         this.cash = defaultCash; //This is the cash that a player is starting with when a new one is made
@@ -23,19 +21,11 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getCash() {
         return cash;
     }
 
     public static int defaultCash(){return defaultCash = 30000;}
-
-    public void setCash(int cash) {
-        this.cash = cash;
-    }
 
     public void addCash(int cash) { this.cash = this.cash + cash; }
 
@@ -54,10 +44,6 @@ public class Player {
 
     public boolean getPassedGoThisTurn() {
         return passedGoThisTurn;
-    }
-
-    public void setPassedGoThisTurn(boolean passedGoThisTurn) {
-        this.passedGoThisTurn = passedGoThisTurn;
     }
 
     public void resetHasPassedGo() {
@@ -87,15 +73,6 @@ public class Player {
         if (playerPosition < 0) {
             playerPosition = numFields + playerPosition;
         }
-
-    }
-
-    public boolean isBankrupt() {
-        return isBankrupt;
-    }
-
-    public void setBankrupt(boolean bankrupt) {
-        isBankrupt = bankrupt;
     }
 
     public boolean isJailed() {
@@ -110,16 +87,8 @@ public class Player {
         return Houses;
     }
 
-    public void setHouses(int houses) {
-        Houses = houses;
-    }
-
     public int getHotel() {
         return Hotel;
-    }
-
-    public void setHotel(int hotel) {
-        Hotel = hotel;
     }
 }
 

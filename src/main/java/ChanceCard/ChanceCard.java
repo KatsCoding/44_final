@@ -14,8 +14,6 @@ public class ChanceCard {
         this.text = text;
     }
 
-    public String getText(){ return this.text; } //
-
     public void execute(Game game, GUI gui) {
         gui.displayChanceCard(this.text);
     }

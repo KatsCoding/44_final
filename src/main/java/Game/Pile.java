@@ -5,8 +5,8 @@ import ChanceCard.*;
 import Field.FieldShips;
 
 public class Pile {
-    protected Queue<ChanceCard> cards = new LinkedList<ChanceCard>();
-    protected Queue<ChanceCard> currentPile = new LinkedList<ChanceCard>();
+    protected Queue<ChanceCard> cards = new LinkedList<>();
+    protected Queue<ChanceCard> currentPile = new LinkedList<>();
 
     public ChanceCard draw(){
         ChanceCard card = currentPile.poll();
@@ -15,20 +15,14 @@ public class Pile {
         return card;
     }
 
-    public void addCard(ChanceCard[] newCards) {
-        int i;
-        for(i=0; i<newCards.length; i++){
-            cards.add(newCards[i]);
-        }
-    }
     public void addCard(ChanceCard card) {
         cards.add(card);
     }
 
     public void shuffle(){
-        ArrayList<ChanceCard> tmp = new ArrayList<ChanceCard>(cards);
+        ArrayList<ChanceCard> tmp = new ArrayList<>(cards);
         Collections.shuffle(tmp);
-        currentPile = new LinkedList<ChanceCard>(tmp);
+        currentPile = new LinkedList<>(tmp);
     }
 
     public void loadPile() {

@@ -32,12 +32,12 @@ public class PayTaxes {
             }
         }
         int value = cash + houseValue + mortgage;
-    if (bottonInput == "10%"){
-        moneyLeft = (int) (value*0.1);
-    }else{
-        moneyLeft = cash-price;
+        if (bottonInput == "10%"){
+            moneyLeft = (int) (value*0.1);
+        }else{
+            moneyLeft = cash-price;
         }
-    return moneyLeft;
+        return moneyLeft;
     }
 
 }

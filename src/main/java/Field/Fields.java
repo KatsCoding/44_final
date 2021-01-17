@@ -25,10 +25,7 @@ abstract public class Fields {
 
     public String getSpecialFieldName(){return "";}
 
-
     public abstract String getDisplayPrice();//display price from fieldstreet class
-
-    public abstract void setDisplayPrice(String displayPrice);
 
     public abstract int getHouses();
 

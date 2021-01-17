@@ -1,18 +1,12 @@
 package Field;
 
-import Game.Player;
-import Game.PlayerList;
-
 import Game.Game;
-
-import java.util.Arrays;
 
 public class FieldAction {
 
-    boolean[] usedChanceCards = new boolean[18];
     Game game;
 
-    public void landOnField(int i, int dicevalue) {
+    public void landOnField(int diceValue) {
         if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldStreet) {
             landOnStreet();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldJail) {
@@ -23,7 +17,7 @@ public class FieldAction {
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldShips) {
             landOnShips();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldBrewery) {
-            landOnBrewery(dicevalue);
+            landOnBrewery(diceValue);
         }
     }
 
@@ -89,7 +83,7 @@ public class FieldAction {
         }
     }
 
-    public void landOnBrewery(int dicevalue) {
+    public void landOnBrewery(int diceValue) {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
             game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
@@ -108,12 +102,12 @@ public class FieldAction {
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
-                if (game.getCurrentPlayer().getCash() < (dicevalue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))) {//checks if you're poor
+                if (game.getCurrentPlayer().getCash() < (diceValue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))) {//checks if you're poor
                     game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
                     game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke købe det alligevel");
                 } else {
-                    game.getCurrentPlayer().addCash(-(dicevalue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner())));
-                    game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(dicevalue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()));
+                    game.getCurrentPlayer().addCash(-(diceValue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner())));
+                    game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(diceValue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()));
                     //System.out.println(game.getGameboard().getArray()[game.getCurrentPosition()].getRentPrice() + l.coinsBeenPaid[o]);
                 }
             }
@@ -153,7 +147,7 @@ public class FieldAction {
             boolean hasBuilding = false;
             if (currentField instanceof FieldStreet) {
                 for (Fields f : group) {
-                    ((FieldStreet) f).canBuild = true;
+                    ((FieldStreet) f).setCanBuild(true);
                     if (((FieldStreet) f).getHouses() > 0) {
                         hasBuilding = true;
                         break;
@@ -170,7 +164,7 @@ public class FieldAction {
             }
         } else {
             for (Fields f : group) {
-                ((FieldStreet) f).canBuild = false;
+                ((FieldStreet) f).setCanBuild(false);
             }
         }
     }
@@ -186,9 +180,6 @@ public class FieldAction {
     }
 
     //TODO just like with jail make sure the method and rules match with the setup for this
-    public int rollChanceCard() {
-        return (int) (Math.random() * usedChanceCards.length);
-    }
 
     public void landOnChance() {
         game.landOnChance(); // landOnChance implemented in game class (which makes the player draw a card)
@@ -197,4 +188,5 @@ public class FieldAction {
     public void setGame(Game game) {
         this.game = game;
     }
+
 }

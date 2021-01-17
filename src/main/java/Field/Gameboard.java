@@ -62,7 +62,7 @@ public class Gameboard {
         int counter = 0;
         for (int i = 0; i < boardArray.length; i++) {
             if (i == 5 || i == 15 || i == 25 || i == 35) {
-                if (player == ((FieldShips) boardArray[i]).getOwner()) {
+                if (player == boardArray[i].getOwner()) {
                     counter++;
                 }
             }
@@ -75,7 +75,7 @@ public class Gameboard {
         int counter = 0;
         for (int i = 0; i < boardArray.length; i++) {
             if (i == 12 || i == 28) {
-                if (player == ((FieldBrewery) boardArray[i]).getOwner()) {
+                if (player == boardArray[i].getOwner()) {
                     counter++;
 
                 }
@@ -87,7 +87,7 @@ public class Gameboard {
     public int getPositionNamedField(String fieldName){
         int position = -1; //
         for (int i = 0; i < boardArray.length; i++) {
-            if (boardArray[i].getPropertyName() == fieldName || boardArray[i].getSpecialFieldName() == fieldName ) {
+            if (boardArray[i].getPropertyName().equals(fieldName) || boardArray[i].getSpecialFieldName().equals(fieldName)) {
                 // if the getPropertyName is equal to fieldname the position is set to i (which is the index in the boardArray
                 position = i;
                 break;
@@ -97,16 +97,16 @@ public class Gameboard {
     }
 
     public int[] getPositionsOfFieldTypes(Class<? extends Fields> fieldType){
-        List<Integer> positions = new ArrayList<Integer>();
+        List<Integer> positions = new ArrayList<>();
         for (int i = 0; i < boardArray.length; i++) {
             if (boardArray[i].getClass() == fieldType) {
                 // if the getPropertyName is equal to fieldname the position is set to i (which is the index in the boardArray
-                positions.add(Integer.valueOf(i));
+                positions.add(i);
             }
         }
         int[] retVal = new int[positions.size()];
         for (int i=0;i<positions.size();i++) {
-            retVal[i] = (int)positions.get(i).intValue();
+            retVal[i] = positions.get(i);
         }
         return retVal;
     }

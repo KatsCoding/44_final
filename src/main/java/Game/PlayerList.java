@@ -1,7 +1,5 @@
 package Game;
 
-import Field.Fields;
-
 public class PlayerList{
     private Player[] playerList;
     String[] stringNames;

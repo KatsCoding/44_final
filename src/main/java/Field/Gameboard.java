@@ -87,7 +87,7 @@ public class Gameboard {
     public int getPositionNamedField(String fieldName){
         int position = -1; //
         for (int i = 0; i < boardArray.length; i++) {
-            if (boardArray[i].getPropertyName().equals(fieldName) || boardArray[i].getSpecialFieldName().equals(fieldName)) {
+            if (fieldName.equals(boardArray[i].getPropertyName()) || fieldName.equals(boardArray[i].getSpecialFieldName())) {
                 // if the getPropertyName is equal to fieldname the position is set to i (which is the index in the boardArray
                 position = i;
                 break;

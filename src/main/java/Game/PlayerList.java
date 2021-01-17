@@ -2,10 +2,8 @@ package Game;
 
 public class PlayerList{
     private Player[] playerList;
-    String[] stringNames;
 
     public PlayerList(int number, String[] names) {
-        stringNames = new String[names.length];
         playerList = new Player[number];
         for (int i = 0;i < number;i++)
             playerList[i]= new Player(names[i]);

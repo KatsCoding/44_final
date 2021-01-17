@@ -9,8 +9,10 @@ public class Player {
     boolean passedGoThisTurn = false;
     int playerPosition = 0;
     boolean isJailed = false;
-    int Houses;
-    int Hotel;
+    int houses;
+    int hotel;
+    int jailTurns = 0;
+
 
     public Player(String name){
         this.cash = defaultCash; //This is the cash that a player is starting with when a new one is made
@@ -81,14 +83,23 @@ public class Player {
 
     public void setJailed(boolean jailed) {
         isJailed = jailed;
+        jailTurns = 0;
+    }
+
+    public int getJailTurns() {
+        return jailTurns;
+    }
+
+    public void setJailTurns(int jailTurns) {
+        this.jailTurns = jailTurns;
     }
 
     public int getHouses() {
-        return Houses;
+        return houses;
     }
 
     public int getHotel() {
-        return Hotel;
+        return hotel;
     }
 }
 

@@ -166,297 +166,316 @@ public class Game {
                     sellHotel(playerID);
                 }
             }
-            //TODO add option of getting out of jail by rolling 2 dice the same number (slå to ens??)
+
             //handling of jailed players
             else {
-                gui.showMessage("Åh nej! " + currentPlayer + " du er i fængsel. Hvis du har et kort til at blive løsladt vil det automatisk blive brugt. ");
-//                if (currentPlayer.getGetOutOfJailFreeCards() > 0) {
-//                    currentPlayer.setGetOutOfJailFreeCards(currentPlayer.getGetOutOfJailFreeCards() - 1);
-//                    currentPlayer.setJailed(false);
-//                    turn(playerID);
-//                } else {
-//                    String choice = gui.getUserSelection("Hvordan vil du forsøge at komme ud?", /*"Brug mit løsladelseskort", */"Betal bøden på 1000", "Prøv at slå 2 ens med terningerne");
-//                    if (choice == "Betal bøden på 1000") {
-//                        if (currentPlayer.getCash() >= 1000) {
-//                            currentPlayer.addCash(-1000);
-//                            currentPlayer.setJailed(false);
-//                            turn(playerID);
-//                        } else {
-//                            gui.showMessage("Du har ikke råd. Slå med terningerne i stedet.");
-//                            //TODO skift player til at bruge terninger
-//                        }
-//                    }
-//                        else if (choice == "Prøv at slå 2 ens med terningerne" ) {
-//                            diceCup.roll();
-//                            gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
-//                            if (diceCup.isDoubles()){
-//                                moveCurrentPlayer(diceCup.getTotalValue(), true);
-//                                turn(playerID);
-//                            }
-//                            else {
-//                                gui.showMessage("Desværre. Held og lykke næste gang");
-//                                //TODO skal have mulighed for at blive gjort 3 gange, og hvis det ikk virker så betaler man 1000
-//                            }
-////                        }
-//
-//
-//                else if {
-//                            if ("hej") {
-//                                boolean test = false;
-//                            }
-//                        } else{
-//                            endGame(currentPlayer);
-//                        }
-//                    }
-//                }
-//            }
-//                updateGUICash();
+                currentPlayer.jailTurns += 1;
+                gui.showMessage("Åh nej! " + currentPlayer.getName() + " du er i fængsel. Hvis du har et kort til at blive løsladt vil det automatisk blive brugt. ");
+                if (currentPlayer.getGetOutOfJailFreeCards() > 0) {
+                    currentPlayer.setGetOutOfJailFreeCards(currentPlayer.getGetOutOfJailFreeCards() - 1);
+                    currentPlayer.setJailed(false);
+                    turn(playerID);
+                } else {
+                    String choice = gui.getUserSelection("Hvordan vil du forsøge at komme ud?", "Betal bøden på 1000", "Prøve at slå 2 ens med terningerne");
+                    if (choice == "Betal bøden på 1000") {
+                        payBail(playerID);
+                    } else if (choice == "Prøve at slå 2 ens med terningerne") {
+                        rollToGetOutOfJail(playerID);
+                    }
+                }
             }
-
-            //TODO evt metode for sig self vedrørende isJailed osv (linje 114 - 126 cdio3 + det nye fra final)
         }
-        //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
+        updateGUICash();
+    }
 
-        /**
-         *
-         * @buyHouse methode der køber huse, hvis det er muligt, ellers sender den spilleren tilbage
-         * til turn.menu
-         * @param playerID
-         */
-        private void buyHouse ( int playerID){
-            int totalOwnedFields = 0;
-            FieldStreet[] ownedFields = new FieldStreet[40];  // Der er ikke 40 fieldStreets på brættet, men det går nok
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
-                    continue;
-                }
-                // Pt tjekker vi alle felter i en gruppe alle de gange hvor feltet er der (men it works!)
-                // (Så hvis en gruppe felter har 5 felter så tjekkes det hele 5 gange i stedet for kun 1 gang)
-                fieldAction.checkColorGroupOwned(i);
-                FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
-                if (field_i.getOwner() == this.currentPlayer && field_i.canBuildHouse()) {
-                    ownedFields[totalOwnedFields] = field_i;
-                    totalOwnedFields++;
-                }
-            }
-            if (totalOwnedFields == 0) {
-                gui.showMessage("Det ser ikke ud til at du kan købe nogen huse");
-                turn(playerID);
-                return;
-            }
-            String[] streetSelection = new String[totalOwnedFields];
-            for (int i = 0; i < totalOwnedFields; i++) {
-                streetSelection[i] = ownedFields[i].getPropertyName();
-            }
-            String streetChoice = gui.getUserSelection("Hvor vil du købe et hus?", streetSelection);
-            int streetChoiceInteger = 0;
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
-                    streetChoiceInteger = i;
-                    break;
-                }
-            }
+    //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
 
-            ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHouse();
-            ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
-            updateGUICash();
-            gui.showMessage(players.getPlayer(playerID).getName() + " har købt et hus på " + streetChoice + ".");
+    private void payBail(int playerID) {
+        if (currentPlayer.getCash() >= 1000) {
+            currentPlayer.addCash(-1000);
+            currentPlayer.setJailed(false);
             turn(playerID);
-        }
-
-        /**
-         * sælger huse hvis det er muligt
-         * @sellHouse
-         * @param playerID
-         */
-        private void sellHouse ( int playerID){
-            int totalOwnedFields = 0;
-            FieldStreet[] ownedFields = new FieldStreet[40];
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
-                    continue;
-                }
-                FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
-                if (field_i.getOwner() == this.currentPlayer && field_i.canSellHouse()) {
-                    ownedFields[totalOwnedFields] = field_i;
-                    totalOwnedFields++;
-                }
-            }
-            if (totalOwnedFields == 0) {
-                gui.showMessage("Det ser ikke ud til at du kan sælge nogen huse");
+        } else {
+            if (currentPlayer.getJailTurns() < 3) {
+                gui.showMessage("Du har ikke råd. Slå med terningerne i stedet.");
+                rollToGetOutOfJail(playerID);
+                //TODO skift player til at bruge terninger
+            } else {
+                currentPlayer.setJailed(false);
                 turn(playerID);
-                return;
             }
-            String[] streetSelection = new String[totalOwnedFields];
-            for (int i = 0; i < totalOwnedFields; i++) {
-                streetSelection[i] = ownedFields[i].getPropertyName();
-            }
-            String streetChoice = gui.getUserSelection("Hvor vil du sælge et hus?", streetSelection);
-            int streetChoiceInteger = 0;
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
-                    streetChoiceInteger = i;
-                    break;
-                }
-            }
-            ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHouse();
-            ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
-            updateGUICash();
-            gui.showMessage(players.getPlayer(playerID).getName() + " har solgt et hus på " + streetChoice + ".");
-            turn(playerID);
-        }
-
-        private void buyHotel ( int playerID){
-            int totalOwnedFields = 0;
-            FieldStreet[] ownedFields = new FieldStreet[40];
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
-                    continue;
-                }
-                FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
-                if (field_i.getOwner() == this.currentPlayer && field_i.canBuildHotel()) {
-                    ownedFields[totalOwnedFields] = field_i;
-                    totalOwnedFields++;
-                }
-            }
-            if (totalOwnedFields == 0) {
-                gui.showMessage("Det ser ikke ud til at du kan købe nogen hoteller");
-                turn(playerID);
-                return;
-            }
-
-            String[] streetSelection = new String[totalOwnedFields];
-            for (int i = 0; i < totalOwnedFields; i++) {
-                streetSelection[i] = ownedFields[i].getPropertyName();
-            }
-            String streetChoice = gui.getUserSelection("Hvor vil du købe et hotel?", streetSelection);
-            int streetChoiceInteger = 0;
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
-                    streetChoiceInteger = i;
-                    break;
-                }
-            }
-            ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHotel();
-            ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(true);
-            updateGUICash();
-            gui.showMessage(players.getPlayer(playerID).getName() + " har købt et hotel på " + streetChoice + ".");
-            turn(playerID);
-        }
-
-        private void sellHotel ( int playerID){
-            int totalOwnedFields = 0;
-            FieldStreet[] ownedFields = new FieldStreet[40];
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
-                    continue;
-                }
-                FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
-                if (field_i.getOwner() == this.currentPlayer && field_i.canSellHotel()) {
-                    ownedFields[totalOwnedFields] = field_i;
-                    totalOwnedFields++;
-                }
-            }
-            if (totalOwnedFields == 0) {
-                gui.showMessage("Det ser ikke ud til at du kan sælge nogen hoteller");
-                turn(playerID);
-                return;
-            }
-            String[] streetSelection = new String[totalOwnedFields];
-            for (int i = 0; i < totalOwnedFields; i++) {
-                streetSelection[i] = ownedFields[i].getPropertyName();
-            }
-            String streetChoice = gui.getUserSelection("Hvor vil du sælge et hotel?", streetSelection);
-            int streetChoiceInteger = 0;
-            for (int i = 0; i < this.gameboard.getArray().length; i++) {
-                if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
-                    streetChoiceInteger = i;
-                    break;
-                }
-            }
-            ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHotel();
-            ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(false);
-            ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
-            updateGUICash();
-            gui.showMessage(players.getPlayer(playerID).getName() + " har købt et hotel på " + streetChoice + ".");
-            turn(playerID);
-        }
-
-        public void moveCurrentPlayer ( int dist, boolean grantCrossStartBonus)
-        { //added boolean that checks if they cross START
-            currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.
-            currentPlayer.movePlayer(dist, gameboard.getArray().length); //changes player's position number
-            currentPosition = currentPlayer.getPlayerPosition(); //set current placement
-
-            currentField.setCar(currentGUIPlayer, false); //removes old position on gui
-            currentField = gui.getFields()[currentPosition]; //sets new position on gui
-            currentField.setCar(currentGUIPlayer, true); //sets gui player's position on currentField
-
-            if (currentPlayer.getPassedGoThisTurn()) { //adds money if player passes START when moving.
-                if (grantCrossStartBonus)
-                    currentPlayer.addPassStartBonus(4000);
-                else currentPlayer.addPassStartBonus(0); // added so it resets
-            }
-            currentPlayer.resetHasPassedGo(); //sets boolean back to false.
-            fieldAction.landOnField(diceCup.getTotalValue());
-        }
-
-        // method for chancecard where player has to go to specific field
-        public void moveCurrentPlayerToNameField (String fieldName,boolean grantCrossStartBonus){
-            int dist;
-            int position = gameboard.getPositionNamedField(fieldName); // the position of the field the player has to move to
-            int playerPosition = currentPlayer.getPlayerPosition(); // the players current position
-            int numFields = gameboard.getArray().length;
-            if (position > playerPosition) // if the field position is ahead of the player
-                dist = position - playerPosition;
-            else {
-                dist = numFields - playerPosition + position; // if the field position is behind the player
-            }
-            moveCurrentPlayer(dist, grantCrossStartBonus);
-        }
-
-        public void endGame (Player currentPlayer){
-            gameOver = true;
-            gui.showMessage(currentPlayer + " du er ude af spillet :("); //TODO hvad bliver den brugt til i praksis?
-            gui.showMessage("Tryk ok for at afslutte");
-            gui.close();
-        }
-
-        private void updateGUICash () {
-            for (int i = 0; i < players.getPlayers().length; i++) {
-                guiPlayers[i].setBalance(players.getPlayers()[i].getCash());
-            }
-        }
-        public Player getCurrentPlayer () {
-            return this.currentPlayer;
-        }
-
-        public GUI_Player getCurrentGUIPlayer () {
-            return currentGUIPlayer;
-        }
-
-        public Gameboard getGameboard () {
-            return this.gameboard;
-        }
-
-        public int getCurrentPosition () {
-            return currentPosition;
-        }
-
-        public void setCurrentPosition ( int position){
-            currentField = gui.getFields()[position]; //makes sure the gui will remove the car of the current player's position.
-            currentPosition = position; //set current placement
-        }
-
-        public GUI_Field getCurrentField () {
-            return currentField;
-        }
-
-        public GUI getGui () {
-            return gui;
-        }
-
-        public GUI_Field[] getFields () {
-            return fields;
         }
     }
+
+    private void rollToGetOutOfJail(int playerID) {
+        for (int i = 0; i < 3; i++) {
+            diceCup.roll();
+            gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
+            if (diceCup.isDoubles()) {
+                moveCurrentPlayer(diceCup.getTotalValue(), true);
+                turn(playerID);
+                break;
+            } else {
+                gui.showMessage("Desværre. Prøv igen");
+            }
+        }
+
+        if (currentPlayer.isJailed()) {
+            //TODO skal have mulighed for at blive gjort 3 gange, og hvis det ikk virker så betaler man 1000
+            if (currentPlayer.getCash() >= 1000) {
+                currentPlayer.addCash(-1000);
+                currentPlayer.setJailed(false);
+                gui.showMessage("Det lykkedes ikke at slå 2 ens. Hvis du har råd, betaler du nu bøden på 1000. Ellers må du prøve næste gang det bliver din tur. Du har siddet inde i " + currentPlayer.jailTurns + " runder ud af 3.");
+            } else if (currentPlayer.jailTurns > 2) {
+                currentPlayer.setJailed(false);
+                gui.showMessage("Du har siddet inde længe nok. I din næste tur er du fri.");
+            } else {
+                gui.showMessage("Du lykkedes ikke i at komme ud af fængslet denne runde. Prøv igen næste gang. Du har siddet inde i " + currentPlayer.jailTurns + " runder ud af 3.");
+            }
+        }
+
+    }
+
+    /**
+     * @param playerID
+     * @buyHouse methode der køber huse, hvis det er muligt, ellers sender den spilleren tilbage
+     * til turn.menu
+     */
+    private void buyHouse(int playerID) {
+        int totalOwnedFields = 0;
+        FieldStreet[] ownedFields = new FieldStreet[40];  // Der er ikke 40 fieldStreets på brættet, men det går nok
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
+                continue;
+            }
+            // Pt tjekker vi alle felter i en gruppe alle de gange hvor feltet er der (men it works!)
+            // (Så hvis en gruppe felter har 5 felter så tjekkes det hele 5 gange i stedet for kun 1 gang)
+            fieldAction.checkColorGroupOwned(i);
+            FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
+            if (field_i.getOwner() == this.currentPlayer && field_i.canBuildHouse()) {
+                ownedFields[totalOwnedFields] = field_i;
+                totalOwnedFields++;
+            }
+        }
+        if (totalOwnedFields == 0) {
+            gui.showMessage("Det ser ikke ud til at du kan købe nogen huse");
+            turn(playerID);
+            return;
+        }
+        String[] streetSelection = new String[totalOwnedFields];
+        for (int i = 0; i < totalOwnedFields; i++) {
+            streetSelection[i] = ownedFields[i].getPropertyName();
+        }
+        String streetChoice = gui.getUserSelection("Hvor vil du købe et hus?", streetSelection);
+        int streetChoiceInteger = 0;
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
+                streetChoiceInteger = i;
+                break;
+            }
+        }
+
+        ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHouse();
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
+        gui.showMessage(players.getPlayer(playerID).getName() + " har købt et hus på " + streetChoice + ".");
+        turn(playerID);
+    }
+
+    /**
+     * sælger huse hvis det er muligt
+     *
+     * @param playerID
+     * @sellHouse
+     */
+    private void sellHouse(int playerID) {
+        int totalOwnedFields = 0;
+        FieldStreet[] ownedFields = new FieldStreet[40];
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
+                continue;
+            }
+            FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
+            if (field_i.getOwner() == this.currentPlayer && field_i.canSellHouse()) {
+                ownedFields[totalOwnedFields] = field_i;
+                totalOwnedFields++;
+            }
+        }
+        if (totalOwnedFields == 0) {
+            gui.showMessage("Det ser ikke ud til at du kan sælge nogen huse");
+            turn(playerID);
+            return;
+        }
+        String[] streetSelection = new String[totalOwnedFields];
+        for (int i = 0; i < totalOwnedFields; i++) {
+            streetSelection[i] = ownedFields[i].getPropertyName();
+        }
+        String streetChoice = gui.getUserSelection("Hvor vil du sælge et hus?", streetSelection);
+        int streetChoiceInteger = 0;
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
+                streetChoiceInteger = i;
+                break;
+            }
+        }
+        ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHouse();
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
+        gui.showMessage(players.getPlayer(playerID).getName() + " har solgt et hus på " + streetChoice + ".");
+        turn(playerID);
+    }
+
+    private void buyHotel(int playerID) {
+        int totalOwnedFields = 0;
+        FieldStreet[] ownedFields = new FieldStreet[40];
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
+                continue;
+            }
+            FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
+            if (field_i.getOwner() == this.currentPlayer && field_i.canBuildHotel()) {
+                ownedFields[totalOwnedFields] = field_i;
+                totalOwnedFields++;
+            }
+        }
+        if (totalOwnedFields == 0) {
+            gui.showMessage("Det ser ikke ud til at du kan købe nogen hoteller");
+            turn(playerID);
+            return;
+        }
+
+        String[] streetSelection = new String[totalOwnedFields];
+        for (int i = 0; i < totalOwnedFields; i++) {
+            streetSelection[i] = ownedFields[i].getPropertyName();
+        }
+        String streetChoice = gui.getUserSelection("Hvor vil du købe et hotel?", streetSelection);
+        int streetChoiceInteger = 0;
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
+                streetChoiceInteger = i;
+                break;
+            }
+        }
+        ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).buildHotel();
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(true);
+        updateGUICash();
+        gui.showMessage(players.getPlayer(playerID).getName() + " har købt et hotel på " + streetChoice + ".");
+        turn(playerID);
+    }
+
+    private void sellHotel(int playerID) {
+        int totalOwnedFields = 0;
+        FieldStreet[] ownedFields = new FieldStreet[40];
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (!(this.gameboard.getArray()[i] instanceof FieldStreet)) {
+                continue;
+            }
+            FieldStreet field_i = (FieldStreet) this.gameboard.getArray()[i];
+            if (field_i.getOwner() == this.currentPlayer && field_i.canSellHotel()) {
+                ownedFields[totalOwnedFields] = field_i;
+                totalOwnedFields++;
+            }
+        }
+        if (totalOwnedFields == 0) {
+            gui.showMessage("Det ser ikke ud til at du kan sælge nogen hoteller");
+            turn(playerID);
+            return;
+        }
+        String[] streetSelection = new String[totalOwnedFields];
+        for (int i = 0; i < totalOwnedFields; i++) {
+            streetSelection[i] = ownedFields[i].getPropertyName();
+        }
+        String streetChoice = gui.getUserSelection("Hvor vil du sælge et hotel?", streetSelection);
+        int streetChoiceInteger = 0;
+        for (int i = 0; i < this.gameboard.getArray().length; i++) {
+            if (this.gameboard.getArray()[i].getPropertyName() == streetChoice) {
+                streetChoiceInteger = i;
+                break;
+            }
+        }
+        ((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).removeHotel();
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHotel(false);
+        ((GUI_Street) this.fields[streetChoiceInteger]).setHouses(((FieldStreet) this.gameboard.getArray()[streetChoiceInteger]).getHouses());
+        updateGUICash();
+        gui.showMessage(players.getPlayer(playerID).getName() + " har købt et hotel på " + streetChoice + ".");
+        turn(playerID);
+    }
+
+    public void moveCurrentPlayer(int dist, boolean grantCrossStartBonus) { //added boolean that checks if they cross START
+        currentField = gui.getFields()[currentPlayer.getPlayerPosition()]; //makes sure the gui will remove the car of the current player's position.
+        currentPlayer.movePlayer(dist, gameboard.getArray().length); //changes player's position number
+        currentPosition = currentPlayer.getPlayerPosition(); //set current placement
+
+        currentField.setCar(currentGUIPlayer, false); //removes old position on gui
+        currentField = gui.getFields()[currentPosition]; //sets new position on gui
+        currentField.setCar(currentGUIPlayer, true); //sets gui player's position on currentField
+
+        if (currentPlayer.getPassedGoThisTurn()) { //adds money if player passes START when moving.
+            if (grantCrossStartBonus)
+                currentPlayer.addPassStartBonus(4000);
+            else currentPlayer.addPassStartBonus(0); // added so it resets
+        }
+        currentPlayer.resetHasPassedGo(); //sets boolean back to false.
+        fieldAction.landOnField(diceCup.getTotalValue());
+    }
+
+    // method for chancecard where player has to go to specific field
+    public void moveCurrentPlayerToNameField(String fieldName, boolean grantCrossStartBonus) {
+        int dist;
+        int position = gameboard.getPositionNamedField(fieldName); // the position of the field the player has to move to
+        int playerPosition = currentPlayer.getPlayerPosition(); // the players current position
+        int numFields = gameboard.getArray().length;
+        if (position > playerPosition) // if the field position is ahead of the player
+            dist = position - playerPosition;
+        else {
+            dist = numFields - playerPosition + position; // if the field position is behind the player
+        }
+        moveCurrentPlayer(dist, grantCrossStartBonus);
+    }
+
+    public void endGame(Player currentPlayer) {
+        gameOver = true;
+        gui.showMessage(currentPlayer + " du er ude af spillet :("); //TODO hvad bliver den brugt til i praksis?
+        gui.showMessage("Tryk ok for at afslutte");
+        gui.close();
+    }
+
+    private void updateGUICash() {
+        for (int i = 0; i < players.getPlayers().length; i++) {
+            guiPlayers[i].setBalance(players.getPlayers()[i].getCash());
+        }
+    }
+
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public GUI_Player getCurrentGUIPlayer() {
+        return currentGUIPlayer;
+    }
+
+    public Gameboard getGameboard() {
+        return this.gameboard;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(int position) {
+        currentField = gui.getFields()[position]; //makes sure the gui will remove the car of the current player's position.
+        currentPosition = position; //set current placement
+    }
+
+    public GUI_Field getCurrentField() {
+        return currentField;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+
+    public GUI_Field[] getFields() {
+        return fields;
+    }
+}

@@ -81,7 +81,7 @@ public class Game {
 
     public void landOnChance() {
         ChanceCard card = this.pile.draw();
-        // If there is no more cards in the deck the pile gets shuffled, and a new card is draw
+        // If there are no more cards in the deck, the pile gets shuffled and a new card is drawn
         // ikke aktuelt da bunken aldrig er tom da kortene bliver lagt i bunken
         if (card == null) {
             this.pile.shuffle();
@@ -131,7 +131,7 @@ public class Game {
         updateGUICash();
         makePile();
         //TODO add actual gå-i-gang-besked
-        gui.showMessage("gå-i-gang-med-spillet-besked");
+        gui.showMessage("Nu starter spillet");
 
         //holder spillet i gang indtil gameOver
         while (!gameOver) {

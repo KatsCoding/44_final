@@ -68,11 +68,6 @@ public class FieldBlank extends Fields{
     }
 
     @Override
-    public void setDisplayPrice(String displayPrice) {
-
-    }
-
-    @Override
     public int getHouses() {
         return 0;
     }

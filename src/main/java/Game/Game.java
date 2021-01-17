@@ -11,6 +11,7 @@ import java.awt.*;
 public class Game {
 
     DiceCup diceCup = new DiceCup(2);
+    private int numberOfPlayers;
     private int currentPosition;
     boolean gameOver = false;
     PlayerList players;
@@ -96,7 +97,7 @@ public class Game {
         gui.showMessage("Velkommen til matador!");
 
         // valg af antal spillere
-        int numberOfPlayers = Integer.parseInt(gui.getUserSelection("Vælg antal spillere:", "2", "3", "4", "5", "6"));
+        numberOfPlayers = Integer.parseInt(gui.getUserSelection("Vælg antal spillere:", "2", "3", "4", "5", "6"));
         String[] playerNames = new String[numberOfPlayers];
         // indtastning af navne på spillere
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -151,17 +152,17 @@ public class Game {
 
             if (!currentPlayer.isJailed()) {
                 String choice = gui.getUserSelection("Det er nu " + players.getPlayer(playerID).getName() + "'s tur", "Rull med terningerne", "Køb et hus", "Køb et hotel", "Sælg et hus", "Sælg et hotel","Skip");
-                if (choice == "Roll") {
+                if (choice == "Rull med terningerne") {
                     diceCup.roll();
                     gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
                     moveCurrentPlayer(diceCup.getTotalValue(),true); //move handles landing on fields etc.
-                } else if (choice == "Buy House") {
+                } else if (choice == "Køb et hus") {
                     buyHouse(playerID);
-                } else if (choice == "Buy Hotel"){
+                } else if (choice == "Køb et hotel"){
                     buyHotel(playerID);
-                }else if (choice == "Sell House"){
+                }else if (choice == "Sælg et hus"){
                     sellHouse(playerID);
-                }else if (choice == "Sell Hotel"){
+                }else if (choice == "Sælg et hotel"){
                     sellHotel(playerID);
                 }
             }

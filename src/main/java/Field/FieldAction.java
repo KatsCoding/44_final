@@ -57,7 +57,7 @@ public class FieldAction {
             game.getGui().getUserSelection("Hey skibet her er frit, vil du købe det?", "Ja, køb skibet", "Nej tak, jeg vil spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
                 game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke købe det alligevel");
+                game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
 
 
             } else { //buys property and assigns player's name to the game.getGui().
@@ -73,7 +73,7 @@ public class FieldAction {
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
                 if (game.getCurrentPlayer().getCash() < (game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().ShipOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))) {//checks if you're poor
                     game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                    game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke købe det alligevel");
+                    game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
                 } else {
                     game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().ShipOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner())));
                     game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().ShipOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()));
@@ -88,7 +88,7 @@ public class FieldAction {
             game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
                 game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke købe det alligevel");
+                game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
 
 
             } else { //buys property and assigns player's name to the game.getGui().
@@ -104,7 +104,7 @@ public class FieldAction {
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
                 if (game.getCurrentPlayer().getCash() < (diceValue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()))) {//checks if you're poor
                     game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                    game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke købe det alligevel");
+                    game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
                 } else {
                     game.getCurrentPlayer().addCash(-(diceValue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner())));
                     game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(diceValue * game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent() * game.getGameboard().breweryOwnerCounter(game.getGameboard().getArray()[game.getCurrentPosition()].getOwner()));

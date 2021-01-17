@@ -203,10 +203,6 @@ public class FieldStreet extends Fields {
         return displayPrice;
     }
 
-    public void setDisplayPrice(String displayPrice) {
-        this.displayPrice = displayPrice;
-    }
-
     public int getHotels() {
         return hotels;
     }

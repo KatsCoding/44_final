@@ -4,6 +4,9 @@ import Game.Player;
 import Game.PlayerList;
 
 import Game.Game;
+import gui_fields.GUI_Field;
+import gui_main.GUI;
+import Game.Auction;
 
 import java.util.Arrays;
 
@@ -29,8 +32,16 @@ public class FieldAction {
 
     public void landOnStreet() {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
-            game.getGui().getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
-            if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice()) {
+            String userChoice = game.getGui().getUserSelection("Hey feltet her er frit vil du købe det?", "KØB flet her min ven", "Nej tak spare på mine penge");
+            if (userChoice.equals("Nej tak spare på mine penge")) {
+                Player[] otherPlayers = new Player[game.getPlayers().length-1];
+                // Liste af spillere som ikke er den nuværende spiller
+
+                Auction auction = new Auction(game.getGameboard().getArray()[game.getCurrentPosition()], otherPlayers, this.game.getGui(), this.game.getCurrentField(), this.game,game.getCurrentPosition());
+
+                auction.startAuction();
+
+            } else if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice()) {
                 game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
                 game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
 

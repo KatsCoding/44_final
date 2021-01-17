@@ -154,7 +154,7 @@ public class Game {
                 String choice = gui.getUserSelection("Det er nu " + players.getPlayer(playerID).getName() + "'s tur", "Rull med terningerne", "Køb et hus", "Køb et hotel", "Sælg et hus", "Sælg et hotel","Skip");
                 if (choice == "Rull med terningerne") {
                     diceCup.roll();
-                    gui.setDice(diceCup.getDices()[0].getValue(), diceCup.getDices()[1].getValue());
+                    gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
                     moveCurrentPlayer(diceCup.getTotalValue(),true); //move handles landing on fields etc.
                 } else if (choice == "Køb et hus") {
                     buyHouse(playerID);

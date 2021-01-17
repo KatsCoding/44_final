@@ -170,47 +170,47 @@ public class Game {
             //handling of jailed players
             else {
                 gui.showMessage("Åh nej! " + currentPlayer + " du er i fængsel. Hvis du har et kort til at blive løsladt vil det automatisk blive brugt. ");
-                if (currentPlayer.getGetOutOfJailFreeCards() > 0) {
-                    currentPlayer.setGetOutOfJailFreeCards(currentPlayer.getGetOutOfJailFreeCards() - 1);
-                    currentPlayer.setJailed(false);
-                    turn(playerID);
-                } else {
-                    String choice = gui.getUserSelection("Hvordan vil du forsøge at komme ud?", /*"Brug mit løsladelseskort", */"Betal bøden på 1000", "Prøv at slå 2 ens med terningerne");
-                    if (choice == "Betal bøden på 1000") {
-                        if (currentPlayer.getCash() >= 1000) {
-                            currentPlayer.addCash(-1000);
-                            currentPlayer.setJailed(false);
-                            turn(playerID);
-                        } else {
-                            gui.showMessage("Du har ikke råd. Slå med terningerne i stedet.");
-                            //TODO skift player til at bruge terninger
-                        }
-                    }
-                        else if (choice == "Prøv at slå 2 ens med terningerne" ) {
-                            diceCup.roll();
-                            gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
-                            if (diceCup.isDoubles()){
-                                moveCurrentPlayer(diceCup.getTotalValue(), true);
-                                turn(playerID);
-                            }
-                            else {
-                                gui.showMessage("Desværre. Held og lykke næste gang");
-                                //TODO skal have mulighed for at blive gjort 3 gange, og hvis det ikk virker så betaler man 1000
-                            }
-                        }
-
-
-                else if {
-                            if ("hej") {
-                                boolean test = false;
-                            }
-                        } else{
-                            endGame(currentPlayer);
-                        }
-                    }
-                }
-            }
-                updateGUICash();
+//                if (currentPlayer.getGetOutOfJailFreeCards() > 0) {
+//                    currentPlayer.setGetOutOfJailFreeCards(currentPlayer.getGetOutOfJailFreeCards() - 1);
+//                    currentPlayer.setJailed(false);
+//                    turn(playerID);
+//                } else {
+//                    String choice = gui.getUserSelection("Hvordan vil du forsøge at komme ud?", /*"Brug mit løsladelseskort", */"Betal bøden på 1000", "Prøv at slå 2 ens med terningerne");
+//                    if (choice == "Betal bøden på 1000") {
+//                        if (currentPlayer.getCash() >= 1000) {
+//                            currentPlayer.addCash(-1000);
+//                            currentPlayer.setJailed(false);
+//                            turn(playerID);
+//                        } else {
+//                            gui.showMessage("Du har ikke råd. Slå med terningerne i stedet.");
+//                            //TODO skift player til at bruge terninger
+//                        }
+//                    }
+//                        else if (choice == "Prøv at slå 2 ens med terningerne" ) {
+//                            diceCup.roll();
+//                            gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
+//                            if (diceCup.isDoubles()){
+//                                moveCurrentPlayer(diceCup.getTotalValue(), true);
+//                                turn(playerID);
+//                            }
+//                            else {
+//                                gui.showMessage("Desværre. Held og lykke næste gang");
+//                                //TODO skal have mulighed for at blive gjort 3 gange, og hvis det ikk virker så betaler man 1000
+//                            }
+////                        }
+//
+//
+//                else if {
+//                            if ("hej") {
+//                                boolean test = false;
+//                            }
+//                        } else{
+//                            endGame(currentPlayer);
+//                        }
+//                    }
+//                }
+//            }
+//                updateGUICash();
             }
 
             //TODO evt metode for sig self vedrørende isJailed osv (linje 114 - 126 cdio3 + det nye fra final)

@@ -173,7 +173,7 @@ public class Game {
 
             //handling of jailed players
             else {
-                //pay 1 money or use get out of jail free card and call turn() again.
+                //pay money or use get out of jail free card and call turn() again.
                 if (currentPlayer.getGetOutOfJailFreeCards() > 0) {
                     currentPlayer.setGetOutOfJailFreeCards(currentPlayer.getGetOutOfJailFreeCards() - 1);
                     currentPlayer.setJailed(false);

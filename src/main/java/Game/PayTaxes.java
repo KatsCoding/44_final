@@ -44,12 +44,11 @@ public class PayTaxes {
         currentPlayer.addCash(payTax);
     }
 
-    /* public int extraOrdinaryTax(Player currentPlayer){
-        int cash = currentPlayer.getCash();// get the balance of the current player
+    public void extraOrdinaryTax(Player currentPlayer){
+        int payTax = 0;
 
-        moneyLeft = cash - tax;
-
-        return moneyLeft;
-    } */
+        payTax = - tax;
+        currentPlayer.addCash(payTax);
+    }
 
 }

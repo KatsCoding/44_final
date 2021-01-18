@@ -23,6 +23,9 @@ public class FieldAction {
         else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof IncomeTax) {
             landOnTaxField();
         }
+        else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof ExtraOrdinaryTax) {
+            landOnExtraOrdinaryTaxField();
+        }
     }
 
 
@@ -197,6 +200,11 @@ public class FieldAction {
     public void landOnTaxField(){
         String choice = game.getGui().getUserSelection("Du er landet på et skattefelt. Hvordan vil du betale?", "Betal med 10% af mit samlede antal værdier", "Betal 4000");
         payTaxes.incomeTax(choice, game.getCurrentPlayer());
+    }
+
+    public void landOnExtraOrdinaryTaxField(){
+    game.getGui().showMessage("Statsskat. Betal 2000");
+        payTaxes.extraOrdinaryTax(game.getCurrentPlayer());
     }
 
     public void setGame(Game game) {

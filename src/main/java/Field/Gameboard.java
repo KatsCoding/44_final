@@ -47,7 +47,7 @@ public class Gameboard {
         boardArray[35] = new FieldShips("Rødby-Puttgarden", "4000 kr.",4000,false,null,'i');
         boardArray[36] = new FieldChanceCard("Prøv lykken");;
         boardArray[37] = new FieldStreet("Frederiksberg", "7000 kr.", 'h', false, 7000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, 4000, null , 2);
-        boardArray[38] = new FieldBlank("Statsskat");
+        boardArray[38] = new ExtraOrdinaryTax("Statsskat");
         boardArray[39] = new FieldStreet("Rådhuspladsen", "8000 kr.", 'h', false, 8000, new int[]{1000, 40000, 12000, 28000, 34000, 40000}, 4000 , null,2);
 
     }

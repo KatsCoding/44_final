@@ -24,10 +24,11 @@ public class FieldAction {
     public void landOnStreet() {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
             game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
+            //TODO make if statement der afgør hvad spilleren valgte så de kan sige nej til at købe lol
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice()) {
                 game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
                 game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
-
+                //TODO indsæt salg af huse her for at få råd
 
             } else { //buys property and assigns player's name to the game.getGui().
                 game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);

@@ -145,7 +145,7 @@ public class Game {
         }
     }
 
-    public void turn(int playerID) {
+    public void turn(int playerID) { //sæt en int ind her der siger hvilket nummer tu i træk man er på
         if (!gameOver) {
             currentPlayer = players.getPlayer(playerID);
             currentGUIPlayer = guiPlayers[playerID];
@@ -156,6 +156,13 @@ public class Game {
                     diceCup.roll();
                     gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
                     moveCurrentPlayer(diceCup.getTotalValue(), true); //move handles landing on fields etc.
+                    // lav noget ala
+                    // if(turnInARow < 3) {
+                    //      if(diceCup.isDouble) turn(playerID, turnInARow + 1)
+                    // } else {
+                    //      curentPlayer.setIsJailed(true)
+                    //      mere jail logik til at flytte dem og sådan her
+                    //}
                 } else if (choice == "Køb et hus") {
                     buyHouse(playerID);
                 } else if (choice == "Køb et hotel") {

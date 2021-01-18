@@ -191,6 +191,7 @@ public class FieldAction {
 
     //TODO have to make sure all things in this method are correct and working the way its set up with the rules for then jailed
     public void landOnJail() {
+        game.getGui().showMessage("Du er røget i fængsel!");
         game.getCurrentField().setCar(game.getCurrentGUIPlayer(), false); //sets game.getGui() player's position on game.GetCurrentField()
 
         game.getCurrentPlayer().setPlayerPosition(10); //sets player position to jail cell

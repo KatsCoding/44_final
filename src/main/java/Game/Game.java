@@ -26,6 +26,7 @@ public class Game {
     Pile pile; // Added pile to gameclass
 
 
+
     public enum WithDrawOutCome {
         OK,
         INSUFFICIENT_CASH
@@ -100,10 +101,9 @@ public class Game {
         // valg af antal spillere
         numberOfPlayers = Integer.parseInt(gui.getUserSelection("Vælg antal spillere:", "2", "3", "4", "5", "6"));
         String[] playerNames = new String[numberOfPlayers];
-        // indtastning af navne på spillere
-        for (int i = 0; i < numberOfPlayers; i++) {
-            playerNames[i] = gui.getUserString("Indtast navn på den " + (i + 1) + ". Spiller");
-        }
+
+        //navngiver spillere lol
+        nameSetUpStartGame(playerNames);
 
         //Liste over spillere og deres navne
         players = new PlayerList(numberOfPlayers, playerNames);
@@ -136,6 +136,41 @@ public class Game {
         //holder spillet i gang indtil gameOver
         while (!gameOver) {
             round();
+        }
+    }
+
+    public void nameSetUpStartGame(String[] allNames){
+
+        // indtastning af navne på spillere
+        for (int i = 0; i < numberOfPlayers; i++) {
+            Boolean nameAlreadyExist = true;
+            Boolean foundMatch = false;
+            String name = null;
+            while (nameAlreadyExist) {
+                //tjekker om spilleren har indtastet et tomt navn
+                name = gui.getUserString("Indtast navn på den " + (i + 1) + ". Spiller");
+                if (name.equals("")) {
+                    gui.getUserButtonPressed("Du SKAL vælge et navn", "Fortsæt");
+                } else {
+                    if (name.length() > 16) {
+                        gui.getUserButtonPressed("Navnet er for langt (max 16 symboler)", "Fortsæt");
+                    } else { //tjekker om det valgte navn matcher en af de andres navne
+                        for (int k = 0; k < allNames.length; k++) {
+                            if (name.equals(allNames[k])) {
+                                foundMatch = true;
+                            }
+                        }
+                        if (foundMatch) {
+                            gui.getUserButtonPressed("Dette navn er allerede taget, vælg et andet", "Fortsæt");
+                            foundMatch = false;
+                        } else if (!foundMatch) {
+                            allNames[i] = name;
+                            nameAlreadyExist = false;
+                        }
+                    }
+                }
+            }
+
         }
     }
 

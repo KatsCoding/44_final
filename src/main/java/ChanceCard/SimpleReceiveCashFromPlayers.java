@@ -12,7 +12,7 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
         this.amountPerPlayer = amountPerPlayer;
     }
 
-    protected int getAmountFromPlayer(Game game, GUI gui, Player player) {
+    protected int getAmountFromPlayer(Game game, Player player) {
         int amountReceived = 0;
         switch (game.withDrawCashFromPlayer(player, this.amountPerPlayer)) {
             case OK:
@@ -20,7 +20,7 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
                 break;
             case INSUFFICIENT_CASH: {
                 int missing = this.amountPerPlayer - game.getCurrentUserFunds();
-                gui.showMessage(String.format("Du har ikke penge nok. Der mangler %d \n Sælg ejendomme for at få penge nok", missing));
+                game.getGui().showMessage(String.format("Du har ikke penge nok. Der mangler %d \n Sælg ejendomme for at få penge nok", missing));
                 // allow the user to sell properties (not implemented fully - could be for further work)
                 game.promptCurrentUserPropertySale();
 
@@ -46,7 +46,7 @@ public class SimpleReceiveCashFromPlayers extends ChanceCard {
         Player[] players = game.getPlayers();
         for(int i=0; i<players.length; i++) {
             if (players[i] != game.getCurrentPlayer()) {
-                amountReceived += this.getAmountFromPlayer(game, gui, players[i]);
+                amountReceived += this.getAmountFromPlayer(game, players[i]);
             }
         }
         game.addCashToCurrentPlayer(amountReceived);

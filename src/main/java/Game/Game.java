@@ -519,4 +519,23 @@ public class Game {
     public GUI_Field[] getFields() {
         return fields;
     }
+
+
+    public void testStartGame(){
+
+        numberOfPlayers = 3;
+        String[] playerNames = {"Katrine", "Simon", "Mike"};
+
+        //Liste over spillere og deres navne
+        players = new PlayerList(numberOfPlayers, playerNames);
+        currentPlayer = players.getPlayers()[0];
+        fieldAction.setGame(this);
+
+        //Sætter startfeltet
+        currentField = gui.getFields()[0];
+
+        makePile();
+    }
+
+
 }

@@ -11,7 +11,6 @@ public class FieldAction {
             landOnStreet();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldJail) {
             landOnJail();
-            // TODO insert FieldChance here
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldChanceCard) {
             landOnChance();
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldShips) {
@@ -23,21 +22,21 @@ public class FieldAction {
 
     public void landOnStreet() {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
-            game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
-            //TODO make if statement der afgør hvad spilleren valgte så de kan sige nej til at købe lol
-            if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice()) {
-                game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
-                game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
-                //TODO indsæt salg af huse her for at få råd
+           String choice =  game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
+            if ( choice == "Ja tak, jeg køber det") {
+                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice()) {
+                    game.getGui().showMessage("Desværre du Har ikke råd til at købe feltet");
+                    game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej gider ikke have det alligevel");
+                    //TODO indsæt salg af huse her for at få råd
 
-            } else { //buys property and assigns player's name to the game.getGui().
-                game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
-                game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
-                game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
-                game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice())); //pays for the property
-                checkColorGroupOwned(game.getCurrentPosition());
+                } else { //buys property and assigns player's name to the game.getGui().
+                    game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
+                    game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
+                    game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
+                    game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getStreetPrice())); //pays for the property
+                    checkColorGroupOwned(game.getCurrentPosition());
+                }
             }
-
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
@@ -56,20 +55,20 @@ public class FieldAction {
     public void landOnShips() {
 
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
-            game.getGui().getUserSelection("Hey skibet her er frit, vil du købe det?", "Ja, køb skibet", "Nej tak, jeg vil spare på mine penge");
-            if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
-                game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
+            String choice = game.getGui().getUserSelection("Hey skibet her er frit, vil du købe det?", "Ja, køb skibet", "Nej tak, jeg vil spare på mine penge");
+            if ( choice == "Ja, køb skibet") {
+                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
+                    game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
+                    game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
 
-
-            } else { //buys property and assigns player's name to the game.getGui().
-                game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
-                game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
-                game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
-                game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getPrice())); //pays for the property
-                checkColorGroupOwned(game.getCurrentPosition());
+                } else { //buys property and assigns player's name to the game.getGui().
+                    game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
+                    game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
+                    game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
+                    game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getPrice())); //pays for the property
+                    checkColorGroupOwned(game.getCurrentPosition());
+                }
             }
-
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
@@ -87,20 +86,21 @@ public class FieldAction {
 
     public void landOnBrewery(int diceValue) {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
-            game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
-            if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
-                game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
+           String choice = game.getGui().getUserSelection("Dette felt er frit, vil du købe det?", "Ja tak, jeg køber det", "Nej tak, jeg vil spare på mine penge");
+            if ( choice == "Ja tak, jeg køber det") {
+                if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
+                    game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
+                    game.getGui().getUserSelection("Vil du sælge huse eller egendom for at få råd?", "Ja lad os sælge nogle huse", "ja lad os sælge nogle egendomme", "Nej, jeg vil ikke købe det alligevel");
 
 
-            } else { //buys property and assigns player's name to the game.getGui().
-                game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
-                game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
-                game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
-                game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getPrice())); //pays for the property
-                checkColorGroupOwned(game.getCurrentPosition());
+                } else { //buys property and assigns player's name to the game.getGui().
+                    game.getGameboard().getArray()[game.getCurrentPosition()].setOwned(true);
+                    game.getGameboard().getArray()[game.getCurrentPosition()].setOwner(game.getCurrentPlayer());
+                    game.getGui().getFields()[game.getCurrentPosition()].setSubText(game.getCurrentPlayer().getName()); //game.getGui() property owner name updated here
+                    game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getPrice())); //pays for the property
+                    checkColorGroupOwned(game.getCurrentPosition());
+                }
             }
-
 
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
@@ -116,7 +116,6 @@ public class FieldAction {
         }
     }
 
-    //TODO has to make it so its only as long as there non houses build on the group.
     public void checkColorGroupOwned(int propertyID) {
         int count = 0;
         int misses = 0;

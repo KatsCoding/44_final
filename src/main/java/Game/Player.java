@@ -11,7 +11,7 @@ public class Player {
     boolean isJailed = false;
     int houses;
     int hotel;
-    int jailTurns = 0;
+    int jailTurns = 1;
 
 
     public Player(String name){
@@ -83,7 +83,7 @@ public class Player {
 
     public void setJailed(boolean jailed) {
         isJailed = jailed;
-        jailTurns = 0;
+        jailTurns = 1;
     }
 
     public int getJailTurns() {

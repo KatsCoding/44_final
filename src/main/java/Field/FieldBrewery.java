@@ -28,17 +28,17 @@ public class FieldBrewery extends Fields {
 
     @Override
     public void setOwner(Player owner) {
-
+        this.owner = owner;
     }
 
     @Override
     public boolean getOwned() {
-        return owned;
+        return owner != null;
     }
 
     @Override
     public void setOwned(boolean b) {
-
+        owned = b;
     }
 
     @Override

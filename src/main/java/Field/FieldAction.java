@@ -42,8 +42,9 @@ public class FieldAction {
         } else { //if the property is already owned
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
                 if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()) {//checks if you're poor
-                    game.getGui().showMessage("Desværre du har ikke råd til at købe feltet");
-                    game.getGui().getUserSelection("Vil du sælge nogle huse eller egendom for at få råd?", "ja", "nej");
+                    game.getGui().showMessage("Du har ikke råd til at betale lejen. Game over :(");
+                    //TODO SÅ MAN KAN SÆLGE EGENDOMME FOR AT KUNNE BETALE LEJE
+                    game.endGameCurrentUser();
                 } else {
                     game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()));
                     game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent());
@@ -53,6 +54,7 @@ public class FieldAction {
     }
 
     public void landOnShips() {
+
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
             game.getGui().getUserSelection("Hey skibet her er frit, vil du købe det?", "Ja, køb skibet", "Nej tak, jeg vil spare på mine penge");
             if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getPrice()) {
@@ -163,8 +165,10 @@ public class FieldAction {
                 currentField.setRentPriceMultiplier(2); //todo ret til den rigtige int
             }
         } else {
-            for (Fields f : group) {
-                ((FieldStreet) f).setCanBuild(false);
+            if (currentField instanceof FieldStreet) {
+                for (Fields f : group) {
+                    ((FieldStreet) f).setCanBuild(false);
+                }
             }
         }
     }

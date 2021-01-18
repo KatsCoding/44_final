@@ -129,7 +129,7 @@ public class Game {
         //Opdaterer visuel rep af penge på gui'en
         updateGUICash();
         makePile();
-        //TODO add actual gå-i-gang-besked
+
         gui.showMessage("Nu starter spillet, held og lykke!");
 
         //holder spillet i gang indtil gameOver
@@ -145,7 +145,8 @@ public class Game {
         }
     }
 
-    public void turn(int playerID) { //sæt en int ind her der siger hvilket nummer tu i træk man er på
+    public void turn(int playerID) {turn(playerID, 1);}
+    public void turn(int playerID, int turnNumber) {
         if (!gameOver) {
             currentPlayer = players.getPlayer(playerID);
             currentGUIPlayer = guiPlayers[playerID];
@@ -156,13 +157,13 @@ public class Game {
                     diceCup.roll();
                     gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
                     moveCurrentPlayer(diceCup.getTotalValue(), true); //move handles landing on fields etc.
-                    // lav noget ala
-                    // if(turnInARow < 3) {
-                    //      if(diceCup.isDouble) turn(playerID, turnInARow + 1)
-                    // } else {
-                    //      curentPlayer.setIsJailed(true)
-                    //      mere jail logik til at flytte dem og sådan her
-                    //}
+
+                    if (turnNumber < 3) {
+                        if (diceCup.isDoubles()) turn(playerID, turnNumber + 1);
+                    } else {
+                        gui.showMessage("Du har slået 2 ens 3 gange i streg, og ryger derfor direkte i fængsel.");
+                        fieldAction.landOnJail();
+                    }
                 } else if (choice == "Køb et hus") {
                     buyHouse(playerID);
                 } else if (choice == "Køb et hotel") {
@@ -195,8 +196,6 @@ public class Game {
         updateGUICash();
     }
 
-    //TODO Lave metode der afgør hvad der sker når man slår 2 ens (og 2 ens flere gange)
-
     private void payBail(int playerID) {
         if (currentPlayer.getCash() >= 1000) {
             currentPlayer.addCash(-1000);
@@ -206,7 +205,6 @@ public class Game {
             if (currentPlayer.getJailTurns() < 3) {
                 gui.showMessage("Du har ikke råd. Slå med terningerne i stedet.");
                 rollToGetOutOfJail(playerID);
-                //TODO skift player til at bruge terninger
             } else {
                 currentPlayer.setJailed(false);
                 turn(playerID);
@@ -220,6 +218,7 @@ public class Game {
             gui.setDice(diceCup.getDice()[0].getValue(), diceCup.getDice()[1].getValue());
             if (diceCup.isDoubles()) {
                 moveCurrentPlayer(diceCup.getTotalValue(), true);
+                currentPlayer.setJailed(false);
                 turn(playerID);
                 break;
             } else {
@@ -228,7 +227,6 @@ public class Game {
         }
 
         if (currentPlayer.isJailed()) {
-            //TODO skal have mulighed for at blive gjort 3 gange, og hvis det ikk virker så betaler man 1000
             if (currentPlayer.getCash() >= 1000) {
                 currentPlayer.addCash(-1000);
                 currentPlayer.setJailed(false);
@@ -442,7 +440,7 @@ public class Game {
 
     public void endGame(Player currentPlayer) {
         gameOver = true;
-        gui.showMessage(currentPlayer + " du er ude af spillet :("); //TODO hvad bliver den brugt til i praksis?
+        gui.showMessage(currentPlayer + " du er sidste mand stående, da alle andre spillere har tabt. Stort tillykke med sejren!");
         gui.showMessage("Tryk ok for at afslutte");
         gui.close();
     }

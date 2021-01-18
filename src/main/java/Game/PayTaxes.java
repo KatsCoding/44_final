@@ -37,17 +37,17 @@ public class PayTaxes {
 
         balance = cash + mortgage + value;
         if (buttonInput.equals("Betal med 10% af mit samlede antal værdier")) {
-            payTax = - (int) (balance * 0.1);
+            payTax = -(int) (balance * 0.1);
         } else {
-            payTax =  - price;
+            payTax = -price;
         }
         currentPlayer.addCash(payTax);
     }
 
-    public void extraOrdinaryTax(Player currentPlayer){
+    public void extraOrdinaryTax(Player currentPlayer) {
         int payTax = 0;
 
-        payTax = - tax;
+        payTax = -tax;
         currentPlayer.addCash(payTax);
     }
 

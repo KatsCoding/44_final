@@ -72,6 +72,7 @@ public class Game {
 
     public void endGameCurrentUser() {
         players.removePlayer(currentPlayer);
+        currentField.setCar(currentGUIPlayer, false); //removes old position on gui
         gui.showMessage(currentPlayer + ", du har tabt, og er derfor ude af spillet");
         //TODO rigtig player
     }

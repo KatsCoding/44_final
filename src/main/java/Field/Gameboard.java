@@ -28,7 +28,7 @@ public class Gameboard {
         boardArray[16] = new FieldStreet("Bernstorffsvej", "3600 kr.", 'd', false, 3600, new int[]{300, 1400, 4000, 11000, 15000, 19000}, 2000, null , 3);
         boardArray[17] = new FieldChanceCard("Prøv lykken");;
         boardArray[18] = new FieldStreet("Hellerupvej", "3600 kr.", 'd', false, 3600, new int[]{300, 1400, 4000, 11000, 15000, 19000}, 2000, null , 3);
-        boardArray[19] = new FieldStreet("Strandvejen", "4000 kr.", 'd', false, 3600, new int[]{350, 1600, 4400, 12000, 16000, 20000}, 2000, null , 3);
+        boardArray[19] = new FieldStreet("Strandvejen", "4000 kr.", 'd', false, 4000, new int[]{350, 1600, 4400, 12000, 16000, 20000}, 2000, null , 3);
         boardArray[20] = new FieldBlank("Parkering");
         boardArray[21] = new FieldStreet("Trianglen", "4400 kr.", 'e', false, 4400, new int[]{350, 1800, 5000, 14000, 17500, 21000}, 3000, null , 3);
         boardArray[22] = new FieldChanceCard("Prøv lykken");;
@@ -40,7 +40,7 @@ public class Gameboard {
         boardArray[28] = new FieldBrewery("Carlsberg", 3000, false,null,'j');
         boardArray[29] = new FieldStreet("Østergade", "5600 kr.", 'f', false, 5600, new int[]{500, 2400, 7200, 17000, 20500, 24000}, 3000, null , 3);
         boardArray[30] = new FieldJail("Ryk i fængsel");
-        boardArray[31] = new FieldStreet("Amagertorv", "6000 kr.", 'g', false, 6800, new int[]{550, 2600, 7800, 18000, 22000, 25000}, 4000, null , 3);
+        boardArray[31] = new FieldStreet("Amagertorv", "6000 kr.", 'g', false, 6000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, 4000, null , 3);
         boardArray[32] = new FieldStreet("Vimmelskaftet", "6000 kr.", 'g', false, 6000,new int[]{550, 2600, 7800, 18000, 22000, 25000},4000, null , 3);
         boardArray[33] = new FieldChanceCard("Prøv lykken");;
         boardArray[34] = new FieldStreet("Nygade", "6400 kr.", 'g', false, 6400, new int[]{600, 3000, 9000, 20000, 24000, 28000}, 4000, null , 3);

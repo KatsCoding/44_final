@@ -51,14 +51,22 @@ public class FieldAction {
             if (game.getGameboard().getArray()[game.getCurrentPosition()].getOwner() != game.getCurrentPlayer()) { //Only does something if the player doesn't own the property himself
                 if (game.getCurrentPlayer().getCash() < game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()) {//checks if you're poor
                     game.getGui().showMessage("Du har ikke råd til at betale lejen. Game over :(");
-                    //TODO SÅ MAN KAN SÆLGE EGENDOMME FOR AT KUNNE BETALE LEJE
-                    game.endGameCurrentUser();
+                    boolean poor = true;
+                    while (poor) {
+                        mortgage();
+                    }
+
+
                 } else {
                     game.getCurrentPlayer().addCash(-(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent()));
                     game.getGameboard().getArray()[game.getCurrentPosition()].getOwner().addCash(game.getGameboard().getArray()[game.getCurrentPosition()].getCurrentRent());
                 }
             }
         }
+    }
+
+    public void mortgage() {
+
     }
 
     public void landOnShips() {

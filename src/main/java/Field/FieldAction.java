@@ -1,10 +1,12 @@
 package Field;
 
 import Game.Game;
+import Game.PayTaxes;
 
 public class FieldAction {
 
     Game game;
+    PayTaxes payTaxes;
 
     public void landOnField(int diceValue) {
         if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldStreet) {
@@ -18,7 +20,11 @@ public class FieldAction {
         } else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof FieldBrewery) {
             landOnBrewery(diceValue);
         }
+        else if (game.getGameboard().getArray()[game.getCurrentPosition()] instanceof IncomeTax) {
+            landOnTaxField();
+        }
     }
+
 
     public void landOnStreet() {
         if (!game.getGameboard().getArray()[game.getCurrentPosition()].getOwned()) { //checks if NOT owned
@@ -188,8 +194,14 @@ public class FieldAction {
         game.landOnChance(); // landOnChance implemented in game class (which makes the player draw a card)
     }
 
+    public void landOnTaxField(){
+        String choice = game.getGui().getUserSelection("Du er landet på et skattefelt. Hvordan vil du betale?", "Betal med 10% af mit samlede antal værdier", "Betal 4000");
+        payTaxes.incomeTax(choice, game.getCurrentPlayer());
+    }
+
     public void setGame(Game game) {
         this.game = game;
+        payTaxes  = new PayTaxes(game.getGameboard());
     }
 
 }

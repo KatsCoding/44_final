@@ -2,10 +2,10 @@ package Field;
 
 import Game.Player;
 
-public class FieldBlank extends Fields{
+public class IncomeTax extends Fields{
     String propertyName;
-
-    public FieldBlank(String name) { propertyName = name; }
+    public IncomeTax (String name){
+        propertyName = name; }
 
     @Override
     public Player getOwner() {
@@ -50,7 +50,6 @@ public class FieldBlank extends Fields{
     public void setRentPriceMultiplier(int b) {
 
     }
-
 
     @Override
     public String getPropertyName() {

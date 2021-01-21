@@ -117,6 +117,7 @@ public class Game {
             guiPlayers[i] = new GUI_Player(players.getPlayer(i).getName(), Player.defaultCash(), cars[i]);
         }
         fieldAction.setGame(this);
+        diceCup.setGame(this);
 
         //Sætter startfeltet
         currentField = gui.getFields()[0];
@@ -512,9 +513,7 @@ public class Game {
         return currentField;
     }
 
-    public GUI getGui() {
-        return gui;
-    }
+    public GUI getGui() { return gui; }
 
     public GUI_Field[] getFields() {
         return fields;

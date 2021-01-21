@@ -15,17 +15,26 @@ public class Pile {
         return card;
     }
 
+
+
     public void addCard(ChanceCard card) {
         cards.add(card);
     }
 
     public void shuffle(){
         ArrayList<ChanceCard> tmp = new ArrayList<>(cards);
-        Collections.shuffle(tmp);
+        //Collections.shuffle(tmp);
         currentPile = new LinkedList<>(tmp);
     }
 
+
     public void loadPile() {
+        addCard( new SimpleMove("Ryk tre felter frem", 3, true));
+        addCard( new SimpleMove("Ryk tre felter tilbage", -3, false));
+        addCard( new SimpleMoveToSpecificField("Ryk frem til START", "Start", true));
+    }
+
+    public void loadPile2() {
         addCard( new SimpleMove("Ryk tre felter frem", 3, true));
         addCard( new SimpleMove("Ryk tre felter tilbage", -3, false));
         addCard( new SimpleMove("Ryk tre felter tilbage", -3, false));

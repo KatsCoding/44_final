@@ -29,8 +29,8 @@ public class DiceCup {
         }
         totalValue = sum;*/
 
-        String stringSelection = game.getGui().getUserSelection("Hvad vil du gerne rulle?",
-                "5", "6", "7", "8", "9", "10", "11", "2 DOBBELT", "4 DOBBELT", "6 DOBBELT", "8 DOBBELT", "10 DOBBELT", "12 DOBBELT", "3", "4");
+        String stringSelection = game.getGui().getUserSelection("Hvad vil du gerne rulle?", "3", "4",
+                "5", "6", "7", "8", "9", "10", "11", "2 DOBBELT", "4 DOBBELT", "6 DOBBELT", "8 DOBBELT", "10 DOBBELT", "12 DOBBELT");
         int selection = 0;
         if (stringSelection.length() <= 2) {
             selection = Integer.parseInt(stringSelection);

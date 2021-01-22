@@ -5,6 +5,12 @@ public class Dice {
 
     private int value = 1;
 
+    Dice(int startValue) {
+        value = startValue;
+    }
+
+    Dice() { value = 1; }
+
     public int getValue() {
         return value; }
 

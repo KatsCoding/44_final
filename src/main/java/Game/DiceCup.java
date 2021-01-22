@@ -2,25 +2,23 @@ package Game;
 
 
 public class DiceCup {
+    //                                                                                                       v  spillet slutter her
+    int[] d1 = {4, 2, 6, 2, 6, 3, 5, 6, 3, 3, 1, 5, 5, 3, 2, 4, 6, 2, 6, 3, 1, 1, 1, 3, 2, 2, 3, 3, 5, 5, 6, 1, 4};
+    int[] d2 = {2, 3, 1, 1, 4, 2, 6, 1, 5, 1, 1, 5, 5, 1, 4, 3, 6, 3, 4, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 3, 6, 2, 6};
+    int index = -1;
+
 
     private Dice[] dice;
     private int totalValue = 0;
     private int diceAmount;
 
     public DiceCup(int diceAmount){
-        this.diceAmount = diceAmount;
-        dice = new Dice[diceAmount];
-        for( int i=0; i<diceAmount; i++){
-            dice[i] = new Dice();
-        }
+
     }
 
     public void roll(){
-        int sum = 0;
-        for(int i=0; i<diceAmount; i++){
-            sum += dice[i].roll();
-        }
-        totalValue = sum;
+        index++;
+
     }
 
     /**
@@ -30,37 +28,21 @@ public class DiceCup {
      * @return Om alle dice er ens
      */
     public boolean isDoubles() {
-        int firstElement = dice[0].getValue();
-        for(int i=1; i<diceAmount; i++){
-            if(firstElement != dice[i].getValue()){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Henter Diceen ud fra Diceens index i Raflebægeret.
-     * @param diceIndex Diceens index (0 - (diceAmount-1))
-     * @return Diceen som objekt - her kan hentes Diceens specifikke vaerdi
-     */
-    public Dice getDice(int diceIndex){
-        if( diceIndex >= dice.length ){
-            diceIndex = dice.length-1;
-        }else if(diceIndex<0){
-            diceIndex = 1;
-        }
-        return dice[diceIndex];
+        return d1[index] == d2[index];
     }
 
     /** @return Den nuværende sum af dices vaerdier
      */
     public int getTotalValue() {
-        return totalValue;
+        return d1[index] + d2[index];
     }
 
     public Dice[] getDice() {
-        return dice;
+        Dice[] diceArray = {new Dice(d1[index]), new Dice(d2[index])};
+
+        //lav et array af terninger med de rigtige værdier
+        return diceArray;
+
     }
 
     public void setTotalValue(int totalValue) {

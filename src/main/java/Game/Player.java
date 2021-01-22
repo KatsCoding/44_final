@@ -2,7 +2,7 @@ package Game;
 
 public class Player {
 
-    private static int defaultCash = 30000;
+    private static int defaultCash = 16500;
     String name;
     int cash;
     int getOutOfJailFreeCards = 0;
@@ -27,7 +27,7 @@ public class Player {
         return cash;
     }
 
-    public static int defaultCash(){return defaultCash = 30000;}
+    public static int defaultCash(){return defaultCash = 16500;}
 
     public void addCash(int cash) { this.cash = this.cash + cash; }
 
